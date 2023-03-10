@@ -21,14 +21,18 @@
                 <div class="cadre">
                     <h2>Rentre ton PIN !</h2>
                     <div class="code">
-                        <button type="submit">Entrer</button>
+                        <form action="" method="post">
+                             {% csrf_token %}
+                            <input type="integer" id="pin" name="pin" maxlength="4" size="10"  placeholder="Pin">
+                            <button type="submit">Entrer</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="ss">
                 <div class="cadre">
-                    <h2>Si tu souhaites gérer un Quizz, rends toi sur la page connexion ! </h2>
-                    <button type="submit">Connexion</button>
+                    <h2>Pour gérer un Quizz, rends-toi sur la page connexion ! </h2>
+                    <button><a href="{% url 'accounts:login' %}">Connexion</a></button>
                 </div>
             </div>
         </div>
