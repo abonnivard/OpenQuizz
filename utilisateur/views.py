@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def waitingpage(request):
+    return render(request, "utilisateur/waitingpage.html")

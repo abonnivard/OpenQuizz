@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'administrateur.apps.AdministrateurConfig',
+    'utilisateur.apps.UtilisateurConfig',
+    'quizz.apps.QuizzConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +128,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authentification
+LOGIN_REDIRECT_URL = "administrateur:dashboard"
+LOGIN_URL = 'accounts:login'
