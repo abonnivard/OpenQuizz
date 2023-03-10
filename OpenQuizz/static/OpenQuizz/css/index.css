@@ -26,3 +26,50 @@ body {
     font-family: Font ;
     color: #c8e1f8;
 }
+
+
+.main .bloc {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 5%;
+}
+
+.main .bloc .ss {
+    align-items: center; justify-content: center;
+    margin: 5% 0% 5% 0%;
+    padding: 5% 2%;
+    -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4%;
+    box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+    height: 400px;
+    width: 400px;
+    color: #a3cdf3;
+    text-align: center;
+}
+
+
+.main .bloc .ss button {
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(145, 148, 255, 0.82);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+    transition: 0.2s;
+    display: block;
+    margin-top: 5%;
+}
+
+.main .bloc .ss button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 40px -10px #000000;
+}
