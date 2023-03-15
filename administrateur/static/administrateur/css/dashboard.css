@@ -6,3 +6,166 @@
   border-spacing: 0;
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: Font;
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+body {
+  background-color: #1b3642;
+  background-image: url("../img/graphy--light--1920x1080.png");
+}
+
+.main {
+    height: 100%;
+    padding-top: 60px;
+}
+
+.main h1 {
+  margin: 100px 0px;
+  text-align: center;
+  font-family: Font;
+  color: #c8e1f8;
+}
+
+p {
+  transform: translateY(7px);
+  font-size: 1.5rem;
+  color: #c8e1f8;
+  align-content: center;
+}
+
+.all {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.gauche {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  margin-left:5% ;
+  margin-right: 1%;
+}
+
+.droite {
+  margin-left: 1%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  height: 500px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.ajouter_question {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin-bottom: 70px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.texte1 {
+  width: 75%;
+  padding: 10px;
+}
+
+.bouton1 {
+  width: 25%;
+  padding: 10px;
+}
+
+.cercle1 {
+  width: 50px;
+  height: 50px;
+  background-color: #3e8686;
+  border-radius: 50%;
+  text-align: center;
+
+}
+
+a i {
+  transform: translateY(7px);
+  color: #c8e1f8;
+  font-size: 2rem;
+}
+
+.creer_quizz {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin-bottom: 70px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.lancer_quizz{
+  display: flex;
+  flex-direction: row;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+  padding: 20px;
+  margin-bottom: 70px;
+}
+
+
+.droite .texte {
+  font-size: 2rem;
+  color: #c8e1f8;
+  text-align: center;
+}
+
+.tableau {
+  padding: 20px;
+}
+
+table {
+  color: #c8e1f8;
+}
+
+th  {
+  color: #c8e1f8;
+  border: 2px solid #c8e1f8;
+}
+
+.question {
+  display: flex;
+  flex-direction: row;
+}
+
+.question .texte {
+  text-align: left;
+  width: 95%;
+}
+
+.titre {
+  font-size: 2rem;
+  color: #c8e1f8;
+  text-align: center;
+}
+
+.supp {
+  width: 5%;
+}
+
+.supp:hover {
+    transform: translateY(-5px);
+}

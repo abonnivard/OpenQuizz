@@ -1,5 +1,12 @@
 from django.shortcuts import render
+from .models import Question
+from django.contrib.auth.models import User
 
-# Create your views here.
 def dashboard(request):
-    return render(request, "administrateur/dashboard.html")
+    print(request.user.username)
+    Questions = Question.objects.all()
+    print(Questions)
+    context = {
+        "questions":Questions
+    }
+    return render(request, "administrateur/dashboard.html", context)

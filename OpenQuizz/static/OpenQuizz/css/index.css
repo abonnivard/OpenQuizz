@@ -6,13 +6,12 @@
 
 @font-face {
   font-family: Font;
-  src: url(ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
 }
 
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-
 }
 
 .main {

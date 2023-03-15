@@ -14,6 +14,66 @@
     {% block content %}
     {% endblock %}
 
+    <dev class="main">
+        <h1 class="alltitre">Panneau de contrôle</h1>
+        <div class="all">
+            <div class="gauche">
+                <div class="ajouter_question">
+                    <div class="texte1">
+                    <p>Ajouter une question</p>
+                    </div>
+                    <div class="bouton1">
+                        <div class="cercle1">
+                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="creer_quizz">
+                    <div class="texte1">
+                    <p>Créer un nouveau quizz</p>
+                    </div>
+                    <div class="bouton1">
+                        <div class="cercle1">
+                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="lancer_quizz">
+                    <div class="texte1">
+                    <p>Lancer un quizz</p>
+                    </div>
+                    <div class="bouton1">
+                        <div class="cercle1">
+                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="droite">
+
+                <div class="tableau">
+                    <table id="table1" class="table">
+                        <tr>
+                            <th class="titre">Liste de vos questions</th>
+                        </tr>
+                        {% for question in questions %}
+                            <tr>
+                                <th><div class="question">
+                                    <div class="texte">
+                                        <p>{{question.enonce}}</p>
+                                    </div>
+                                    <div class="supp">
+                                        <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+                                </div></th>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </dev>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
