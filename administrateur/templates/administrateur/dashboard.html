@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/717f408a62.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    {% include 'OpenQuizz/navbar.html' %}
+    {% include 'OpenQuizz/navbarconnected.html' %}
     {% block content %}
     {% endblock %}
 
@@ -24,7 +24,9 @@
                     </div>
                     <div class="bouton1">
                         <div class="cercle1">
-                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                            <div class="a">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -33,8 +35,10 @@
                     <p>Créer un nouveau quizz</p>
                     </div>
                     <div class="bouton1">
-                        <div class="cercle1">
-                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                        <div class="cercle2">
+                            <div class="a">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,17 +46,20 @@
                     <div class="texte1">
                     <p>Lancer un quizz</p>
                     </div>
-                    <div class="bouton1">
-                        <div class="cercle1">
-                            <a href="#"><i class="fa-solid fa-plus"></i></a>
+                    <div class="bouton3">
+                        <div class="cercle3">
+                            <div class="a">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
             <div class="droite">
 
                 <div class="tableau">
-                    <table id="table1" class="table">
+                    <table id="table3" class="table">
                         <tr>
                             <th class="titre">Liste de vos questions</th>
                         </tr>
@@ -63,18 +70,38 @@
                                         <p>{{question.enonce}}</p>
                                     </div>
                                     <div class="supp">
-                                        <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                        <div class="a">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </div>
                                     </div>
-                                </div></th>
+                                </div>
+                                </th>
                             </tr>
                         {% endfor %}
                     </table>
                 </div>
             </div>
+
+        </div>
+        <div class="popup_question">
+            <div class="contact_div">
+                <div class="texte">
+                    <h1>Votre question</h1>
+                </div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <textarea type="text" name="enonce" placeholder="enonce"></textarea>
+
+                    <input type="text" name="Name" placeholder="Votre nom" required="">
+                    <input type="text" name="Mail" placeholder="Votre adresse mail" required="">
+                    <input type="text" name="Object" placeholder="Objet" required="">
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
         </div>
     </dev>
 
-
+    <script src="{% static 'administrateur/js/create_question.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

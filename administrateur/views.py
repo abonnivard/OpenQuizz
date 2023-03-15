@@ -3,9 +3,7 @@ from .models import Question
 from django.contrib.auth.models import User
 
 def dashboard(request):
-    print(request.user.username)
-    Questions = Question.objects.all()
-    print(Questions)
+    Questions = Question.objects.all().filter(pseudo=str(request.user.username))
     context = {
         "questions":Questions
     }
