@@ -20,6 +20,7 @@ body {
 .main {
     height: 100%;
     padding-top: 60px;
+    overflow: hidden;
 }
 
 .main .alltitre {
@@ -59,9 +60,11 @@ p {
   min-width: 300px;
   overflow: auto;
   margin: 0 auto;
+  margin-right: 5%;
+  margin-left: 1%;
   display: flex;
   flex-direction: column;
-  width: 1200px;
+  width: 1000px;
   height: 500px;
   -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
   backdrop-filter: blur(4px);
@@ -84,7 +87,6 @@ p {
 
 .texte1 {
   width: 75%;
-  padding: 10px;
 }
 
 .bouton1, .bouton2, .bouton3 {
@@ -179,6 +181,7 @@ th  {
 }
 
 .popup_question {
+  transform: translateY(-150px);
   display: none;
   width: 100%;
   height: 100%;
@@ -191,7 +194,7 @@ th  {
   display: none;
   flex-direction: column;
   width: 800px;
-  height: 600px;
+  height: 700px;
   -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.2);
@@ -199,6 +202,29 @@ th  {
   box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
   margin: 0 auto;
   z-index: 100;
+}
+
+.contact_div .firstline {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.contact_div .firstline .texte {
+  width: 100%;
+  z-index: 10;
+}
+
+
+
+#close {
+  color: red;
+}
+
+.contact_div .firstline .boutoncroix {
+  z-index: 15;
+  width: 20px;
+  transform: translateX(-20px);
 }
 
 .contact_div .texte h1 {
@@ -218,7 +244,10 @@ form textarea {
   width: 80%;
   height: 200px;
   margin: 0 auto;
+  margin-top: 10px;
   margin-bottom: 10px;
+  box-shadow: 5px 5px 30px #c8e1f8;
+
 }
 
 .choice {
@@ -230,24 +259,74 @@ form textarea {
 .choice input {
   width: 20px;
   margin: 0 10px;
+
 }
 
 .qcm {
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 
+
 form input {
-  border-radius: 10px;
+    border-radius: 10px;
   width: 80%;
   margin: 0 auto;
   margin-bottom: 10px;
 }
 
-form button {
+form .qcm input {
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 30px #c8e1f8;
+
+}
+
+#reponselongue {
+  margin-bottom: 30px;
+}
+
+.reponseqcm {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.reponseqcm p {
+  text-align: center;
+  margin-right: 10px;
+}
+
+select {
+  margin-left: 2%;
+}
+
+.file {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+.file p {
+  margin-right: 10px;
+  width: 45%;
+}
+
+#image {
+  color: #c8e1f8;
+  font-size:1rem;
+}
+
+form #submit {
   width: 100px;
   margin: 0 auto;
+  border-radius: 10px;
+  background-color: #c8e1f8 ;
 }
 
 @media screen and (max-width: 1300px) {
