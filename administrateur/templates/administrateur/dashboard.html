@@ -44,7 +44,7 @@
                 </div>
                 <div class="lancer_quizz">
                     <div class="texte1">
-                    <p>Lancer un quizz</p>
+                        <p>Lancer un quizz</p>
                     </div>
                     <div class="bouton3">
                         <div class="cercle3">
@@ -57,7 +57,6 @@
                 </div>
 
             <div class="droite">
-
                 <div class="tableau">
                     <table id="table3" class="table">
                         <tr>
@@ -66,7 +65,7 @@
                         {% for question in questions %}
                             <tr>
                                 <th><div class="question">
-                                    <div class="texte">
+                                    <div class="texteq">
                                         <p>{{question.enonce}}</p>
                                     </div>
                                     <div class="supp">
@@ -91,10 +90,14 @@
                 <form method="post" action="">
                     {% csrf_token %}
                     <textarea type="text" name="enonce" placeholder="enonce"></textarea>
+                    <div class="choice"> <p>Qcm :</p> <input type="checkbox" name="choice"> </div>
 
-                    <input type="text" name="Name" placeholder="Votre nom" required="">
-                    <input type="text" name="Mail" placeholder="Votre adresse mail" required="">
-                    <input type="text" name="Object" placeholder="Objet" required="">
+                    <div class="qcm">
+                        <input type="text" name="choix1" placeholder="Choix 1" required="">
+                        <input type="text" name="choix2" placeholder="Choix 2" required="">
+                        <input type="text" name="choix3" placeholder="Choix 3" required="">
+                        <input type="text" name="choix4" placeholder="Choix 4" required="">
+                    </div>
                     <button type="submit">Envoyer</button>
                 </form>
             </div>
