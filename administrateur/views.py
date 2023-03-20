@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Question
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def dashboard(request):
     if request.method == 'POST':
         checkbox = request.POST.getlist('choice')
@@ -19,14 +20,32 @@ def dashboard(request):
             reponselongue = request.POST.get('reponselongue')
             newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
             newquestion.save()
-        questions = Question.objects.all().filter(pseudo=str(request.user.username))
-        context = {
-            "questions": questions
-        }
-        return render(request, "administrateur/dashboard.html", context)
 
+        return redirect('/dashboard/')
+    print('ok')
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    for i in range(len(questions)):
+        questions[i].numero = i
+        questions[i].save()
     context = {
         "questions": questions
     }
     return render(request, "administrateur/dashboard.html", context)
+
+
+def suppression(request):
+    if request.method == 'POST':
+        numero = request.POST.get('numero')
+        questionsupp = Question.objects.all().filter(pseudo=str(request.user.username)).filter(numero=numero)
+        questionsupp.delete()
+        return redirect("/suppression/")
+
+    else:
+        questions = Question.objects.all().filter(pseudo=str(request.user.username))
+        for i in range(len(questions)):
+            questions[i].numero = i
+            questions[i].save()
+        context = {
+            "questions": questions
+        }
+        return render(request, "administrateur/dashboard.html", context)

@@ -42,6 +42,7 @@ p {
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   z-index: -100;
 }
 
@@ -107,6 +108,8 @@ p {
 }
 
 .a i {
+  height: 100%;
+  width: 100%;
   transform: translate(2px,7px);
   color: #c8e1f8;
   font-size: 2rem;

@@ -12,3 +12,4 @@ class Question(models.Model):
     reponseVrai = models.CharField(max_length=255, default='null') #Si qcm
     reponse = models.CharField(max_length=255, default='null') #Si pas qcm
     qcm = models.BooleanField(default=False)
+    numero = models.IntegerField(default=0) #ne sert à rien d 'autre que la simplification du processus de suppression de questions
