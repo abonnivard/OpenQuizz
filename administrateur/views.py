@@ -15,9 +15,10 @@ def dashboard(request):
             reponseqcm = request.POST.get('reponseqcm')
             newquestion = Question(pseudo=str(request.user.username) ,enonce=enonce, reponse1=choix1, reponse2=choix2, reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
             newquestion.save()
-        reponselongue = request.POST.get('reponselongue')
-        newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
-        newquestion.save()
+        else:
+            reponselongue = request.POST.get('reponselongue')
+            newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
+            newquestion.save()
         questions = Question.objects.all().filter(pseudo=str(request.user.username))
         context = {
             "questions": questions
