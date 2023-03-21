@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+def interfaceProf(request):
+    return render(request, 'quizz/interfaceProf.html')
+
+def interfaceUser(request):
+    return render(request, 'quizz/interfaceUser.html')
