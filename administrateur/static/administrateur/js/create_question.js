@@ -44,6 +44,8 @@ window.addEventListener('load', () => {
     const boutonsuppS = document.getElementsByClassName('supp')
 
     function supprimerQuestion (element) {
+        let q = document.getElementById(element.id+'question')
+        q.style.display = 'none'
         const formData = new FormData()
         formData.append('numero', element.id)
         fetch("/suppression/", {
