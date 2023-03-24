@@ -19,7 +19,7 @@ body {
 
 .main {
     height: 100%;
-    padding-top: 60px;
+    padding-top: 30px;
     overflow: hidden;
 }
 
@@ -180,7 +180,11 @@ th  {
 }
 
 .supp .a:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
+}
+
+#suppbin i:hover {
+  color: #dc1b1b;
 }
 
 .popup_question {
@@ -310,12 +314,14 @@ select {
 
 .file {
   margin: 0 auto;
+  margin-top: 5px;
   margin-bottom: 30px;
   display: flex;
   flex-direction: row;
 }
 
 .file p {
+  margin-top: -10px;
   margin-right: 10px;
   width: 45%;
 }

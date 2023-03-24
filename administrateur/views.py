@@ -33,6 +33,9 @@ def dashboard(request):
     return render(request, "administrateur/dashboard.html", context)
 
 
+#reste à rendre required au moins deux du qcm et la réponse selon le mode
+
+
 def suppression(request):
     if request.method == 'POST':
         numero = request.POST.get('numero')
@@ -49,3 +52,8 @@ def suppression(request):
             "questions": questions
         }
         return render(request, "administrateur/dashboard.html", context)
+
+
+
+def creation_de_quizz(request):
+    return render(request, "administrateur/creationQuizz.html")
