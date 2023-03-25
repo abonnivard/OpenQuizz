@@ -85,7 +85,7 @@ input {
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 400px;
+  height: 170px;
   -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.2);
@@ -126,4 +126,127 @@ input {
 .classement {
   display: flex;
   flex-direction: row;
+}
+
+.stocker {
+  display: flex;
+  flex-direction: row;
+}
+
+.all {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.gauche {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: 500px;
+  margin: 0 auto;
+  margin-left:5% ;
+  margin-right: 1%;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.droite {
+  overflow: auto;
+  margin: 0 auto;
+  margin-right: 5%;
+  margin-left: 1%;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: 500px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.tableau {
+  padding: 20px;
+}
+
+table {
+  color: #c8e1f8;
+}
+
+th  {
+  color: #c8e1f8;
+  border: 2px solid #c8e1f8;
+}
+
+.displayquestion {
+  display: flex;
+  flex-direction: column;
+}
+
+.questiond {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid white;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  height: 70px;
+}
+
+.questiond .texteq {
+  text-align: left;
+  width: 95%;
+}
+
+.questiong {
+  display: none;
+  flex-direction: row;
+  border: 1px solid white;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  height: 70px;
+}
+
+.questiong .texteq {
+  text-align: left;
+  width: 95%;
+}
+
+.titre {
+  font-size: 2rem;
+  color: #c8e1f8;
+  text-align: center;
+}
+
+.supp {
+  width: 10%;
+  font-size: 20px;
+}
+
+.supp .a:hover {
+  transform: translateY(-5px);
+}
+
+#suppbin i:hover {
+  color: #dc1b1b;
+}
+
+.submit {
+  color: #c8e1f8;
+  text-align: center;
+  width: 100%;
+}
+
+#submit {
+  width: 200px;
+  height: 50px;
+  margin-top: 100px;
+  margin-bottom: 200px;
 }

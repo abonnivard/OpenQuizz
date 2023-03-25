@@ -13,3 +13,9 @@ class Question(models.Model):
     reponse = models.CharField(max_length=255, default='null') #Si pas qcm
     qcm = models.BooleanField(default=False)
     numero = models.IntegerField(default=0) #ne sert à rien d 'autre que la simplification du processus de suppression de questions
+
+
+
+#Liste de l'ensembles des thémes créés
+class Theme(models.Model):
+    nom = models.CharField(max_length=255)

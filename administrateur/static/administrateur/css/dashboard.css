@@ -315,7 +315,7 @@ select {
 .file {
   margin: 0 auto;
   margin-top: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   display: flex;
   flex-direction: row;
 }
@@ -325,6 +325,8 @@ select {
   margin-right: 10px;
   width: 45%;
 }
+
+
 
 #image {
   color: #c8e1f8;

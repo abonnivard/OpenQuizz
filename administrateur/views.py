@@ -56,4 +56,16 @@ def suppression(request):
 
 
 def creation_de_quizz(request):
-    return render(request, "administrateur/creationQuizz.html")
+    questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    for i in range(len(questions)):
+        questions[i].numero = i
+        questions[i].save()
+    context = {
+        "questions": questions
+    }
+    return render(request, "administrateur/creationQuizz.html", context)
+
+def enregistrement(request):
+    if request.method == 'POST':
+        liste = request.POST.get('liste')
+        print(liste)
