@@ -76,10 +76,16 @@
                                     <div class="texteq">
                                         <p class="{{quizz.numero}}">{{quizz.name}}</p>
                                     </div>
+                                    <div class="modify">
+                                        <div class="cadremofidy" id="{{quizz.numero}}">
+                                        <p>modifier</p>
+                                    </div>
+                                    </div>
                                 <div class="startquizz">
                                     <div class="cadre">
                                         <p>start</p>
                                     </div>
+
                                 </div>
                                     <div class="supp" id="{{quizz.numero}}">
                                         <div class="a" id="suppbin">
@@ -88,7 +94,12 @@
                                     </div>
                                 </div>
                                 <div class="partieinf">
-                                    <p>Information :</p>
+                                    <div class="afficher">
+                                        <p>Afficher le classement : {{quizz.afficher}}</p>
+                                    </div>
+                                    <div class="timer">
+                                    <p>Timer : {{quizz.timer}} secondes</p>
+                                    </div>
                                 </div>
                                 </div>
 

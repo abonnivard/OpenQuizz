@@ -12,6 +12,11 @@
   src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
 }
 
+@font-face {
+  font-family: Font_Armand;
+  src: url(../fonts/Inter-VariableFont_slnt,wght.ttf);
+}
+
 body {
   background-image: url("../img/graphy--light--1920x1080.png");
 }
@@ -215,22 +220,36 @@ th  {
   width: 70%;
 }
 
-.question .startquizz {
+.question .startquizz, .question .modify {
   width: 100px;
-
+  cursor: pointer;
 }
 
-.question .startquizz .cadre {
+.question .startquizz .cadre, .question .modify .cadremofidy {
   transform: translateY(8px);
   background-color: #c8e1f8;
   border-radius: 10px;
   color: black;
 }
 
-.question .startquizz .cadre p{
-  transform: translateY(-3px);
+.question .startquizz .cadre {
+  margin-left: 5px;
+  width: 100px;
+  height: 30px;
+}
+
+.question .modify .cadremofidy {
+  margin-right: 5px;
+  width: 100px;
+  height: 30px;
+}
+
+.question .startquizz .cadre p, .question .modify .cadremofidy p{
+  transform: translateY(0);
   text-align: center;
   color: black;
+  font-size: 1.2rem;
+  font-family: Font_Armand;
 }
 
 .titre {
@@ -255,7 +274,7 @@ th  {
 
 .partieinf {
   display: none;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .popup_question {

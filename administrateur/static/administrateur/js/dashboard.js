@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
     const boutonsuppS = document.getElementsByClassName('supp')
 
     function supprimerQuestion (element) {
-        let q = document.getElementById(element.id+'question')
+        let q = document.getElementsByClassName('question')[element.id]
         q.style.display = 'none'
         const formData = new FormData()
         formData.append('numero', element.id)
@@ -43,12 +43,14 @@ window.addEventListener('load', () => {
     function deploy(element) {
         document.getElementsByClassName('downarrow')[element.id].style.display = "none"
         document.getElementsByClassName('uparrow')[element.id].style.display = "flex"
+        document.getElementsByClassName('partieinf')[element.id].style.display = "flex"
         document.getElementById(element.id+'quizz').style.height = "300px"
     }
 
     function deployoff(element) {
         document.getElementsByClassName('downarrow')[element.id].style.display = "flex"
         document.getElementsByClassName('uparrow')[element.id].style.display = "none"
+        document.getElementsByClassName('partieinf')[element.id].style.display = "none"
         document.getElementById(element.id+'quizz').style.height = "70px"
     }
 
@@ -57,6 +59,26 @@ window.addEventListener('load', () => {
     const arrdeployoff = Array.from(buttonup)
     arrdeployoff.forEach(element => element.addEventListener('click', function(){deployoff(element); }))
 
+
+
+
+    let boutonsmodify = document.getElementsByClassName('cadremofidy')
+
+    function modify(element){
+        const formData = new FormData()
+        formData.append('numero', element.id)
+        fetch("/modify/", {
+            method: 'post',
+            body: formData,
+            headers: {
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            credentials: 'same-origin',
+        })
+    }
+
+    let arrmodify = Array.from(boutonsmodify)
+    arrmodify.forEach(element => element.addEventListener('click', function (){modify(element); }))
 
 })
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import dashboard, suppression, creation_de_quizz, enregistrement, banquequestions, suppression_question
+from .views import dashboard, suppression, creation_de_quizz, enregistrement, banquequestions, suppression_question, modifierquizz
 
 app_name = 'administrateur'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('enregistrement/', enregistrement, name="enregistrement"),
     path('banque-question/', banquequestions, name="banquequestions"),
     path('suppression-question/', suppression_question, name="suppression_question"),
+    path('modify/', modifierquizz, name="modifyquizz")
 ]

@@ -102,17 +102,12 @@ def enregistrement(request):
         newQuizz.save()
         return redirect("/dashboard/")
     else:
-        questions = Question.objects.all().filter(pseudo=str(request.user.username))
-        for i in range(len(questions)):
-            questions[i].numero = i
-            questions[i].save()
         quizzs = Quizz.objects.all().filter(pseudo=str(request.user.username))
         for k in range(len(quizzs)):
             quizzs[k].numero = k
             quizzs[k].save()
 
         context = {
-            "questions": questions,
             "quizzs": quizzs,
         }
         return render(request, "administrateur/dashboard.html", context)
@@ -166,3 +161,16 @@ def suppression_question(request):
             "questions": questions,
         }
         return render(request, "administrateur/banquequestions.html", context)
+
+
+
+def modifierquizz(request):
+    if request.method == 'POST':
+        numero = request.POST.get('numero')
+        quizz = Quizz.objects.all().filter(pseudo=str(request.user.username)).filter(numero=int(numero))
+        print(quizz)
+
+    context = {
+        "quizz":quizz
+    }
+    return render(request, "administrateur/creationQuizz.html", context)
