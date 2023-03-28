@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  border-spacing: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Font;
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+body {
+  background-image: url("../img/graphy--dark--1920x1080banque.png");
+}
+
+
+.main {
+  height: 100%;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.texte {
+    text-align: center;
+    font-size: 2rem;
+    color: #c8e1f8;
+    font-family: Font;
+}
+
+.all {
+    position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      z-index: -100;
+    width: 100%;
+    padding: 100px;
+}
+
+.gauche {
+  min-width: 300px;
+  transform: translateY(10px);
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  margin-right: 1%;
+
+}
+
+.droite {
+        width: 70%;
+        height: 600px;
+        overflow: auto;
+      margin: 0 auto;
+        margin-right: 1%;
+      display: flex;
+      flex-direction: column;
+      -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.droite .texte {
+  font-size: 2rem;
+  color: #c8e1f8;
+  text-align: center;
+}
+
+.tableau {
+  padding: 20px;
+}
+
+table {
+  color: #c8e1f8;
+}
+
+th  {
+  color: #c8e1f8;
+  border: 2px solid #c8e1f8;
+}
+
+.question {
+  display: flex;
+  flex-direction: row;
+}
+
+.question .texteq {
+  text-align: left;
+  width: 95%;
+}
+
+.titre {
+  font-size: 2rem;
+  color: #c8e1f8;
+  text-align: center;
+}
+
+.supp {
+  width: 5%;
+}
+
+.supp .a:hover {
+  transform: translateY(-5px);
+}
+
+#suppbin i:hover {
+  color: #dc1b1b;
+}
+
+.ajouter_question {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  margin-bottom: 70px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+}
+
+.texte1 {
+  width: 75%;
+    color: #c8e1f8;
+    font-size: 1.5rem;
+}
+
+.bouton1 {
+  width: 25%;
+  padding: 10px;
+}
+
+.cercle1 {
+  width: 50px;
+  height: 50px;
+  background-color: #3e8686;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.cercle1:hover {
+  transform: translateY(-3px);
+}
+
+.a i {
+  height: 100%;
+  width: 100%;
+  transform: translate(0,8px);
+  color: #c8e1f8;
+  font-size: 2rem;
+}
+
+.popup_question {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 50;
+}
+
+.contact_div {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  width: 800px;
+  height: 700px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+  margin: 0 auto;
+  z-index: 100;
+}
+
+.contact_div .firstline {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.contact_div .firstline .texte {
+  width: 100%;
+  z-index: 10;
+}
+
+
+
+#close {
+  color: red;
+}
+
+.contact_div .firstline .boutoncroix {
+  z-index: 15;
+  width: 20px;
+  transform: translateX(-20px);
+}
+
+.contact_div .texte h1 {
+  text-align: center;
+  color: #c8e1f8;
+  font-family: Font;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+form textarea {
+  border-radius: 10px;
+  width: 80%;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 30px #c8e1f8;
+
+}
+
+.choice {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.choice input {
+  width: 20px;
+  margin: 0 10px;
+
+}
+
+.qcm {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+}
+
+
+form input {
+    border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+form .qcm input {
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 30px #c8e1f8;
+
+}
+
+#reponselongue {
+  margin-bottom: 30px;
+}
+
+.reponseqcm {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.reponseqcm p {
+  text-align: center;
+  margin-right: 10px;
+}
+
+select {
+  margin-left: 2%;
+}
+
+.file {
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.file p {
+  margin-top: -10px;
+  margin-right: 10px;
+  width: 45%;
+}
+
+
+
+#image {
+  color: #c8e1f8;
+  font-size:1rem;
+}
+
+form #submit {
+  width: 100px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #c8e1f8 ;
+}
+
+select {
+  margin-left: 2%;
+}
+
+.file {
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+.file p {
+  transform: translateY(8px);
+  margin-top: -10px;
+  margin-right: 10px;
+  width: 45%;
+  color: #c8e1f8;
+}
+
+p {
+  color: #c8e1f8;
+  transform: translateY(8px);
+}
+
+
+.theme{
+  display: flex;
+  flex-direction: row;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4%;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+  padding: 20px;
+  margin-bottom: 70px;
+  height: 600px;
+}

@@ -36,6 +36,41 @@ body {
   margin-bottom: 50px;
 }
 
+.nomquizz{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+  margin-bottom: 50px;
+}
+
+
+.textename {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  justify-content: center;
+  align-content: center;
+  align-content: center;
+}
+
+.textename p {
+  margin-left: 30px;
+  transform: translateY(8px);
+}
+
+.textename input {
+  width: 300px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+
 .option {
 }
 

@@ -13,7 +13,6 @@
 }
 
 body {
-  background-color: #1b3642;
   background-image: url("../img/graphy--light--1920x1080.png");
 }
 
@@ -110,7 +109,7 @@ p {
 .a i {
   height: 100%;
   width: 100%;
-  transform: translate(2px,7px);
+  transform: translate(0,8px);
   color: #c8e1f8;
   font-size: 2rem;
 }
@@ -159,14 +158,79 @@ th  {
   border: 2px solid #c8e1f8;
 }
 
-.question {
+.displayquestion {
+  display: flex;
+  flex-direction: column;
+}
+
+.partiesup {
   display: flex;
   flex-direction: row;
 }
 
+.question {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  height: 70px;
+  padding: 10px;
+  width: 100%;
+}
+
+.question .downarrow {
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  color: #c8e1f8;
+}
+.question .downarrow i {
+  width: 50px;
+  height: 50px;
+}
+
+.question .uparrow {
+  display: none;
+  flex-direction: column;
+  width: 50px;
+  color: #c8e1f8;
+}
+.question .uparrow i {
+  width: 50px;
+  height: 50px;
+}
+
+
+.al i {
+  height: 100%;
+  width: 100%;
+  transform: translate(0,8px);
+  color: #c8e1f8;
+  font-size: 2rem;
+}
+
 .question .texteq {
   text-align: left;
-  width: 95%;
+  width: 70%;
+}
+
+.question .startquizz {
+  width: 100px;
+
+}
+
+.question .startquizz .cadre {
+  transform: translateY(8px);
+  background-color: #c8e1f8;
+  border-radius: 10px;
+  color: black;
+}
+
+.question .startquizz .cadre p{
+  transform: translateY(-3px);
+  text-align: center;
+  color: black;
 }
 
 .titre {
@@ -177,6 +241,7 @@ th  {
 
 .supp {
   width: 5%;
+  margin-left: 100px;
 }
 
 .supp .a:hover {
@@ -185,6 +250,12 @@ th  {
 
 #suppbin i:hover {
   color: #dc1b1b;
+}
+
+
+.partieinf {
+  display: none;
+  flex-direction: row;
 }
 
 .popup_question {
@@ -339,6 +410,9 @@ form #submit {
   border-radius: 10px;
   background-color: #c8e1f8 ;
 }
+
+
+
 
 @media screen and (max-width: 1300px) {
   .main p {

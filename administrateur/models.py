@@ -1,6 +1,5 @@
 from django.db import models
 
-
 #Les valeurs par défaut seront null
 class Question(models.Model):
     pseudo = models.CharField(max_length=255)
@@ -19,3 +18,17 @@ class Question(models.Model):
 #Liste de l'ensembles des thémes créés
 class Theme(models.Model):
     nom = models.CharField(max_length=255)
+
+
+
+class Quizz(models.Model):
+    pseudo = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="null")
+    #questions = models.JSONField()
+    mode = models.CharField(max_length=255)
+    timer = models.IntegerField(default=0)
+    afficher = models.BooleanField(default=False)
+    stocker = models.BooleanField(default=False)
+    numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
+
+1#Toujours un pb pour enregistrer une liste d objet

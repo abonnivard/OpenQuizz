@@ -55,16 +55,47 @@
         return cookieValue;
     }
 
+    let enregistrer = document.querySelector("#submit")
+
     function sauvegarder() {
+        const formData = new FormData()
         let liste = []
         for(let i = 0;i<arrg.length; i++){
             if (arrg[i].style.display === 'flex'){
                 liste.push(i)
             }
         }
-        console.log(liste)
+        if (timerOn.checked){
+            let timer = document.querySelector('.timer')
+            formData.append('timer', timer.value.toString())
+        }else {
+            formData.append('timer', "0")
+        }
+        let classement = document.querySelector("#classement")
+        if (classement.checked){
+            formData.append('classementdisplay', "true")
+        }else{
+            formData.append('classementdisplay', "false")
+        }
 
-        const formData = new FormData()
+        let stocker = document.querySelector("#stocker")
+        if (stocker.checked){
+            formData.append('stocker', "true")
+        }else{
+            formData.append('stocker', "false")
+        }
+
+        let choix = document.querySelector('#choix1')
+        if (choix.checked){
+            formData.append('mode', 'cours')
+        }else {
+            formData.append('mode', 'examen')
+        }
+
+
+        let name = document.querySelector("#namequizz").value
+        formData.append('name', name)
+
         formData.append('liste', liste)
         fetch("/enregistrement/", {
             method: 'post',
@@ -75,3 +106,6 @@
             credentials: 'same-origin',
         })
     }
+
+
+    enregistrer.addEventListener('click', sauvegarder)

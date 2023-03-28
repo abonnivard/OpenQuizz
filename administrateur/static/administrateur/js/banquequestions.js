@@ -3,6 +3,7 @@ window.addEventListener('load', () => {
     let boutonOn = document.querySelector('.bouton1')
     let boutonOff = document.querySelector('.boutoncroix')
 
+
     function afficher() {
         document.querySelector('.contact_div').style.display = "flex";
         document.querySelector('.popup_question').style.display = "flex";
@@ -16,10 +17,6 @@ window.addEventListener('load', () => {
         document.querySelector('.all').style.filter = 'blur(0px)'
         document.querySelector('.titleup').style.filter = "blur(0px)"
     }
-
-
-
-
 
     boutonOn.addEventListener('click', afficher)
     boutonOff.addEventListener('click', supprimer)
@@ -50,7 +47,7 @@ window.addEventListener('load', () => {
         q.style.display = 'none'
         const formData = new FormData()
         formData.append('numero', element.id)
-        fetch("/suppression/", {
+        fetch("/suppression-question/", {
             method: 'post',
             body: formData,
             headers: {
@@ -102,4 +99,3 @@ window.addEventListener('load', () => {
 
         }
     }
-

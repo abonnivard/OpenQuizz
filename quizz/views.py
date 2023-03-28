@@ -5,3 +5,9 @@ def interfaceProf(request):
 
 def interfaceUser(request):
     return render(request, 'quizz/interfaceUser.html')
+
+def waitingpageProf(request):
+    return render(request, 'quizz/watingpageProf.html')
+
+def waitingpageUser(request):
+    return render(request, 'quizz/waitingpageUser.html')

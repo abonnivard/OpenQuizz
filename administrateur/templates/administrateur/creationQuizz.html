@@ -15,22 +15,29 @@
     {% endblock %}
 
     <div class="main">
+    {% csrf_token %}
         <div class="texte">
             <h1>Choisissez vos options</h1>
         </div>
-    <form method="POST" action="">
-        {% csrf_token %}
+
+    <div class="nomquizz">
+        <div class="textename">
+            <p>Nom du quizz</p>
+            <input type="text" id="namequizz">
+        </div>
+    </div>
+
         <div class="options">
             <div class="mode">
                 <div class="textemode">
                     <p>Chosissez votre mode :</p>
                 </div>
                 <div class="mode1">
-                    <input type="radio" name="choix">
+                    <input type="radio" name="choix" required id="choix1">
                     <p>Mode cours : Ce mode permet d'afficher une réponse entre chacune des questions du quizz. Le défilement n'est pas automatique.</p>
                 </div>
                 <div class="mode2">
-                    <input type="radio" name="choix">
+                    <input type="radio" name="choix" id="choix2">
                     <p>Mode examen : Ce mode offre un défilement des questions automatique et n'affiche pas les réponses aux questions.</p>
                 </div>
             </div>
@@ -44,15 +51,15 @@
                     </div>
                     <div class="selecttime">
                         <p>Temps souhaité (en secondes)</p>
-                        <input type="number" min="0">
+                        <input type="number" min="0" class="timer">
                     </div>
                 </div>
                 <div class="classement">
-                    <input type="checkbox" name="classement">
+                    <input type="checkbox" name="classement" id="classement">
                     <p>Afficher le classement après chaque questions ?</p>
                 </div>
                 <div class="stocker">
-                    <input type="checkbox" name="stocker">
+                    <input type="checkbox" name="stocker" id="stocker">
                     <p>Stocker les résultats du quizz</p>
                 </div>
             </div>
@@ -102,7 +109,6 @@
     <div class="submit">
         <input id="submit" type="submit" value="Envoyer" class="btn btn-secondary ml-1">
         </div>
-    </form>
     </div>
     <script src="{% static 'administrateur/js/creationQuizz.js' %}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
