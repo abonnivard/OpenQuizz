@@ -30,4 +30,4 @@ class Quizz(models.Model):
     afficher = models.BooleanField(default=False)
     stocker = models.BooleanField(default=False)
     numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
-1#Toujours un pb pour enregistrer une liste d objet
+#Toujours un pb pour enregistrer une liste d objet
