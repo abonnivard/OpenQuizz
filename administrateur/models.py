@@ -24,11 +24,10 @@ class Theme(models.Model):
 class Quizz(models.Model):
     pseudo = models.CharField(max_length=255)
     name = models.CharField(max_length=255, default="null")
-    #questions = models.JSONField()
+    #questions = models.JSONField() repertorie toutes les questions
     mode = models.CharField(max_length=255)
     timer = models.IntegerField(default=0)
     afficher = models.BooleanField(default=False)
     stocker = models.BooleanField(default=False)
     numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
-
 1#Toujours un pb pour enregistrer une liste d objet

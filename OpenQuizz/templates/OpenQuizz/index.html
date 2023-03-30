@@ -19,11 +19,11 @@
         <div class="bloc">
             <div class="ss">
                 <div class="cadre">
-                    <h2>Rentre ton PIN !</h2>
+                    <h2>Rentre l'id du Quizz !</h2>
                     <div class="code">
                         <form action="" method="post">
                              {% csrf_token %}
-                            <input type="integer" id="pin" name="pin" maxlength="4" size="10"  placeholder="Pin">
+                            <input type="integer" id="id" name="id" maxlength="50" size="10"  placeholder="Id">
                             <button type="submit">Entrer</button>
                         </form>
                     </div>

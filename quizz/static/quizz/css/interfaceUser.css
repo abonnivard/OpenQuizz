@@ -22,7 +22,7 @@ body {
   align-items: center;
 }
 .main h1 {
-  margin: 60px 0px  ;
+  margin: 70px 0px  ;
   text-align: center;
   font-family: Font;
   color : #c8e1f8;
@@ -33,7 +33,7 @@ body {
   text-align: center;
   font-size: 300%;
   font-family: Font;
-  color : white;
+  color : #c8e1f8;
 }
 .main img {
   display: flex;
@@ -73,9 +73,16 @@ body {
 .horloge {
     position: absolute;
     bottom: 0; left: 20px;
-    height: 7%; width: 14%;
     background-color: rgb(231, 232, 255); color: #1f2121;
-    border-radius: 7%;
+    border-radius: 100px;
     border: solid #570606;
     box-shadow: 0px 5px 20px -10px #ffffff;
+    padding: 0 2% 0 2%;
+}
+
+.horloge h2 {
+    display: flex;
+    box-sizing: content-box;
+    color: #373e44;
+    margin: 0;
 }
