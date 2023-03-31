@@ -33,13 +33,13 @@
         <script>
 
             const timerElement = document.querySelector(".timer h2")
-            let temps = timerElement.innerText
+            let time = timerElement.innerText
             function diminuerTemps() {
-                temps--
-                if (temps<0){
-                    temps=0
+                time--
+                if (time<0){
+                    time=0
                 }
-                timerElement.innerText = temps
+                timerElement.innerText = time
 
             }
 
