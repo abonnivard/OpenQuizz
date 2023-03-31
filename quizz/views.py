@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from administrateur.models import Quizz, Question
+from quizz.models import User
 import time
 
 
@@ -45,5 +46,10 @@ def interfaceProf(request):
 def waitingpageProf(request):
     return render(request, 'quizz/watingpageProf.html')
 
-def waitingpageUser(request):
-    return render(request, 'quizz/waitingpageUser.html')
+def waitingpageUser0(request):
+    return render(request, 'quizz/waitingpageUser0.html')
+
+def waitingpageUser1(request):
+    pseudo = request.POST.get('pseudo')
+    newUser= User(pseudo=pseudo)
+    return render(request, 'quizz/waitingpageUser1.html')

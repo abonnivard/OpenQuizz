@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'administrateur.apps.AdministrateurConfig',
     'utilisateur.apps.UtilisateurConfig',
     'quizz.apps.QuizzConfig',
+    'OpenQuizz.apps.OpenQuizzConfig',
 ]
 
 MIDDLEWARE = [
