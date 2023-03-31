@@ -62,23 +62,6 @@ window.addEventListener('load', () => {
 
 
 
-    let boutonsmodify = document.getElementsByClassName('cadremofidy')
-
-    function modify(element){
-        const formData = new FormData()
-        formData.append('numero', element.id)
-        fetch("/modify/", {
-            method: 'post',
-            body: formData,
-            headers: {
-              "X-CSRFToken": getCookie("csrftoken"),
-            },
-            credentials: 'same-origin',
-        })
-    }
-
-    let arrmodify = Array.from(boutonsmodify)
-    arrmodify.forEach(element => element.addEventListener('click', function (){modify(element); }))
 
 })
 

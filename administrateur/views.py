@@ -166,13 +166,14 @@ def suppression_question(request):
 
 
 
-def modifierquizz(request):
-    if request.method == 'POST':
-        numero = request.POST.get('numero')
-        quizz = Quizz.objects.all().filter(pseudo=str(request.user.username)).filter(numero=int(numero))
-        print(quizz)
-
+def modifierquizz(request, id):
+    quizz = Quizz.objects.all().filter(pseudo=str(request.user.username)).filter(id=id)[0]
+    questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    for i in range(len(questions)):
+        questions[i].numero = i
+        questions[i].save()
     context = {
-        "quizz":quizz
+        "questions": questions,
+        "quizz":quizz,
     }
-    return render(request, "administrateur/creationQuizz.html", context)
+    return render(request, "administrateur/modifierquizz.html", context)

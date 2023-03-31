@@ -347,3 +347,43 @@ p {
   margin-bottom: 70px;
   height: 600px;
 }
+
+
+@media screen and (max-width:700px){
+
+  .main {
+    overflow: hidden;
+  }
+
+  .ajouter_question {
+    margin-top: 30px;
+  }
+  
+  .texte {
+    width: 100%;
+  }
+
+  .texte h1 {
+    font-size: 1.5rem;
+
+  }
+  p {
+    font-size: 0.8rem;
+  }
+
+  .all {
+    width: 100%;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .gauche {
+    margin: 0 auto;
+    width: 300px;
+  }
+
+  .droite {
+    margin: 0 auto;
+    width: 300px;
+  }
+}

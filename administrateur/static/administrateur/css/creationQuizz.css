@@ -72,6 +72,7 @@ body {
 }
 
 .option {
+  width: 500px;
 }
 
 .mode {
@@ -79,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 80%;
-  height: 200px;
+  height: 250px;
   -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.2);
@@ -284,4 +285,47 @@ th  {
   height: 50px;
   margin-top: 100px;
   margin-bottom: 200px;
+}
+
+
+@media screen and (max-width:700px) {
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .nomquizz {
+    width: 300px;
+    padding: 2px;
+  }
+
+  .nomquizz .textename {
+    padding: 2px;
+    flex-direction: column;
+  }
+  .textename p {
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .nomquizz input {
+    width: 200px;
+    height: 30px;
+  }
+
+
+  .all {
+    flex-direction: column;
+  }
+
+  .droite {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .gauche {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
 }

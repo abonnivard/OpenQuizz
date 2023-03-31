@@ -286,86 +286,68 @@ th  {
   flex-direction: row;
 }
 
-
-@media screen and (max-width: 1300px) {
-  p {
-    font-size: 1rem;
-  }
+.display {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
 }
 
-@media screen and (max-width: 1000px){
-  .all {
-    flex-direction: column;
-    width: 100%;
+
+@media screen and (max-width:700px) {
+
+  .main .alltitre {
+    margin-top: 50px;
+    margin-bottom: 30px;
   }
 
-  .gauche {
-    transform: translateY(-50px);
-    margin: 0 auto;
-  }
-
-  .ajouter_question {
-    margin-bottom: 20px;
+  p {
+    font-size: 0.8rem;
   }
 
   .creer_quizz {
     margin-bottom: 20px;
   }
-
   .lancer_quizz {
     margin-bottom: 20px;
   }
 
-  .droite {
-    transform: translateY(-100px);
-    margin: 0 auto;
-    width: 500px;
-    font-size: 0.8rem;
-  }
-  .texteq {
-    width: 100px;
+  .cercle2, .cercle3 {
+    width: 30px;
+    height: 30px;
   }
 
-  .edit {
+  .a i {
+    width: 15px;
+    height: 15px;
+    transform: translate(-6px,-1px);
+  }
+
+  .all {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
-  .question .startquizz .cadre {
-  width: 50px;
-  height: 15px;
-}
-
-.question .modify .cadremofidy {
-  width: 50px;
-  height: 15px;
-  font-size: 0.8rem;
-}
-
-  .question .startquizz .cadre p{
-  font-size: 0.5rem;
-}
-
-.question .modify .cadremofidy p{
-  font-size: 0.5rem;
-}
-
-p {
-  font-size: 0.8rem;
-}
-
-}
-
-@media screen and (max-width: 1000px){
   .droite {
     width: 300px;
+    margin: 0 auto;
+    margin-top: 0;
+
   }
 
   .gauche {
     width: 300px;
+    margin: 0 auto;
+    height: 300px;
   }
 
-  .titre {
-    font-size: 1.2rem;
+  .partiesup {
+  }
+
+  .partiesup p {
+    font-size: 1rem;
+  }
+  .display {
+    flex-direction: column;
   }
 }

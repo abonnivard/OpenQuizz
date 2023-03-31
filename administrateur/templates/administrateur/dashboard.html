@@ -68,18 +68,22 @@
                                     <i class="fa-sharp fa-solid fa-caret-down"></i>
                                     </div>
                                 </div>
+
                                     <div class="uparrow" id="{{quizz.numero}}" name="uparrow{{quizz.numero}}">
                                         <div class="al">
                                         <i class="fa-solid fa-caret-up"></i>
                                     </div>
                                     </div>
+                                    <div class="display">
                                     <div class="texteq">
                                         <p class="{{quizz.numero}}">{{quizz.name}}</p>
                                     </div>
                                     <div class="edit">
                                     <div class="modify">
+                                        <a href="{% url 'administrateur:modifyquizz' id=quizz.id %}">
                                         <div class="cadremofidy" id="{{quizz.numero}}">
                                         <p>modifier</p>
+                                        </a>
                                     </div>
                                     </div>
                                 <div class="startquizz">
@@ -94,6 +98,7 @@
                                             <i class="fa-solid fa-trash"></i>
                                         </div>
                                     </div>
+                                        </div>
                                 </div>
                                 <div class="partieinf">
                                      <div class="stocker">
