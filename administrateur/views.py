@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Question, Quizz
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 import json as json
 
 @login_required
@@ -91,16 +92,15 @@ def enregistrement(request):
 
         mode = request.POST.get('mode')
         name = request.POST.get('name')
-        liste_questions = []
-        print(stocker, classementdisplay)
+        liste_questions = ""
         questions = Question.objects.all().filter(pseudo=str(request.user.username))
         for question in questions:
             if str(question.numero) in liste:
-                print(question.numero, 'ok')
-                liste_questions.append(question)
-        newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker)
+                liste_questions += str(question.id) +', '
+        print(liste_questions)
+        newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker, questions=liste_questions)
         newQuizz.save()
-        return redirect("/dashboard/")
+        return HttpResponseRedirect("http://127.0.0.1:8000/dashboard/")
     else:
         quizzs = Quizz.objects.all().filter(pseudo=str(request.user.username))
         for k in range(len(quizzs)):

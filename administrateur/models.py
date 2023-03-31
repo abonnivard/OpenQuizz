@@ -1,7 +1,9 @@
 from django.db import models
+import uuid
 
 #Les valeurs par défaut seront null
 class Question(models.Model):
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     pseudo = models.CharField(max_length=255)
     enonce = models.CharField(max_length=255)
     reponse1 = models.CharField(max_length=255, default='null')
@@ -22,12 +24,13 @@ class Theme(models.Model):
 
 
 class Quizz(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     pseudo = models.CharField(max_length=255)
     name = models.CharField(max_length=255, default="null")
-    #questions = models.JSONField() repertorie toutes les questions
+    questions = models.TextField(default="")
     mode = models.CharField(max_length=255)
     timer = models.IntegerField(default=0)
     afficher = models.BooleanField(default=False)
     stocker = models.BooleanField(default=False)
     numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
-#Toujours un pb pour enregistrer une liste d objet
+
