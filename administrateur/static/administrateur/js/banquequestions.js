@@ -42,12 +42,12 @@ window.addEventListener('load', () => {
 
     const boutonsuppS = document.getElementsByClassName('supp')
 
-    function supprimerQuestion (element) {
+    async function supprimerQuestion (element) {
         let q = document.getElementById(element.id+'question')
         q.style.display = 'none'
         const formData = new FormData()
         formData.append('numero', element.id)
-        fetch("/suppression-question/", {
+        const response = await fetch("/suppression-question/", {
             method: 'post',
             body: formData,
             headers: {
@@ -55,6 +55,10 @@ window.addEventListener('load', () => {
             },
             credentials: 'same-origin',
         })
+
+        if (response.status === 200){
+            return window.location.replace("/banque-question")
+        }
     }
 
 
