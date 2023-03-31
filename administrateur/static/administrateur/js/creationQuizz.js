@@ -57,7 +57,7 @@
 
     let enregistrer = document.querySelector("#submit")
 
-    function sauvegarder() {
+    async function sauvegarder() {
         const formData = new FormData()
         let liste = []
         for(let i = 0;i<arrg.length; i++){
@@ -97,7 +97,7 @@
         formData.append('name', name)
 
         formData.append('liste', liste)
-        fetch("/enregistrement/", {
+        const response = await fetch("/enregistrement/", {
             method: 'post',
             body: formData,
             headers: {
@@ -105,6 +105,9 @@
             },
             credentials: 'same-origin',
         })
+        if (response.status === 200) {
+            return window.location.href = "/dashboard/"
+        }
     }
 
 

@@ -76,6 +76,7 @@
                                     <div class="texteq">
                                         <p class="{{quizz.numero}}">{{quizz.name}}</p>
                                     </div>
+                                    <div class="edit">
                                     <div class="modify">
                                         <div class="cadremofidy" id="{{quizz.numero}}">
                                         <p>modifier</p>
@@ -87,6 +88,7 @@
                                     </div>
 
                                 </div>
+                                        </div>
                                     <div class="supp" id="{{quizz.numero}}">
                                         <div class="a" id="suppbin">
                                             <i class="fa-solid fa-trash"></i>
@@ -94,11 +96,19 @@
                                     </div>
                                 </div>
                                 <div class="partieinf">
+                                     <div class="stocker">
+                                            <p>Mode : {{quizz.mode}}</p>
+                                    </div>
                                     <div class="afficher">
                                         <p>Afficher le classement : {{quizz.afficher}}</p>
                                     </div>
                                     <div class="timer">
-                                    <p>Timer : {{quizz.timer}} secondes</p>
+                                        {% if quizz.timer != 0 %}
+                                            <p>Timer : {{quizz.timer}} secondes</p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="stocker">
+                                            <p>Stocker : {{quizz.stocker}}</p>
                                     </div>
                                 </div>
                                 </div>
@@ -110,50 +120,7 @@
             </div>
 
         </div>
-        <div class="popup_question">
-            <div class="contact_div">
-                <div class="firstline">
-                <div class="texte">
-                    <h1>Votre question</h1>
-                </div>
-                    <div class="boutoncroix">
-                        <div class="cercle4">
-                            <div class="a">
-                                <i id="close" class="fa-solid fa-xmark"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <textarea type="text" name="enonce" placeholder="enonce" required></textarea>
-                    <div class="choice"> <p>Qcm :</p> <input class="qcmchoice" type="checkbox" name="choice" value="qcm" onchange="qcm()"></div>
 
-                    <div class="qcm">
-                        <input type="text" name="choix1" placeholder="Choix 1">
-                        <input type="text" name="choix2" placeholder="Choix 2">
-                        <input type="text" name="choix3" placeholder="Choix 3">
-                        <input type="text" name="choix4" placeholder="Choix 4">
-
-                        <div class="reponseqcm">
-                           <p>Réponse :</p>
-                            <select name="reponseqcm">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <textarea type="text" name="reponselongue" placeholder="Réponse" required></textarea>
-                    <div class="file">
-                        <p>Ajouter une image</p>
-                        <input type="file" id="image" name="image" accept="image/png, image/jpeg">
-                    </div>
-                    <input id="submit" type="submit" value="Envoyer" class="btn btn-secondary ml-1">
-                </form>
-            </div>
-        </div>
     </div>
 
     <script src="{% static 'administrateur/js/dashboard.js' %}"></script>

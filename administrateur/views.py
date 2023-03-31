@@ -29,6 +29,7 @@ def dashboard(request):
         quizzs[k].numero = k
         quizzs[k].save()
 
+
     context = {
         "quizzs":quizzs,
     }
@@ -54,6 +55,7 @@ def suppression(request):
         for k in range(len(quizzs)):
             quizzs[k].numero = k
             quizzs[k].save()
+
 
         context = {
             "questions": questions,
