@@ -40,7 +40,6 @@ def interfaceUser(request):
 
 
 
-
 def interfaceProf(request):
     return render(request, 'quizz/interfaceProf.html')
 def waitingpageProf(request):
