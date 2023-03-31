@@ -13,15 +13,17 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-    height: 90vh;
+    height: 93vh;
     position: relative;
 }
 
 .main {
-  justify-content: center;
-  align-items: center;
+    display: flex; flex-direction: column;
+    height: 80vh;
+    justify-content: center;
+    align-content: space-around;
 }
-.main h1 {
+body h1 {
   margin: 70px 0px  ;
   text-align: center;
   font-family: Font;
@@ -36,12 +38,15 @@ body {
   color : #c8e1f8;
 }
 .main img {
-  display: flex;
   width:30%;
-  height:30%;
   margin: 0 auto;
   justify-content: center;
   border-radius: 4%;
+}
+
+.main .questions {
+    display: grid;
+    padding: 1rem calc(1rem + env(safe-area-inset-right)) 1rem calc(1rem + env(safe-area-inset-left));
 }
 
 .main .bloc {
@@ -49,28 +54,31 @@ body {
   flex-direction: row ;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-top: 5%;
 }
 
 .main button{
-    width: 192px;
-    height: 50px;
+    width: 49%;
+    height: 150px;
     border-radius: 8px;
-    border: none;
     background-color: rgba(145, 148, 255, 0.82);
     color: white;
     font-weight: bold;
-    font-size: 1.2em;
     cursor: pointer;
     outline: none;
-    margin: 0 auto;
     transition: 0.2s;
     display: block;
-    margin-top: 5%;
 }
 
+.main .question_bas {
+    margin-top: 3%;
+}
 
-.horloge {
+.main button:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 20px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
+.timer {
     position: absolute;
     bottom: 0; left: 20px;
     background-color: rgb(231, 232, 255); color: #1f2121;
@@ -80,7 +88,7 @@ body {
     padding: 0 2% 0 2%;
 }
 
-.horloge h2 {
+.timer h2 {
     display: flex;
     box-sizing: content-box;
     color: #373e44;
