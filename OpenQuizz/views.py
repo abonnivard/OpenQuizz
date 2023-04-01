@@ -1,8 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
+
 from .models import Pin
 from administrateur.models import Quizz
 
+@csrf_protect
 def index(request):
 
     if request.method == 'POST':
@@ -17,7 +20,9 @@ def index(request):
             pin = Pin(id=ID)
             pin.save()
             return HttpResponseRedirect('/erreurId/') ##faire autre methode pour afficher l'erreur sans renvoyer sur une autre page
-        return HttpResponseRedirect('/waitingpageUser0') # choisi son pseudo
+        #return HttpResponseRedirect('/waitingpageUser0') # choisi son pseudo, pour l'instant je renvoie directre sur la page, a voir comment on peut avoir
+        #waitinguser0 et 1
+        return HttpResponseRedirect('/interfaceUser/' + 'id=' + ID)
     return render(request, 'OpenQuizz/index.html')
 
 def erreurId(request):

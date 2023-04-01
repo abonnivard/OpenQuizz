@@ -3,13 +3,13 @@ from administrateur.models import Quizz, Question
 from quizz.models import User
 import time
 
-
 i=0
-def interfaceUser(request):
+def interfaceUser(request,id):
 
-    ping= str(request.user.username)
-    #timer =
-        # Si qcm
+    quizz = Quizz.objects.all().filter(id=id)[0]
+    timer =quizz.timer
+
+
 
     #    start = time.perf_counter()
     #    global i
