@@ -14,12 +14,12 @@
     {% block content %}
     {% endblock %}
 
-    <h1>-Question-</h1>
+    <h1>-{{ question }}-</h1>
 
     <div class="main">
 
         <img src="{% static "quizz/img/adrien.jpg" %}" alt="image_quizz">
-        <div class="timer"><h2>100</h2></div>
+        <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
                 <button type="submit"><h2>Réponse A</h2></button>
