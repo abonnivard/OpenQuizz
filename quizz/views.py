@@ -6,10 +6,10 @@ from quizz.models import User
 import time
 
 @csrf_protect
-def interfaceUser(request,id_quizz,num_question):
+def interfaceUser(request, id_quizz, num_question):
     quizz = Quizz.objects.all().filter(id=id_quizz)[0]
-    questions_id=quizz.questions
-    list_id=questions_id.split(',') #ne pas prendre le dernier element (juste ' ')
+    questions_id = quizz.questions
+    list_id = questions_id.split(',') #ne pas prendre le dernier element (juste ' ')
     l=len(list_id)-1
     if (int(num_question)==l):
         return HttpResponseRedirect('/finQuizz/')
@@ -20,7 +20,7 @@ def interfaceUser(request,id_quizz,num_question):
         context = {
             "question": question.enonce,
             'timer': timer,
-            'num_question' :int(num_question.split()[0]), #seul moyen de convertire en int
+            'num_question': int(num_question.split()[0]), #seul moyen de convertire en int
             'id_quizz': id_quizz.strip(),
             'reponse1': question.reponse1,
             'reponse2': question.reponse2,
@@ -29,10 +29,6 @@ def interfaceUser(request,id_quizz,num_question):
         }
 
     return render(request, 'quizz/interfaceUser.html',context)
-
-
-
-
 
 def interfaceProf(request):
     return render(request, 'quizz/interfaceProf.html')

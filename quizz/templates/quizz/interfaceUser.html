@@ -22,12 +22,12 @@
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit"><h2>{{ reponse1 }}</h2></button>{% csrf_token %}
-                <button type="submit"><h2>{{ reponse2 }}</h2></button>{% csrf_token %}
+                <button type="submit" id="bouton1"><h2>{{ reponse1 }}</h2></button>{% csrf_token %}
+                <button type="submit" id="bouton2"><h2>{{ reponse2 }}</h2></button>{% csrf_token %}
             </div>
-            <div class="bloc">
-                <button class="question_bas" type="submit"><h2>{{ reponse3 }}</h2></button>{% csrf_token %}
-                <button class="question_bas" type="submit"><h2>{{ reponse4 }}</h2></button>{% csrf_token %}
+            <div class="bloc" id="bloc">
+                <button class="question_bas" type="submit" id="bouton3"><h2>{{ reponse3 }}</h2></button>{% csrf_token %}
+                <button class="question_bas" type="submit" id="bouton4"><h2>{{ reponse4 }}</h2></button>{% csrf_token %}
             </div>
         </div>
 
@@ -59,8 +59,52 @@
                 timerElement.innerText = time
 
             }
-
             setInterval(diminuerTemps, 1000)
+            let bouton1 = document.querySelector("#bouton1 h2");
+            let bouton2 = document.querySelector("#bouton2 h2");
+            let bouton3 = document.querySelector("#bouton3 h2");
+            let bouton4 = document.querySelector("#bouton4 h2");
+            let bloc = document.getElementById("bloc")
+            bouton1.addEventListener("mouseenter", function( event ) {
+                bouton2.style.opacity = "0.5";
+                bouton3.style.opacity = "0.5";
+                bouton4.style.opacity = "0.5";
+            bouton1.addEventListener("mouseleave", function( event ) {
+                bouton2.style.opacity = "1";
+                bouton3.style.opacity = "1";
+                bouton4.style.opacity = "1";
+            });
+            }, true);
+            bouton2.addEventListener("mouseenter", function( event ) {
+                bouton1.style.opacity = "0.5";
+                bouton3.style.opacity = "0.5";
+                bouton4.style.opacity = "0.5";
+            bouton2.addEventListener("mouseleave", function( event ) {
+                bouton1.style.opacity = "1";
+                bouton3.style.opacity = "1";
+                bouton4.style.opacity = "1";
+            });
+            }, true);
+            bouton3.addEventListener("mouseenter", function( event ) {
+               bouton1.style.opacity = "0.5";
+                bouton2.style.opacity = "0.5";
+                bouton4.style.opacity = "0.5";
+            bouton3.addEventListener("mouseleave", function( event ) {
+               bouton1.style.opacity = "1";
+                bouton2.style.opacity = "1";
+                bouton4.style.opacity = "1";
+            });
+            }, true);
+           bouton4.addEventListener("mouseenter", function( event ) {
+              bouton1.style.opacity = "0.5";
+                bouton2.style.opacity = "0.5";
+                bouton3.style.opacity = "0.5";
+            bouton4.addEventListener("mouseleave", function( event ) {
+                bouton1.style.opacity = "1";
+                bouton2.style.opacity = "1";
+                bouton3.style.opacity = "1";
+            });
+            }, true);
 
         </script>
 
