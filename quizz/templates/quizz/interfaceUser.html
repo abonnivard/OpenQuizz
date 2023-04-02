@@ -22,24 +22,39 @@
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit"><h2>Réponse A</h2></button>
-                <button type="submit"><h2>Réponse B</h2></button>
+                <button type="submit"><h2>{{ reponse1 }}</h2></button>
+                <button type="submit"><h2><{{ reponse2 }}/h2></button>
             </div>
             <div class="bloc">
-                <button class="question_bas" type="submit"><h2>Réponse C</h2></button>
-                <button class="question_bas" type="submit"><h2>Réponse D</h2></button>
+                <button class="question_bas" type="submit"><h2>{{ reponse3 }}</h2></button>
+                <button class="question_bas" type="submit"><h2>{{ reponse4 }}</h2></button>
             </div>
         </div>
 
+        <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>
+        <div class="num_question"><h3>{{ num_question }}</h3></div>
 
         <script>
-
+            const id_quizz = document.querySelector(".id_quizz")
+            let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
+            let i =0
+            while (true) { //seul moyen que j'ai trouvé pour convertire num_question.innerText en  number pouvant etre incrémenté
+                if (num_question.innerText == i) {
+                    console.log('ok')
+                    break
+                }else {
+                    console.log('non ok')
+                    i++
+                }
+            }
             let time = timerElement.innerText
             function diminuerTemps() {
                 time--
-                if (time<0){
-                    time=0
+                var str;
+                if (time < 0) {
+                    str = "http://127.0.0.1:8000/interfaceUser/id="+id_quizz.innerText+"/num_question="+(i+1)
+                    document.location.href = str;
                 }
                 timerElement.innerText = time
 

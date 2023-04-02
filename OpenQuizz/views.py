@@ -22,7 +22,7 @@ def index(request):
             return HttpResponseRedirect('/erreurId/') ##faire autre methode pour afficher l'erreur sans renvoyer sur une autre page
         #return HttpResponseRedirect('/waitingpageUser0') # choisi son pseudo, pour l'instant je renvoie directre sur la page, a voir comment on peut avoir
         #waitinguser0 et 1
-        return HttpResponseRedirect('/interfaceUser/' + 'id=' + ID)
+        return HttpResponseRedirect('/interfaceUser/'+'id='+ID+'/num_question=0')
     return render(request, 'OpenQuizz/index.html')
 
 def erreurId(request):

@@ -95,3 +95,10 @@ body h1 {
     color: #373e44;
     margin: 0;
 }
+
+.test h3 {
+    height: 0px;
+}
+.test {
+    height: 0px;
+}

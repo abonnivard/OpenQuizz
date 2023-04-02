@@ -10,5 +10,4 @@ urlpatterns = [
     path('', include('utilisateur.urls')),
     path('', include('quizz.urls')),
     path('', include('accounts.urls')),
-
 ]
