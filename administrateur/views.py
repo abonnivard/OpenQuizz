@@ -99,7 +99,6 @@ def enregistrement(request):
         for question in questions:
             if str(question.numero) in liste:
                 liste_questions += str(question.id) +', '
-        print(liste_questions)
         newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker, questions=liste_questions)
         newQuizz.save()
         return HttpResponseRedirect("http://127.0.0.1:8000/dashboard/")
@@ -167,13 +166,53 @@ def suppression_question(request):
 
 
 def modifierquizz(request, id):
+    if request.method == 'POST':
+
+        quizz = Quizz.objects.get(id=id)
+        liste = request.POST.get('liste')
+        time = request.POST.get('timer')
+
+        classementdisplay = request.POST.get('classementdisplay')
+        if classementdisplay == "true":
+            classementdisplay = True
+        else:
+            classementdisplay = False
+
+        stocker = request.POST.get('stocker')
+        if stocker == "true":
+            stocker = True
+        else:
+            stocker = False
+
+        mode = request.POST.get('mode')
+        name = request.POST.get('name')
+        liste_questions = ""
+        questions = Question.objects.all().filter(pseudo=str(request.user.username))
+        for question in questions:
+            if str(question.numero) in liste:
+                liste_questions += str(question.id) + ', '
+        quizz.questions = liste_questions
+        if time != '':
+            quizz.timer = time
+        quizz.stocker = stocker
+        quizz.afficher = classementdisplay
+        quizz.mode = mode
+        if name != '':
+            quizz.name = name
+        quizz.save()
+        return redirect('/dashboard/')
+
+
     quizz = Quizz.objects.all().filter(pseudo=str(request.user.username)).filter(id=id)[0]
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    liste_id = ''
     for i in range(len(questions)):
         questions[i].numero = i
         questions[i].save()
+        liste_id += str(questions[i].id)+', '
     context = {
         "questions": questions,
         "quizz":quizz,
+        "liste_id":liste_id,
     }
     return render(request, "administrateur/modifierquizz.html", context)
