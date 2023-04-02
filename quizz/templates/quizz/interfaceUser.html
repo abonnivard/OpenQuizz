@@ -14,25 +14,25 @@
     {% block content %}
     {% endblock %}
 
-    <h1>-{{ question }}-</h1>
-
     <div class="main">
+
+        <h1>-{{ question }}-</h1>
 
         <img src="{% static "quizz/img/adrien.jpg" %}" alt="image_quizz">
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit"><h2>{{ reponse1 }}</h2></button>
-                <button type="submit"><h2><{{ reponse2 }}/h2></button>
+                <button type="submit"><h2>{{ reponse1 }}</h2></button>{% csrf_token %}
+                <button type="submit"><h2>{{ reponse2 }}</h2></button>{% csrf_token %}
             </div>
             <div class="bloc">
-                <button class="question_bas" type="submit"><h2>{{ reponse3 }}</h2></button>
-                <button class="question_bas" type="submit"><h2>{{ reponse4 }}</h2></button>
+                <button class="question_bas" type="submit"><h2>{{ reponse3 }}</h2></button>{% csrf_token %}
+                <button class="question_bas" type="submit"><h2>{{ reponse4 }}</h2></button>{% csrf_token %}
             </div>
         </div>
 
-        <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>
-        <div class="num_question"><h3>{{ num_question }}</h3></div>
+        <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>{% csrf_token %}
+        <div class="num_question"><h3>{{ num_question }}</h3></div>{% csrf_token %}
 
         <script>
             const id_quizz = document.querySelector(".id_quizz")
