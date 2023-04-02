@@ -119,6 +119,10 @@ p {
   font-size: 2rem;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .creer_quizz {
   display: flex;
   flex-direction: row;
