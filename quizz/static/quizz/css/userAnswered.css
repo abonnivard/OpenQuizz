@@ -29,7 +29,6 @@
 
   .loader{
       display: block;
-      position: center;
       margin-top: 25%;
       flex-wrap: wrap;
       justify-content: center;

@@ -29,9 +29,11 @@
         </div>
         <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
         <div class="num_question"><h3>{{ num_question }}</h3></div>{% csrf_token %}
+        <div class="pseudo"><h3>{{ pseudo }}</h3></div>{% csrf_token %}
 
         <script>
             const id_quizz = document.querySelector(".id_quizz")
+            const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
             let i =0
@@ -49,7 +51,7 @@
                 time--
                 var str;
                 if (time < 0) {
-                    str = "http://127.0.0.1:8000/interfaceUser/id="+id_quizz.innerText+"/num_question="+(i+1)
+                    str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1)
                     document.location.href = str;
                 }
                 timerElement.innerText = time

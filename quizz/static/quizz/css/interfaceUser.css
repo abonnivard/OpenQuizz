@@ -5,11 +5,8 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-    height: 95vh;
+    height: 98vh;
     overflow-y: hidden;
-}
-footer {
-    height: 5vh;
 }
 
 
@@ -85,8 +82,8 @@ body h1 {
 }
 
 
-.id_quizz h3,.num_question h3 {display: none}
-.id_quizz,.num_question {display: none;}
+.id_quizz h3,.num_question h3,.pseudo h3 {display: none}
+.id_quizz,.num_question,.pseudo {display: none;}
 
 .timer {
     position: absolute;
@@ -106,8 +103,8 @@ body h1 {
 }
 
 .barre_progression {
-    background: #38d3d3;
-    height: 5vh;
+    background: #389dd3;
+    height: 2vh;
     border-radius: 0px 100px 100px 0;
     animation: barre_progression calc(var(--duration) * 1s) linear forwards;
     transform-origin: left center;
