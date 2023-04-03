@@ -12,7 +12,7 @@ class Question(models.Model):
     reponse4 = models.CharField(max_length=255, default='null')
     reponseVrai = models.CharField(max_length=255, default='null') #Si qcm
     reponse = models.CharField(max_length=255, default='null') #Si pas qcm
-    image = models.ImageField(upload_to='upload/', null=True, blank=True)
+    image = models.ImageField(upload_to='media/', null=True, blank=True)
     qcm = models.BooleanField(default=False)
     numero = models.IntegerField(default=0) #ne sert à rien d 'autre que la simplification du processus de suppression de questions
 
