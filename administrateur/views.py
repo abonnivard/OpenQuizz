@@ -131,7 +131,19 @@ def banquequestions(request):
             choix4 = request.POST.get('choix4')
             reponseqcm = request.POST.get('reponseqcm')
 
-            newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1, reponse2=choix2,
+            request_file = request.FILES['file'] if 'file' in request.FILES else None
+            if request_file:
+
+                fs = FileSystemStorage()
+                file = fs.save(request_file.name, request_file)
+                fileurl = fs.url(file)
+                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1,
+                                       reponse2=choix2,
+                                       reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True, image=fileurl.split('/')[2])
+            else:
+
+
+                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1, reponse2=choix2,
                                    reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
             newquestion.save()
         else:
@@ -141,13 +153,14 @@ def banquequestions(request):
             if request_file:
 
                 fs = FileSystemStorage()
-                print(request_file.name, request_file)
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
-                print(fileurl.split('/')[1])
 
-            newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue, image=fileurl.split('/')[2]
-                                   )
+                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue, image=fileurl.split('/')[2])
+
+            else:
+                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
+
             newquestion.save()
 
 
