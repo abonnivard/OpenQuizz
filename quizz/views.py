@@ -16,8 +16,8 @@ def interfaceUser(request, id_quizz, num_question):
     else:
         timer =quizz.timer
         question=Question.objects.get(id=list_id[int(num_question)].strip()) ##strip pour enlever tous les espaces gênants
-
         context = {
+            "image" : str(question.image),
             "question": question.enonce,
             'timer': timer,
             'num_question': int(num_question.split()[0]), #seul moyen de convertire en int
@@ -35,8 +35,11 @@ def interfaceProf(request):
 def waitingpageProf(request):
     return render(request, 'quizz/watingpageProf.html')
 
-def waitingpageUser0(request): #on rentre son pseudo apres avoir rentrer l'id du quizz
-    return render(request, 'quizz/waitingpageUser0.html')
+def waitingpageUser0(request,id): #on rentre son pseudo apres avoir rentrer l'id du quizz
+    context = {
+        'url': "http://127.0.0.1:8000/interfaceUser/id=" + id + "/num_question=0"
+    }
+    return render(request, 'quizz/waitingpageUser0.html',context)
 
 def waitingpageUser1(request): #on arrive dans le lobby avc tous les joueurs on peut par exemple custom les designs des persos
     pseudo = request.POST.get('pseudo')

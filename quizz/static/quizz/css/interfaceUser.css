@@ -5,48 +5,47 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-    height: 100vh;
+    height: 95vh;
     overflow-y: hidden;
 }
-
-.navbar {
-    position: relative;
-    height: 7%;
+footer {
+    height: 5vh;
 }
+
 
 .main {
     position: relative;
     display: flex; flex-direction: column;
-    margin-top: 4.1%;
-    height: 90%;
+    height: 100%;
     justify-content: center;
     align-content: space-around;
 }
+
 body h1 {
-    margin: 20px 0px 25px 0  ;
+    margin: 3% 0px 3% 0  ;
     text-align: center;
+    height: 5%;
     font-family: Font;
     color : #c8e1f8;
 }
 
 .main h2 {
-
     text-align: center;
     font-size: 300%;
     font-family: Font;
     color : #c8e1f8;
 }
 .main img {
-    align-self: center; margin-bottom: 7%;
-    max-height:300px;
+    align-self: center; margin-bottom: 3%;
+    max-height:41%;
     justify-content: center;
     border-radius: 10px;
 }
 
 .main .questions {
+    height: 45%; margin-bottom: 2%;
     display: grid;
     padding: 1rem calc(1rem + env(safe-area-inset-right)) 1rem calc(1rem + env(safe-area-inset-left));
-    margin-bottom: auto;
     bottom: 0;
 }
 
@@ -84,6 +83,11 @@ body h1 {
     box-shadow: 20px 20px 60px -6px rgba(0,0,0,.6);
     cursor: crosshair;
 }
+
+
+.id_quizz h3,.num_question h3 {display: none}
+.id_quizz,.num_question {display: none;}
+
 .timer {
     position: absolute;
     top: 0; left: 20px;
@@ -101,8 +105,19 @@ body h1 {
     margin: 0;
 }
 
-.id_quizz h3,.num_question h3 {
-    display: none}
-.id_quizz,.num_question {
-    display: none;
+.barre_progression {
+    background: #38d3d3;
+    height: 5vh;
+    border-radius: 0px 100px 100px 0;
+    animation: barre_progression calc(var(--duration) * 1s) linear forwards;
+    transform-origin: left center;
 }
+
+@keyframes barre_progression {
+  to {
+    /* More performant than animating `width` */
+    transform: scaleX(0);
+  }
+}
+
+

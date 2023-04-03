@@ -12,6 +12,11 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
+    height: 94vh;
+}
+footer {
+    height: 6vh;
+    overflow-y: hidden;
 }
 
 .main {
@@ -88,6 +93,44 @@ body {
 .main .bloc .ss button a {
     text-decoration: none ;
     color: aliceblue;
+}
+
+.parentIcon {
+    display: flex; height: 70%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+    background-color: black;
+}
+
+.parentIcon a {
+    text-align: center;
+    transform: translateX(5px);
+    padding: 0 10px 0px 10px;
+    color: #240082;
+    font-size: 35px;
+    transition: all .4s;
+}
+.parentIcon a:hover {
+    color: #1f2121;
+}
+
+.copy {
+    height: 30%;
+    display: flex;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.copy p {
+    margin-bottom: 0;
+    padding-bottom: 5px;
 }
 
 @media screen and (max-width: 700px){
