@@ -5,6 +5,8 @@ import uuid
 class Question(models.Model):
     id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     pseudo = models.CharField(max_length=255)
+    theme = models.CharField(max_length=255, default='')
+    intitule = models.CharField(max_length=255, default="")
     enonce = models.CharField(max_length=255)
     reponse1 = models.CharField(max_length=255, default='null')
     reponse2 = models.CharField(max_length=255, default='null')
@@ -17,10 +19,6 @@ class Question(models.Model):
     numero = models.IntegerField(default=0) #ne sert à rien d 'autre que la simplification du processus de suppression de questions
 
 
-
-#Liste de l'ensembles des thémes créés
-class Theme(models.Model):
-    nom = models.CharField(max_length=255)
 
 
 

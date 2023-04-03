@@ -1,5 +1,6 @@
 
 
+    let timerOn = document.querySelector('.timechoice')
 
     function displaychangetime (){
         if (timerOn.checked){
@@ -66,7 +67,6 @@
         }
         let timer = document.querySelector('.timer')
         formData.append('timer', timer.value.toString())
-
         let classement = document.querySelector("#classement")
         if (classement.checked){
             formData.append('classementdisplay', "true")

@@ -123,7 +123,9 @@ def enregistrement(request):
 def banquequestions(request):
     if request.method == 'POST':
         checkbox = request.POST.getlist('choice')
+        intitule = request.POST.get('intitule')
         enonce = request.POST.get('enonce')
+        theme = request.POST.get('theme')
         if 'qcm' in checkbox:
             choix1 = request.POST.get('choix1')
             choix2 = request.POST.get('choix2')
@@ -136,13 +138,13 @@ def banquequestions(request):
                 fs = FileSystemStorage()
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
-                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1,
+                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1,
                                        reponse2=choix2,
                                        reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True, image=fileurl.split('/')[2])
             else:
 
 
-                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1, reponse2=choix2,
+                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1, reponse2=choix2,
                                    reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
             newquestion.save()
         else:
@@ -155,10 +157,10 @@ def banquequestions(request):
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
 
-                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue, image=fileurl.split('/')[2])
+                newquestion = Question(pseudo=str(request.user.username),intitule=intitule, enonce=enonce, theme=theme, reponse=reponselongue, image=fileurl.split('/')[2])
 
             else:
-                newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
+                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse=reponselongue)
 
             newquestion.save()
 
@@ -169,6 +171,7 @@ def banquequestions(request):
     for i in range(len(questions)):
         questions[i].numero = i
         questions[i].save()
+
 
     context = {
         "questions": questions,
@@ -258,6 +261,12 @@ def modifyquestion(request, id):
         if request.POST.get('enonce') != '':
             question.enonce = request.POST.get('enonce')
 
+        if request.POST.get('intitule') != '':
+            question.intitule = request.POST.get('intitule')
+
+        if request.POST.get('theme') != '':
+            question.theme = request.POST.get('theme')
+
         if 'qcm' in checkbox:
             question.reponse = 'null'
             question.qcm = True
@@ -283,6 +292,7 @@ def modifyquestion(request, id):
 
             question.save()
         else:
+            question.qcm = False
             question.reponseVrai = 'null'
             question.reponse1 = 'null'
             question.reponse2 = 'null'

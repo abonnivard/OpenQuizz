@@ -143,10 +143,7 @@ input {
   margin-left: 20px;
 }
 
-.compteur {
-  display: flex;
-  flex-direction: row;
-}
+
 
 .selecttime {
   margin-left: 5px;

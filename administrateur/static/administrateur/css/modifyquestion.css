@@ -297,7 +297,7 @@ a {
   display: flex;
   flex-direction: column;
   width: 800px;
-  height: 700px;
+  height: 800px;
   -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.2);
@@ -473,6 +473,16 @@ p {
   padding: 20px;
   margin-bottom: 70px;
   height: 600px;
+}
+
+#intitule {
+  height: 50px;
+}
+
+#theme {
+  height: 50px;
+  width: 200px;
+  margin: 0 auto;
 }
 
 
