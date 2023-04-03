@@ -149,8 +149,8 @@ input {
 }
 
 .selecttime {
-  margin-left: 100px;
-  display: none;
+  margin-left: 5px;
+  display: flex;
   flex-direction: row;
 }
 .selecttime input{

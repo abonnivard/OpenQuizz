@@ -27,6 +27,8 @@ body {
   padding-top: 100px;
   display: flex;
   flex-direction: column;
+
+
 }
 
 .texte {
@@ -34,19 +36,23 @@ body {
     font-size: 2rem;
     color: #c8e1f8;
     font-family: Font;
+    backdrop-filter: blur(10px);
 }
 
 .all {
     position: absolute;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      z-index: -100;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: -100;
     width: 100%;
     padding: 100px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .gauche {
+
   min-width: 300px;
   transform: translateY(10px);
   display: flex;
@@ -58,6 +64,7 @@ body {
 }
 
 .droite {
+
         width: 70%;
         height: 600px;
         overflow: auto;
@@ -76,10 +83,12 @@ body {
   font-size: 2rem;
   color: #c8e1f8;
   text-align: center;
+  backdrop-filter: blur(10px);
 }
 
 .tableau {
   padding: 20px;
+
 }
 
 table {
@@ -276,7 +285,7 @@ a {
 }
 
 .popup_question {
-  display: none;
+  display: flex;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -285,7 +294,7 @@ a {
 
 .contact_div {
   position: relative;
-  display: none;
+  display: flex;
   flex-direction: column;
   width: 800px;
   height: 700px;
@@ -476,7 +485,7 @@ p {
   .ajouter_question {
     margin-top: 30px;
   }
-  
+
   .texte {
     width: 100%;
   }
@@ -493,6 +502,7 @@ p {
     width: 100%;
     padding: 10px;
     flex-direction: column;
+
   }
 
   .gauche {

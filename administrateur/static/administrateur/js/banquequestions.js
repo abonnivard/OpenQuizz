@@ -3,19 +3,18 @@ window.addEventListener('load', () => {
     let boutonOn = document.querySelector('.bouton1')
     let boutonOff = document.querySelector('.boutoncroix')
 
-
     function afficher() {
         document.querySelector('.contact_div').style.display = "flex";
         document.querySelector('.popup_question').style.display = "flex";
-        document.querySelector('.all').style.filter = 'blur(3px)'
-        document.querySelector('.titleup').style.filter = "blur(4px)"
+        document.querySelector('.all').style.filter = 'blur(15px)'
+        document.querySelector('.texte').style.filter = "blur(15px)"
     }
 
     function supprimer() {
         document.querySelector('.contact_div').style.display = "none";
         document.querySelector('.popup_question').style.display = "none";
         document.querySelector('.all').style.filter = 'blur(0px)'
-        document.querySelector('.titleup').style.filter = "blur(0px)"
+        document.querySelector('.texte').style.filter = "blur(0px)"
     }
 
     boutonOn.addEventListener('click', afficher)
@@ -64,6 +63,29 @@ window.addEventListener('load', () => {
 
     const arr = Array.from(boutonsuppS);
     arr.forEach(element => element.addEventListener('click', function() { supprimerQuestion(element); }))
+
+
+    let bouttondown = document.getElementsByClassName('downarrow')
+    let buttonup = document.getElementsByClassName("uparrow")
+    function deploy(element) {
+        document.getElementsByClassName('downarrow')[element.id].style.display = "none"
+        document.getElementsByClassName('uparrow')[element.id].style.display = "flex"
+        document.getElementsByClassName('partieinf')[element.id].style.display = "flex"
+        document.getElementById(element.id+'question').style.height = "300px"
+    }
+
+    function deployoff(element) {
+        document.getElementsByClassName('downarrow')[element.id].style.display = "flex"
+        document.getElementsByClassName('uparrow')[element.id].style.display = "none"
+        document.getElementsByClassName('partieinf')[element.id].style.display = "none"
+        document.getElementById(element.id+'question').style.height = "70px"
+    }
+
+    const arrdeploy = Array.from(bouttondown)
+    arrdeploy.forEach(element => element.addEventListener('click', function(){deploy(element); }))
+    const arrdeployoff = Array.from(buttonup)
+    arrdeployoff.forEach(element => element.addEventListener('click', function(){deployoff(element); }))
+
 })
 
     let checkboxqcm = document.querySelector('.qcmchoice')

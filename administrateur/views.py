@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 import json as json
+import os
 
 @login_required
 def dashboard(request):
@@ -38,7 +39,7 @@ def dashboard(request):
 
 #reste à rendre required au moins deux du qcm et la réponse selon le mode
 
-
+@login_required
 def suppression(request):
     if request.method == 'POST':
         numero = request.POST.get('numero')
@@ -64,7 +65,7 @@ def suppression(request):
         return render(request, "administrateur/dashboard.html", context)
 
 
-
+@login_required
 def creation_de_quizz(request):
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
     for i in range(len(questions)):
@@ -75,6 +76,8 @@ def creation_de_quizz(request):
     }
     return render(request, "administrateur/creationQuizz.html", context)
 
+
+@login_required
 def enregistrement(request):
     if request.method == 'POST':
         liste = request.POST.get('liste')
@@ -101,7 +104,7 @@ def enregistrement(request):
                 liste_questions += str(question.id) +', '
         newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker, questions=liste_questions)
         newQuizz.save()
-        return HttpResponseRedirect("http://127.0.0.1:8000/dashboard/")
+        return redirect("/dashboard/")
     else:
         quizzs = Quizz.objects.all().filter(pseudo=str(request.user.username))
         for k in range(len(quizzs)):
@@ -115,6 +118,7 @@ def enregistrement(request):
 
 
 
+@login_required
 def banquequestions(request):
     if request.method == 'POST':
         checkbox = request.POST.getlist('choice')
@@ -125,13 +129,17 @@ def banquequestions(request):
             choix3 = request.POST.get('choix3')
             choix4 = request.POST.get('choix4')
             reponseqcm = request.POST.get('reponseqcm')
+
             newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse1=choix1, reponse2=choix2,
                                    reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
             newquestion.save()
         else:
             reponselongue = request.POST.get('reponselongue')
-            newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue)
+
+            newquestion = Question(pseudo=str(request.user.username), enonce=enonce, reponse=reponselongue, image=image)
             newquestion.save()
+
+
 
         return redirect('/banque-question/')
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
@@ -144,7 +152,7 @@ def banquequestions(request):
     }
     return render(request, 'administrateur/banquequestions.html', context)
 
-
+@login_required
 def suppression_question(request):
     if request.method == 'POST':
         numero = request.POST.get('numero')
@@ -164,7 +172,7 @@ def suppression_question(request):
         return render(request, "administrateur/banquequestions.html", context)
 
 
-
+@login_required
 def modifierquizz(request, id):
     if request.method == 'POST':
 
@@ -216,3 +224,57 @@ def modifierquizz(request, id):
         "liste_id":liste_id,
     }
     return render(request, "administrateur/modifierquizz.html", context)
+
+@login_required
+def modifyquestion(request, id):
+
+    if request.method == 'POST':
+        question = Question.objects.get(id=id)
+        checkbox = request.POST.getlist('choice')
+        if request.POST.get('enonce') != '':
+            question.enonce = request.POST.get('enonce')
+
+        if 'qcm' in checkbox:
+            question.reponse = 'null'
+            question.qcm = True
+            if request.POST.get('choix1') != '':
+                question.reponse1 = request.POST.get('choix1')
+            if request.POST.get('choix2') != '':
+                question.reponse2 = request.POST.get('choix2')
+            if request.POST.get('choix3') != '':
+                question.reponse3 = request.POST.get('choix3')
+            if request.POST.get('choix1') != '':
+                question.reponse4 = request.POST.get('choix4')
+
+            if request.POST.get('reponseqcm') != '':
+                question.reponseVrai = request.POST.get('reponseqcm')
+
+
+            question.save()
+        else:
+            question.reponseVrai = 'null'
+            question.reponse1 = 'null'
+            question.reponse2 = 'null'
+            question.reponse3 = 'null'
+            question.reponse4 = 'null'
+
+            if request.POST.get('reponselongue') != '':
+                question.reponse = request.POST.get('reponselongue')
+            question.save()
+
+        return redirect('/banque-question/')
+
+
+
+    questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    for i in range(len(questions)):
+        questions[i].numero = i
+        questions[i].save()
+
+    question = Question.objects.get(id=id)
+
+    context = {
+        "questions": questions,
+        "questionmodify":question,
+    }
+    return render(request, 'administrateur/modifyquestion.html', context)
