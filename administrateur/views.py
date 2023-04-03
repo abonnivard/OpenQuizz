@@ -133,7 +133,6 @@ def banquequestions(request):
 
             request_file = request.FILES['file'] if 'file' in request.FILES else None
             if request_file:
-
                 fs = FileSystemStorage()
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
@@ -274,6 +273,13 @@ def modifyquestion(request, id):
             if request.POST.get('reponseqcm') != '':
                 question.reponseVrai = request.POST.get('reponseqcm')
 
+            request_file = request.FILES['file'] if 'file' in request.FILES else None
+            if request_file:
+                fs = FileSystemStorage()
+                file = fs.save(request_file.name, request_file)
+                fileurl = fs.url(file)
+                os.remove('media/' + str(question.image))
+                question.image = fileurl.split('/')[2]
 
             question.save()
         else:
@@ -285,6 +291,14 @@ def modifyquestion(request, id):
 
             if request.POST.get('reponselongue') != '':
                 question.reponse = request.POST.get('reponselongue')
+
+            request_file = request.FILES['file'] if 'file' in request.FILES else None
+            if request_file:
+                fs = FileSystemStorage()
+                file = fs.save(request_file.name, request_file)
+                fileurl = fs.url(file)
+                os.remove('media/'+str(question.image))
+                question.image = fileurl.split('/')[2]
             question.save()
 
         return redirect('/banque-question/')
