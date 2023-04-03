@@ -45,3 +45,6 @@ def waitingpageUser1(request): #on arrive dans le lobby avc tous les joueurs on 
 
 def finQuizz(request):
     return render(request, 'quizz/finquizz.html')
+
+def userAnswered(request):
+    return render(request, 'quizz/userAnswered.html')

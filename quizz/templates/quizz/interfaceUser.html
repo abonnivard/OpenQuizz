@@ -59,6 +59,18 @@
                 timerElement.innerText = time
 
             }
+            document.querySelectorAll('img').forEach(image => {
+                image.onclick = () => {
+                    document.querySelector('.popup-image').style.display = 'block';
+                    document.querySelector('.navbar').style.display = 'none';
+                    document.querySelector('.popup-image img').src = image.getAttribute('src');
+                }
+            });
+
+            document.querySelector('.popup-image span').onclick = () =>{
+                document.querySelector('.popup-image').style.display = 'none';
+                document.querySelector('.navbar').style.display = 'block';
+            }
 
             setInterval(diminuerTemps, 1000)
             let bouton1 = document.querySelector("#bouton1 h2");
@@ -69,40 +81,65 @@
                 bouton2.style.opacity = "0.5";
                 bouton3.style.opacity = "0.5";
                 bouton4.style.opacity = "0.5";
+                bouton2.style. transitionDuration = "0.5s"
+                bouton3.style. transitionDuration = "0.5s"
+                bouton4.style. transitionDuration = "0.5s"
             bouton1.addEventListener("mouseleave", function( event ) {
                 bouton2.style.opacity = "1";
                 bouton3.style.opacity = "1";
                 bouton4.style.opacity = "1";
+                bouton2.style. transitionDuration = "0.5s"
+                bouton3.style. transitionDuration = "0.5s"
+                bouton4.style. transitionDuration = "0.5s"
             });
             }, true);
             bouton2.addEventListener("mouseenter", function( event ) {
                 bouton1.style.opacity = "0.5";
                 bouton3.style.opacity = "0.5";
                 bouton4.style.opacity = "0.5";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton3.style.transitionDuration = "0.5s"
+                bouton4.style.transitionDuration = "0.5s"
             bouton2.addEventListener("mouseleave", function( event ) {
                 bouton1.style.opacity = "1";
                 bouton3.style.opacity = "1";
                 bouton4.style.opacity = "1";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton3.style.transitionDuration = "0.5s"
+                bouton4.style.transitionDuration = "0.5s"
             });
             }, true);
             bouton3.addEventListener("mouseenter", function( event ) {
-               bouton1.style.opacity = "0.5";
+                bouton1.style.opacity = "0.5";
                 bouton2.style.opacity = "0.5";
                 bouton4.style.opacity = "0.5";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton2.style.transitionDuration = "0.5s"
+                bouton4.style.transitionDuration = "0.5s"
             bouton3.addEventListener("mouseleave", function( event ) {
                bouton1.style.opacity = "1";
                 bouton2.style.opacity = "1";
                 bouton4.style.opacity = "1";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton2.style.transitionDuration = "0.5s"
+                bouton4.style.transitionDuration = "0.5s"
             });
             }, true);
            bouton4.addEventListener("mouseenter", function( event ) {
-              bouton1.style.opacity = "0.5";
+                bouton1.style.opacity = "0.5";
                 bouton2.style.opacity = "0.5";
                 bouton3.style.opacity = "0.5";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton2.style.transitionDuration = "0.5s"
+                bouton3.style.transitionDuration = "0.5s"
             bouton4.addEventListener("mouseleave", function( event ) {
                 bouton1.style.opacity = "1";
                 bouton2.style.opacity = "1";
                 bouton3.style.opacity = "1";
+                bouton1.style.transitionDuration = "0.5s"
+                bouton2.style.transitionDuration = "0.5s"
+                bouton3.style.transitionDuration = "0.5s"
+
             });
             }, true);
 
