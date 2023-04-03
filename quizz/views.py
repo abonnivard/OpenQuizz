@@ -12,7 +12,7 @@ def interfaceUser(request,pseudo, id_quizz, num_question):
     list_id = questions_id.split(',') #ne pas prendre le dernier element (juste ' ')
     l=len(list_id)-1
     if (int(num_question)==l):
-        return HttpResponseRedirect('/finQuizz/')
+        return HttpResponseRedirect('/finQuizz/'+pseudo+"/id="+id_quizz)
     else:
         timer =quizz.timer
         question=Question.objects.get(id=list_id[int(num_question)].strip()) ##strip pour enlever tous les espaces gênants
@@ -37,17 +37,21 @@ def waitingpageProf(request):
     return render(request, 'quizz/watingpageProf.html')
 
 def waitingpageUser0(request,id): #on rentre son pseudo apres avoir rentrer l'id du quizz
+    users=User.objects.all().filter(id_quizz=id) ##on prend que du meme quizz ==> a la fin de chaque quizz on supprime les user du quizz !
     pseudo = request.POST.get('pseudo')
     context = {
         'url': "http://127.0.0.1:8000/waintingUser1/" + "pseudo=" + str(pseudo) + "/id=" + id
     }
-    # newUser = User(pseudo=pseudo)
     if request.method == 'POST':
+        for user in users: #pseudo déjà existant ?
+            if pseudo == user.pseudo:
+                return HttpResponseRedirect('erreurPseudo/')  # voir pour afficher le message d'erreur dans la page
+        newUser = User(pseudo=pseudo, id_quizz=id, score=0)
+        newUser.save()
         return HttpResponseRedirect("http://127.0.0.1:8000/waitingpageUser1/"+pseudo+"/id="+str(id))
     return render(request, 'quizz/waitingpageUser0.html',context)
 
 def waitingpageUser1(request,pseudo,id): #on arrive dans le lobby avc tous les joueurs on peut par exemple custom les designs des persos
-    # newUser = User(pseudo=pseudo)
     context = {
                  'url': "http://127.0.0.1:8000/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0"
     }
@@ -56,7 +60,8 @@ def waitingpageUser1(request,pseudo,id): #on arrive dans le lobby avc tous les j
         return HttpResponseRedirect("http://127.0.0.1:8000/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0")
     return render(request, 'quizz/waitingpageUser1.html',context)
 
-def finQuizz(request):
+def finQuizz(request,id,pseudo):
+    User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
     return render(request, 'quizz/finquizz.html')
 
 def userAnswered(request):

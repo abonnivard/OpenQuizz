@@ -103,11 +103,13 @@ body h1 {
 }
 
 .barre_progression {
+    z-index: 10;
     background: #389dd3;
     height: 2vh;
     border-radius: 0px 100px 100px 0;
     animation: barre_progression calc(var(--duration) * 1s) linear forwards;
     transform-origin: left center;
+    box-shadow: 2px 2px 20px rgba(240, 255, 251, 0.45);;
 }
 
 @keyframes barre_progression {
@@ -117,4 +119,9 @@ body h1 {
   }
 }
 
-
+.socle {
+    position: absolute; bottom: 0; left: 0;
+    height: 2vh; width: 3%; border-radius: 0 200px 0px 0;
+    background: #1f2121;
+    z-index: 100000;
+}

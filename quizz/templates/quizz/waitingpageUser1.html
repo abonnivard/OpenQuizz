@@ -13,6 +13,7 @@
     {% include 'OpenQuizz/navbar.html' %}
     {% block content %}
     {% endblock %}
+
     <div class="main">
         <div class loader>
             <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -20,6 +21,7 @@
         <div class="phrase">
             <h1>En attente du déclenchement du quizz !</h1>
         </div>
+        <!--temporaire jusqu'a fonctionnalité declanchement quizz-->
         <form action="" method="post">
             {% csrf_token %}
             <button type="submit" href="{{ url }}">Valider</button>

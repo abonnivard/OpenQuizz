@@ -10,7 +10,7 @@ urlpatterns = [
     path('waitingpageProf/', waitingpageProf, name='waitingpageProf'),
     path('waitingpageUser0/id=<str:id>/', waitingpageUser0, name="waitingpageUser0"),
     path('waitingpageUser1/<str:pseudo>/id=<str:id>/', waitingpageUser1, name="waitingpageUser1"),
-    path('finQuizz/', finQuizz, name="finquizz"),
+    path('finQuizz/pseudo=<str:pseudo>/id=<str:id>/', finQuizz, name="finquizz"),
     path('userAnswered/', userAnswered, name="userAnswered"),
 
 ]
