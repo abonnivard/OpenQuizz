@@ -20,7 +20,7 @@ def index(request):
             pin = Pin(id=ID)
             pin.save()
             return HttpResponseRedirect('/erreurId/') ##faire autre methode pour afficher l'erreur sans renvoyer sur une autre page
-        return HttpResponseRedirect('/waitingpageUser0/'+'id='+ID) # choisi son pseudo, pour l'instant je renvoie directre sur la page, a voir comment on peut avoir
+        return HttpResponseRedirect('/waitingpageUser0/'+'id='+ID+"/_") # choisi son pseudo, pour l'instant je renvoie directre sur la page, a voir comment on peut avoir
     return render(request, 'OpenQuizz/index.html')
 
 def erreurId(request):
