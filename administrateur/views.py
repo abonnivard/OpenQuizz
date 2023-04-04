@@ -287,7 +287,8 @@ def modifyquestion(request, id):
                 fs = FileSystemStorage()
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
-                os.remove('media/' + str(question.image))
+                if str(question.image) != '':
+                    os.remove('media/' + str(question.image))
                 question.image = fileurl.split('/')[2]
 
             question.save()
@@ -307,7 +308,8 @@ def modifyquestion(request, id):
                 fs = FileSystemStorage()
                 file = fs.save(request_file.name, request_file)
                 fileurl = fs.url(file)
-                os.remove('media/'+str(question.image))
+                if str(question.image) != '':
+                    os.remove('media/'+str(question.image))
                 question.image = fileurl.split('/')[2]
             question.save()
 
