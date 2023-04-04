@@ -40,15 +40,18 @@ def waitingpageUser0(request,id): #on rentre son pseudo apres avoir rentrer l'id
     users=User.objects.all().filter(id_quizz=id) ##on prend que du meme quizz ==> a la fin de chaque quizz on supprime les user du quizz !
     pseudo = request.POST.get('pseudo')
     context = {
-        'url': "http://127.0.0.1:8000/waintingUser1/" + "pseudo=" + str(pseudo) + "/id=" + id
+        'erreur':'False',
+        'message_erreur': "Le pseudo " + str(pseudo) + " est déjà pris par quelqu'un dans la game"
     }
     if request.method == 'POST':
         for user in users: #pseudo déjà existant ?
             if pseudo == user.pseudo:
-                return HttpResponseRedirect('erreurPseudo/')  # voir pour afficher le message d'erreur dans la page
-        newUser = User(pseudo=pseudo, id_quizz=id, score=0)
+                return HttpResponseRedirect("http://127.0.0.1:8000/waitingpageUser0/id=" + str(id)+"/error")
+        newUser = User(pseudo=pseudo, id_quizz=id, score=0,onGame=True)
         newUser.save()
         return HttpResponseRedirect("http://127.0.0.1:8000/waitingpageUser1/"+pseudo+"/id="+str(id))
+    if request.method=='GET':
+
     return render(request, 'quizz/waitingpageUser0.html',context)
 
 def waitingpageUser1(request,pseudo,id): #on arrive dans le lobby avc tous les joueurs on peut par exemple custom les designs des persos
@@ -66,3 +69,6 @@ def finQuizz(request,id,pseudo):
 
 def userAnswered(request):
     return render(request, 'quizz/userAnswered.html')
+
+def erreurPseudo(request):
+    return render(request, 'quizz/erreurPseudo.html')

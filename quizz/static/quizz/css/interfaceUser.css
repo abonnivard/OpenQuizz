@@ -66,6 +66,11 @@ body h1 {
     display: block;
 }
 
+.main #bouton2:hover,.main #bouton4:hover  {
+    transform: scale(1.02);
+    box-shadow: -20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
 .main button h2 {
     height: 100%;
     padding: 50px 0px  ;
@@ -75,9 +80,9 @@ body h1 {
     margin-top: 3%;
 }
 
-.main button:hover {
+.main #bouton1:hover,.main #bouton3:hover {
     transform: scale(1.02);
-    box-shadow: 20px 20px 60px -6px rgba(0,0,0,.6);
+    box-shadow: 20px 0px 60px -6px rgba(0,0,0,.6);
     cursor: crosshair;
 }
 

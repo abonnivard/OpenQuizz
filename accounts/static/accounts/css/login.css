@@ -62,8 +62,8 @@ html, footer {
     height: 500px;
     margin: 0 auto;
     transform: translateY(200px);
-    -webkit-backdrop-filter: blur(6px); /* assure la compatibilité avec safari */
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(2px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(2px);
     box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
 }
 
