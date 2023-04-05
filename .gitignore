@@ -3,3 +3,5 @@
 /.idea/
 /bin/
 /venv/
+production.py
+OpenQuizz/settings/production.py

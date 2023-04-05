@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'OpenQuizz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'OpenQuizz/templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'OpenQuizz/../templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'OpenQuizz.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
     }
 }
 
@@ -123,7 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "OpenQuizz/static")
+    os.path.join(BASE_DIR, "OpenQuizz/../static")
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -134,5 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "administrateur:dashboard"
 LOGIN_URL = 'accounts:login'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/') # media directory in the root directory
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../media/') # media directory in the root directory
 MEDIA_URL = '/media/'

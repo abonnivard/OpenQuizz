@@ -33,6 +33,12 @@ DEBUG = False
 ALLOWED_HOSTS = ["openquizz.h.minet.net"]
 
 
+SECURE_HSTS_SECONDS = 30  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -139,6 +145,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Authentification
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "administrateur:dashboard"
 LOGIN_URL = 'accounts:login'
 
