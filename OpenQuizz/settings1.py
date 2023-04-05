@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'questionnaire.apps.QuestionnaireConfig'
+    'administrateur.apps.AdministrateurConfig',
+    'utilisateur.apps.UtilisateurConfig',
+    'quizz.apps.QuizzConfig',
+    'OpenQuizz.apps.OpenQuizzConfig',
 ]
 
 MIDDLEWARE = [
