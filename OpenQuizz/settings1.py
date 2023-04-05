@@ -28,9 +28,9 @@ except KeyError as e:
 
 
 # SECURITY WARNING: don't run with debug turned on in prodTitleuction!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["157.159.195.98"]
+ALLOWED_HOSTS = ["openquizz.h.minet.net"]
 
 
 # Application definition
