@@ -21,12 +21,17 @@ class Question(models.Model):
 
 
 
+class Association(models.Model):
+    idQuizz = models.UUIDField(default=uuid.uuid4, editable=False)
+    idQuestion = models.UUIDField(default=uuid.uuid4,editable=False)
+
+
+
 
 class Quizz(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     pseudo = models.CharField(max_length=255)
     name = models.CharField(max_length=255, default="null")
-    questions = models.TextField(default="")
     mode = models.CharField(max_length=255)
     timer = models.IntegerField(default=0)
     afficher = models.BooleanField(default=False)

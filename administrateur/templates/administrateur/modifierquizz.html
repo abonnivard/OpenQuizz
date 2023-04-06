@@ -128,7 +128,7 @@
 
 
     <script>
-        let stringquestionsid = '{{liste_id}}'
+        let stringquestionsid = '{{liste_id_question}}'
         let start1 = 0;
         let end1 = 36
         let loop1 = 0
@@ -144,7 +144,7 @@
 
         }
 
-        let stringquizz = '{{quizz.questions}}';
+        let stringquizz = '{{liste_id_quizz}}';
         let start = 0;
         let end = 36
         let loop = 0
@@ -160,7 +160,6 @@
 
         }
         for (let k = 0;k<liste_id_questions.length;k++){
-            console.log(liste_id_questions[k])
             if (liste_id_quizz.includes(liste_id_questions[k])){
                 console.log(liste_id_questions[k])
                 document.getElementsByClassName('questiond')[k].style.display = 'none'

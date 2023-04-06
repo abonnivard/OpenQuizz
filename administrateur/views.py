@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Question, Quizz
+from .models import Question, Quizz, Association
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -100,11 +100,13 @@ def enregistrement(request):
         name = request.POST.get('name')
         liste_questions = ""
         questions = Question.objects.all().filter(pseudo=str(request.user.username))
+
+        newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker)
+        newQuizz.save()
         for question in questions:
             if str(question.numero) in liste:
-                liste_questions += str(question.id) +', '
-        newQuizz = Quizz(pseudo=str(request.user.username),name=name, mode=mode, afficher=classementdisplay, timer=time, stocker=stocker, questions=liste_questions)
-        newQuizz.save()
+                newAssociation = Association(idQuizz=newQuizz.id, idQuestion=question.id)
+                newAssociation.save()
         return redirect("/dashboard/")
     else:
         quizzs = Quizz.objects.all().filter(pseudo=str(request.user.username))
@@ -202,11 +204,11 @@ def suppression_question(request):
 @login_required
 def modifierquizz(request, id):
     if request.method == 'POST':
-
+        print(len(Association.objects.all().filter(idQuizz=id)), Association.objects.all().filter(idQuizz=id))
         quizz = Quizz.objects.get(id=id)
         liste = request.POST.get('liste')
         time = request.POST.get('timer')
-
+        print(liste)
         classementdisplay = request.POST.get('classementdisplay')
         if classementdisplay == "true":
             classementdisplay = True
@@ -221,12 +223,23 @@ def modifierquizz(request, id):
 
         mode = request.POST.get('mode')
         name = request.POST.get('name')
-        liste_questions = ""
         questions = Question.objects.all().filter(pseudo=str(request.user.username))
+        associations = Association.objects.all().filter(idQuizz=id)
+        test = False
         for question in questions:
             if str(question.numero) in liste:
-                liste_questions += str(question.id) + ', '
-        quizz.questions = liste_questions
+                test = False
+                for q in range(len(associations)):
+                    if associations[q].idQuestion == question.id:
+                        test = True
+                if test == False:
+                    newAssociation = Association(idQuizz=id, idQuestion=question.id)
+                    newAssociation.save()
+
+            for k in range(len(associations)):
+                if associations[k].idQuestion == question.id and str(question.numero) not in liste:
+                    associations[k].delete()
+
         if time != '':
             quizz.timer = time
         quizz.stocker = stocker
@@ -235,21 +248,30 @@ def modifierquizz(request, id):
         if name != '':
             quizz.name = name
         quizz.save()
+
+        print(len(Association.objects.all().filter(idQuizz=id)), Association.objects.all().filter(idQuizz=id))
         return redirect('/dashboard/')
 
 
     quizz = Quizz.objects.all().filter(pseudo=str(request.user.username)).filter(id=id)[0]
+    association = Association.objects.all().filter(idQuizz=quizz.id)
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
-    liste_id = ''
+    liste_id_quizz = ''
+    liste_id_question = ''
     for i in range(len(questions)):
         questions[i].numero = i
         questions[i].save()
-        liste_id += str(questions[i].id)+', '
+        liste_id_question += str(questions[i].id) + ', '
+
+    for k in range(len(association)):
+        liste_id_quizz += str(association[k].idQuestion) + ', '
     context = {
         "questions": questions,
         "quizz":quizz,
-        "liste_id":liste_id,
+        "liste_id_question":liste_id_question,
+        'liste_id_quizz':liste_id_quizz
     }
+
     return render(request, "administrateur/modifierquizz.html", context)
 
 @login_required
