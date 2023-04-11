@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=i6&^^9sbl3@5pj7%1(-t08g+1q#88uzkok$d&a1_wg)kmtp+_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'openquizz.h.minet.net']
+ALLOWED_HOSTS = ['127.0.0.1', 'openquizz.h.minet.net']
 
 
 # Application definition
