@@ -39,6 +39,18 @@
                   <div class="theme">
                     <div class="texte1">
                         <p>Thèmes :</p>
+                        <div class="displaytheme">
+                                <div class="themein" id="theme-alltheme">
+                                    <input type="checkbox" name="choixtheme" id="themeall" class="alltheme" checked>
+                                    <p>All</p>
+                                </div>
+                            {% for themee in themes %}
+                                <div class="themein" id="theme-{{themee.numero}}">
+                                    <input type="checkbox" name="choixtheme" id="theme{{themee.numero}}" class="{{themee.theme}}">
+                                    <p>{{themee.theme}}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
 
                     </div>
@@ -53,7 +65,7 @@
                     </table>
            <div class="displayquestions">
                         {% for question in questions %}
-                                <div class="question" id="{{question.numero}}question">
+                                <div class="question" id="{{question.numero}}question" title="{{question.theme}}">
                                 <div class="partiesup">
                                 <div class="downarrow" id="{{question.numero}}" name="downarrow{{question.numero}}">
                                     <div class="al">
@@ -182,6 +194,73 @@
             </div>
         </div>
     </div>
+
+ <script>
+     const boutontheme = document.getElementsByName("choixtheme")
+
+     const boutonall = document.querySelector('.alltheme')
+
+     function selectionTheme(element){
+         let all = document.getElementsByClassName('question')
+         let input = document.getElementsByName('choixtheme')
+         if (element.className==='alltheme'){
+             if (element.checked){
+                 for (let i = 0; i < all.length; i++) {
+                         all[i].style.display = 'flex'
+                }
+             }else {
+                 for (let k = 0; k < input.length; k++) {
+                     if (input[k].checked) {
+                         for (let i = 0; i < all.length; i++) {
+                             if (all[i].title === input[k].className) {
+                                 all[i].style.display = 'flex'
+                             }
+                         }
+                     } else {
+                         for (let i = 0; i < all.length; i++) {
+                             if (all[i].title === input[k].className) {
+                                 all[i].style.display = "none"
+                             }
+                         }
+                     }
+                 }
+             }
+
+         }else {
+             if (document.querySelector('.alltheme').checked){
+             for (let i = 0; i < all.length; i++) {
+                         all[i].style.display = 'flex'
+             }
+             }else {
+                 for (let k = 0;k<input.length;k++){
+                     if (input[k].checked) {
+                         for (let i = 0; i < all.length; i++) {
+                             if (all[i].title === input[k].className) {
+                                 all[i].style.display = 'flex'
+                             }
+                        }
+                     }else {
+                         for (let i = 0; i < all.length; i++) {
+                             if (all[i].title === input[k].className) {
+                                 all[i].style.display = "none"
+                             }
+                        }
+                     }
+                }
+
+
+             }
+         }
+
+
+     }
+
+
+     const arrtheme = Array.from(boutontheme)
+     arrtheme.forEach((element => element.addEventListener('click', function (){selectionTheme(element); })))
+
+     boutonall.addEventListener('click', function (){selectionTheme(boutonall)} )
+ </script>
 
     <script src="{% static 'administrateur/js/banquequestions.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

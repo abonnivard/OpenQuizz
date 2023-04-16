@@ -464,6 +464,21 @@ p {
   padding: 20px;
   margin-bottom: 70px;
   height: 600px;
+  overflow: auto;
+}
+
+.displaytheme {
+  display: flex;
+  flex-direction: column;
+}
+
+.themein {
+  display: flex;
+  flex-direction: row;
+}
+
+.themein p {
+  margin-left: 20px;
 }
 
 .reponseQCM {
@@ -500,6 +515,8 @@ p {
   width: 200px;
   margin: 0 auto;
 }
+
+
 
 
 @media screen and (max-width:700px){

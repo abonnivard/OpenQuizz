@@ -25,7 +25,10 @@ class Association(models.Model):
     idQuizz = models.UUIDField(default=uuid.uuid4, editable=False)
     idQuestion = models.UUIDField(default=uuid.uuid4,editable=False)
 
-
+class Theme(models.Model):
+    pseudo = models.CharField(max_length=255)
+    theme = models.CharField(max_length=255, default='')
+    numero = models.IntegerField(default=0)
 
 
 class Quizz(models.Model):

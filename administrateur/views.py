@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Question, Quizz, Association
+from .models import Question, Quizz, Association, Theme
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -128,6 +128,9 @@ def banquequestions(request):
         intitule = request.POST.get('intitule')
         enonce = request.POST.get('enonce')
         theme = request.POST.get('theme')
+        if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=theme)) == 0:
+            newTheme = Theme(pseudo=str(request.user.username), theme=theme)
+            newTheme.save()
         if 'qcm' in checkbox:
             choix1 = request.POST.get('choix1')
             choix2 = request.POST.get('choix2')
@@ -170,13 +173,17 @@ def banquequestions(request):
 
         return redirect('/banque-question/')
     questions = Question.objects.all().filter(pseudo=str(request.user.username))
+    themes = Theme.objects.all().filter(pseudo=str(request.user.username))
     for i in range(len(questions)):
         questions[i].numero = i
         questions[i].save()
-
+    for i in range(len(themes)):
+        themes[i].numero = i
+        themes[i].save()
 
     context = {
         "questions": questions,
+        "themes":themes,
     }
     return render(request, 'administrateur/banquequestions.html', context)
 
@@ -184,9 +191,17 @@ def banquequestions(request):
 def suppression_question(request):
     if request.method == 'POST':
         numero = request.POST.get('numero')
+
         questionsupp = Question.objects.all().filter(pseudo=str(request.user.username)).filter(numero=numero)
-        os.remove('media/'+str(questionsupp[0].image))
+        if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=questionsupp[0].theme)) == 1:
+            ancien = Theme.objects.get(pseudo=str(request.user.username), theme=questionsupp[0].theme)
+            ancien.delete()
+        try:
+            os.remove('media/'+str(questionsupp[0].image))
+        except:
+            pass
         questionsupp.delete()
+
         return redirect("/banque-question/")
 
     else:
@@ -287,7 +302,15 @@ def modifyquestion(request, id):
             question.intitule = request.POST.get('intitule')
 
         if request.POST.get('theme') != '':
+            if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=question.theme))==1:
+                ancien = Theme.objects.get(pseudo=str(request.user.username), theme=question.theme)
+                ancien.delete()
+            if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=request.POST.get('theme'))) == 0:
+                newtheme = Theme(pseudo=str(request.user.username), theme=request.POST.get('theme') )
+                newtheme.save()
+
             question.theme = request.POST.get('theme')
+
 
         if 'qcm' in checkbox:
             question.reponse = 'null'
