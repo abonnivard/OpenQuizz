@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from OpenQuizz import views
+from OpenQuizz.views import index
 from .forms import UserForm
 
 
@@ -16,7 +16,7 @@ def register(request):
             if user is not None:
                 login(request, user)
             if request.user.is_authenticated:
-                return redirect(views.index())
+                return redirect(index)
     else:
         form = UserForm()
     context = {
