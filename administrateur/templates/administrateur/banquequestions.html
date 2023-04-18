@@ -79,25 +79,29 @@
                                     </div>
                                     </div>
                                     <div class="display">
-                                    <div class="texteq">
-                                        <p class="{{question.numero}}">{{question.intitule}}</p>
-                                    </div>
-                                    <div class="edit">
-                                    <div class="modify">
-                                        <a href="{% url 'administrateur:modifyquestion' id=question.id %}">
-                                            <div class="cadremofidy" id="{{question.numero}}">
-                                            <p>modifier</p>
-                                        </a>
-                                    </div>
-                                    </div>
+                                        <div class="displaysup">
+                                            <div class="texteq">
+                                                <p class="{{question.numero}}">{{question.intitule}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="displayinf">
+                                            <div class="edit">
+                                            <div class="modify">
+                                                <a href="{% url 'administrateur:modifyquestion' id=question.id %}">
+                                                    <div class="cadremofidy" id="{{question.numero}}">
+                                                    <p>modifier</p>
+                                                </a>
+                                            </div>
+                                            </div>
 
-                                        </div>
-                                    <div class="supp" id="{{question.numero}}">
-                                        <div class="a" id="suppbin">
-                                            <i class="fa-solid fa-trash"></i>
+                                                </div>
+                                            <div class="supp" id="{{question.numero}}">
+                                                <div class="a" id="suppbin">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                        </div>
                                 </div>
                                 <div class="partieinf">
 

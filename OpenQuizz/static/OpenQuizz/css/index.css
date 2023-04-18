@@ -138,4 +138,27 @@ footer {
         width: 300px;
         height: 250px;
     }
+        .parentIcon {
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+        width: 100%;
+    }
+    .parentIcon a {
+        text-align: center;
+        width: 12%;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .copy {
+        height: 30%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 4px;
+    }
+
 }

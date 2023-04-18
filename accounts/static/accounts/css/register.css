@@ -52,7 +52,7 @@ html, body {
     position: relative;
     border-radius: 30px;
     width: 500px;
-    height: 650px;
+    height: auto;
     margin: 0 auto;
     transform: translateY(150px);
     -webkit-backdrop-filter: blur(6px); /* assure la compatibilité avec safari */
@@ -90,7 +90,7 @@ html, body {
     text-align: center;
     transform: translateX(5px);
     padding: 0 10px 0px 10px;
-    color: #240082;
+    color: #36689c;
     font-size: 35px;
     transition: all .4s;
 }
@@ -99,7 +99,6 @@ html, body {
 }
 
 .copy {
-    height: 5vh;
     display: flex; height: 29px;
     background-color: black;
     color: white;
@@ -122,7 +121,6 @@ html, body {
         padding: 15px;
         font-size: 0.8rem   ;
         transform: translateY(100px);
-        height: 600px;
         width: 300px;
     }
 
@@ -156,6 +154,5 @@ html, body {
 
     .form {
         font-size: 0.5rem;
-        height: 500px;
     }
 }

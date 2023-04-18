@@ -71,14 +71,14 @@ window.addEventListener('load', () => {
         document.getElementsByClassName('downarrow')[element.id].style.display = "none"
         document.getElementsByClassName('uparrow')[element.id].style.display = "flex"
         document.getElementsByClassName('partieinf')[element.id].style.display = "flex"
-        document.getElementById(element.id+'question').style.height = "300px"
+        document.getElementById(element.id+'question').style.height = "auto"
     }
 
     function deployoff(element) {
         document.getElementsByClassName('downarrow')[element.id].style.display = "flex"
         document.getElementsByClassName('uparrow')[element.id].style.display = "none"
         document.getElementsByClassName('partieinf')[element.id].style.display = "none"
-        document.getElementById(element.id+'question').style.height = "70px"
+        document.getElementById(element.id+'question').style.height = "auto"
     }
 
     const arrdeploy = Array.from(bouttondown)

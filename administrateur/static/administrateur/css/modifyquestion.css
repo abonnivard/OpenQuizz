@@ -33,7 +33,7 @@ body {
 
 .texte {
     text-align: center;
-    font-size: 2rem;
+    font-size: 0.2rem;
     color: #c8e1f8;
     font-family: Font;
     backdrop-filter: blur(10px);
@@ -523,5 +523,24 @@ p {
   .droite {
     margin: 0 auto;
     width: 300px;
+    height: 200px;
+  }
+
+   .popup_question {
+    width: 100%;
+  }
+  .popup_question h1{
+    font-size: 1rem;
+  }
+
+
+  .contact_div {
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 30px;
+  }
+
+  .file p {
+    margin-right: -2px;
   }
 }

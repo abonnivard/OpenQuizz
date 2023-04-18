@@ -196,7 +196,7 @@ th  {
 
 .supp {
   width: 5%;
-  margin-left: 100px;
+  margin-left:  auto;
 }
 
 .supp .a:hover {
@@ -516,6 +516,16 @@ p {
   margin: 0 auto;
 }
 
+.displaysup{
+  width: 70%;
+}
+
+.displayinf {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+}
+
 
 
 
@@ -555,5 +565,48 @@ p {
   .droite {
     margin: 0 auto;
     width: 300px;
+    margin-bottom: 50px;
+  }
+
+  .question {
+    width: auto;
+    height: auto;
+  }
+
+  .question .modify .cadremofidy {
+    height: 20px;
+    width: 50px;
+  }
+
+  .question .modify .cadremofidy p {
+    font-size: 0.8rem;
+  }
+
+  .a i {
+    font-size: 1rem;
+  }
+
+  .display {
+    flex-direction: column;
+  }
+
+
+
+  .popup_question {
+    width: 100%;
+  }
+  .popup_question h1{
+    font-size: 1rem;
+  }
+
+
+  .contact_div {
+    width: 300px;
+    margin: 0 auto;
+    border-radius: 30px;
+  }
+
+  .file p {
+    margin-right: -2px;
   }
 }
