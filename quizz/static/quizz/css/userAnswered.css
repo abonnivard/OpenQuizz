@@ -1,42 +1,41 @@
-  * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    border: 0;
-    border-spacing: 0;
-    box-sizing: border-box;
-  }
-  @font-face {
-    font-family: Font;
-    src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
-  }
-  body {
-    background-image: url("../img/graphy--dark--1920x1080.png");
-    background-repeat: repeat;
-  }
-  .main {
-    margin: 20% 0px  ;
-    text-align: center;
-    font-family: Font;
-    color : #c8e1f8;
-  }
-  .phrase {
-      margin: 60px 0px  ;
-      text-align: center;
-      font-family: Font;
-      color : #c8e1f8;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  border-spacing: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: Font;
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+body {
+  background-image: url("../img/graphy--dark--1920x1080.png");
+  background-repeat: repeat;
+}
+.main {
+  margin: 20% 0px  ;
+  text-align: center;
+  font-family: Font;
+  color : #c8e1f8;
+}
+.phrase {
+  margin: 60px 0px  ;
+  text-align: center;
+  font-family: Font;
+  color : #c8e1f8;
+}
 
-  .loader{
-      display: block;
-      margin-top: 25%;
-      flex-wrap: wrap;
-      justify-content: center;
+.loader{
+  display: block;
+  margin-top: 25%;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  }
+}
 
-
-  .lds-ring {
+.lds-ring {
   display: inline-block;
   position: relative;
   width: 80px;

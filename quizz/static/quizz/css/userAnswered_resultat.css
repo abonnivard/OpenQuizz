@@ -1,108 +1,62 @@
-  * {
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    border: 0;
-    border-spacing: 0;
-    box-sizing: border-box;
-  }
-  @font-face {
-    font-family: Font;
-    src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
-  }
-  body {
+
+@font-face {
+font-family: Font;
+src: url(../font/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-  }
-  .main {
-    margin: 20% 0px  ;
-    text-align: center;
+    height: 100vh;
+
+}
+.main {
+    height: 100%;
+    display: flex;
+    text-align: center; align-items: center; justify-content: center;
     font-family: Font;
     color : #c8e1f8;
-  }
-  .phrase {
-      margin: 60px 0px  ;
-      text-align: center;
-      font-family: Font;
-      color : #c8e1f8;
-  }
+}
 
-  .loader{
-      display: block;
-      margin-top: 25%;
-      flex-wrap: wrap;
-      justify-content: center;
+.main form {
+    position: absolute; top: 0;
+}
 
-  }
+.main .results {
+    height: 50vh; width: 60vw;
+    display: flex; flex-direction: row;
+    justify-content: space-evenly; flex-wrap: wrap;
+    -webkit-backdrop-filter: blur(2px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(2px);
+}
+.nombre0 {
+}
+.main .results>div {
+    width: 21%;
+}
 
+.main .results .reponse0 {
+    background: #3e8686;
+}
+.main .results .reponse1 {
+    background: #563e86;
+}
+.main .results .reponse2 {
+    background: #a87a3d;
+}
+.main .results .reponse3 {
+    background: #9f4040;
+}
+.main .results .text0 {
+    width: 21%; height: 10%;
+}
 
-  .lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+.main .results .text1 {
+    width: 21%; height: 10%;
 }
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+.main .results .text2 {
+    width: 21%; height: 10%;
 }
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.main .results .text3 {
+    width: 21%; height: 10%;
 }

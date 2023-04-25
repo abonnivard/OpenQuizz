@@ -111,14 +111,16 @@ def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answer
             "nombre_reponse1": 0,
             "nombre_reponse2": 0,
             "nombre_reponse3": 0,
+            "nombre_tot":0,
         }
         for user in User.objects.all().filter(id_quizz=id_quizz):
             for i in range(0,4): #pour les 3 reponses possibles
                 if int(question_answered)==i:
                     context["nombre_reponse"+str(i)]+=1 # on incrémente de 1 si on a repondu la reponse i
+                    context["nombre_tot"] += 1
                     break
-        print(context["nombre_reponse0"])
-        return render(request, 'quizz/userAnswered_resultat.html')
+        print(context)
+        return render(request, 'quizz/userAnswered_resultat.html',context)
     if request.method=='POST':
         return HttpResponseRedirect("/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1)) #enelver 127....
 
