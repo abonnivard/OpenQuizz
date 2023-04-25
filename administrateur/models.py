@@ -22,8 +22,8 @@ class Question(models.Model):
 
 
 class Association(models.Model):
-    idQuizz = models.UUIDField(default=uuid.uuid4, editable=False)
-    idQuestion = models.UUIDField(default=uuid.uuid4,editable=False)
+    idQuizz = models.UUIDField()
+    idQuestion = models.UUIDField()
 
 class Theme(models.Model):
     pseudo = models.CharField(max_length=255)
