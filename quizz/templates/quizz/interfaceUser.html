@@ -19,17 +19,18 @@
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit" id="bouton1"><h2>{{ reponse1 }}</h2></button>{% csrf_token %}
-                <button type="submit" id="bouton2"><h2>{{ reponse2 }}</h2></button>{% csrf_token %}
+                <button type="submit" formmethod="post" id="bouton1" name="bouton1" form="myForm" action="reponse1"><h2>{{ reponse1 }}</h2></button>
+                <button type="submit" id="bouton2" name="bouton2" form="myForm" action="reponse2"><h2>{{ reponse2 }}</h2></button>
             </div>
             <div class="bloc" id="bloc">
-                <button class="question_bas" type="submit" id="bouton3"><h2>{{ reponse3 }}</h2></button>{% csrf_token %}
-                <button class="question_bas" type="submit" id="bouton4"><h2>{{ reponse4 }}</h2></button>{% csrf_token %}
+                <button class="question_bas" type="submit" id="bouton3" name="bouton3" form="myForm"><h2>{{ reponse3 }}</h2></button>
+                <button class="question_bas" type="submit" id="bouton4" name="bouton4" form="myForm"><h2>{{ reponse4 }}</h2></button>
             </div>
         </div>
         <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
         <div class="num_question"><h3>{{ num_question }}</h3></div>{% csrf_token %}
         <div class="pseudo"><h3>{{ pseudo }}</h3></div>{% csrf_token %}
+        <form action="" method="post" id="myForm">{% csrf_token %}</form>
 
         <script>
             const id_quizz = document.querySelector(".id_quizz")
@@ -139,7 +140,5 @@
 <footer>
      <div class="barre_progression" style="--duration: {{ timer }};" data-style="smooth">
          <div></div>
-     </div>
-    <div class="socle"></div>
 </footer>
 </html>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import interfaceProf, interfaceUser, waitingpageProf, waitingpageUser0,waitingpageUser1, finQuizz, userAnswered,erreurPseudo
+from .views import interfaceProf, interfaceUser, waitingpageProf, waitingpageUser0,waitingpageUser1, finQuizz, userAnswered,erreurPseudo,userAnswered_resultat
 
 app_name = 'quizz'
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('waitingpageUser0/id=<str:id>/<str:error>/', waitingpageUser0, name="waitingpageUser0"),
     path('waitingpageUser1/<str:pseudo>/id=<str:id>/', waitingpageUser1, name="waitingpageUser1"),
     path('finQuizz/pseudo=<str:pseudo>/id=<str:id>/', finQuizz, name="finquizz"),
-    path('userAnswered/', userAnswered, name="userAnswered"),
+    path('interfaceUser/pseudo=<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>', userAnswered, name="userAnswered"),
+    path('interfaceUser/pseudo=<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>/resultat', userAnswered_resultat, name="userAnswered_resultat"),
 ]
