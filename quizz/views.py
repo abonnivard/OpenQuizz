@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from administrateur.models import Quizz, Question,Association
 from quizz.models import User
+from django.http import JsonResponse
 import time
 
 @csrf_protect
@@ -133,3 +134,8 @@ def erreurPseudo(request):
 #comment faire pour lancer le quizz à distance ???
 #variable onGame qui est a false tout le temps et requete ajax qui modifie les données serveur pour la mettre en True, en meme temps, un script javascript est executé
 #qui attend que la div contenant le context on game passe a true puis redirige
+#pb de requeter le serveur toutes les x secondes --> empeche le chargement
+#solut : requete ajax --> communique avec le serveur sans pour autant recharger la page toutes les x secondes
+#créer un parametre onGame qui est false, lorsque l'admin clique sur le bouton start, onGame=True, ça declanche le quizz coté admin et client
+#requete ajax aussi pour rediriger pour la questoin suivante , il faut donc créer un parametre onGame pour chaque question ..
+#comment faire pouur créer le bon nombre de question 
