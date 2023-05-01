@@ -5,7 +5,7 @@ from .views import interfaceProf, interfaceUser, waitingpageProf, waitingpageUse
 app_name = 'quizz'
 
 urlpatterns = [
-    path('interfaceProf/', interfaceProf, name='interfaceProf'),
+    path('interfaceProf/id=<str:id>/', interfaceProf, name='interfaceProf'),
     path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>', interfaceUser, name="interfaceUser"),
     path('waitingpageProf/', waitingpageProf, name='waitingpageProf'),
     path('waitingpageUser0/id=<str:id>/<str:error>/', waitingpageUser0, name="waitingpageUser0"),

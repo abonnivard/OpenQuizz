@@ -50,7 +50,7 @@ def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les
 
 
 
-def interfaceProf(request):
+def interfaceProf(request, id):
     return render(request, 'quizz/interfaceProf.html')
 def waitingpageProf(request):
     return render(request, 'quizz/watingpageProf.html')

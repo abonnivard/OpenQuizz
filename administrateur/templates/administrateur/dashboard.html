@@ -85,13 +85,16 @@
                                         <a href="{% url 'administrateur:modifyquizz' id=quizz.id %}">
                                             <div class="cadremofidy" id="{{quizz.numero}}">
                                             <p>modifier</p>
+                                            </div>
                                         </a>
                                     </div>
                                     </div>
                                 <div class="startquizz">
+                                    <a href="{% url 'quizz:interfaceProf' id=quizz.id %}">
                                     <div class="cadre">
                                         <p>start</p>
                                     </div>
+                                        </a>
 
                                 </div>
                                         </div>
