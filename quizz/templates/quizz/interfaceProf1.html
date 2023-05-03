@@ -18,7 +18,10 @@
     <div class="main">
 
         <h1 id="question">-{{ question }}-</h1>
-        <h1 id="ready">Etes vous près ?</h1>
+        <div class="intro">
+            <h1 id="ready">Ca commence !</h1>
+            <div class="rond"><h2>4</h2></div>
+        </div>
         <img src="../../../media/{{ image }}" alt="image_quizz">
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
@@ -37,12 +40,15 @@
         <form action="" method="post" id="myForm">{% csrf_token %}</form>
 
         <script>
-            const body = document.querySelector("body")
+            const rond = document.querySelector(".main .rond")
+            const intro = document.querySelector(".main .intro")
+            const rondElement = document.querySelector(".main .rond h2")
             const skip = document.querySelector(".skip ")
             const id_quizz = document.querySelector(".id_quizz")
             const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
+            const timer= document.querySelector(".timer")
             let question = document.querySelector(".main #question");
             let ready = document.querySelector(".main #ready");
             let img = document.querySelector(".main img");
@@ -64,27 +70,29 @@
             }
 
             let time = parseInt(timerElement.innerText)
+            let time2 = parseInt(rondElement.innerText)
             let j=0
             function diminuerTemps() {
                 time--
+                time2 --
                 var str;
                 if (time < 0) {
                     str = "interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1)
                     document.location.href = str;
                 }if (j<4) {
                     var randomColor = Math.floor(Math.random()*16777215).toString(16);
-                    timerElement.style.color='#'+randomColor.toString()
-                    console.log(randomColor)
+                    rondElement.style.color='#'+randomColor.toString()
+                    rondElement.innerText = time2
                     j++
                 }else {
                     timerElement.style.color='#373e44'
                 }
                 timerElement.innerText = time
-
             }
 
 
             question.style.transitionDuration="2s"
+            rond.style.transitionDuration="1s"
             ready.style.transitionDuration="1s"
             img.style.transitionDuration="2s"
             button[0].style.transitionDuration="2s"
@@ -98,7 +106,8 @@
                 //état final
             setTimeout(function(){
                 question.style.opacity='1'
-                ready.style.opacity='0'
+                timer.style.opacity='1'
+                intro.style.display='None'
                 img.style.opacity='1'
                 skip.style.opacity='1'
                 button[0].style.opacity='1'

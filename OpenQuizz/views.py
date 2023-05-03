@@ -20,6 +20,8 @@ def index(request):
             pin = Pin(id=ID)
             pin.save()
             return HttpResponseRedirect('/erreurId/') ##faire autre methode pour afficher l'erreur sans renvoyer sur une autre page
+        if (Quizz.objects.all().get(id=ID).onGame!=0):
+            return HttpResponseRedirect('/erreurId/')
         return HttpResponseRedirect('/waitingpageUser0/'+'id='+ID+"/_") # choisi son pseudo, pour l'instant je renvoie directre sur la page, a voir comment on peut avoir
     return render(request, 'OpenQuizz/index.html')
 

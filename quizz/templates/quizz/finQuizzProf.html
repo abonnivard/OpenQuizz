@@ -15,6 +15,16 @@
     {% endblock %}
 
     <div class="main">
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit">Acceuil</button>
+        </form>
+
+        <div class="podium">
+             <h2 id="top1">{{ top1 }}</h2>
+             <h2 id="top2">{{ top2 }}</h2>
+             <h2 id="top3">{{ top3 }}</h2>
+        </div>
 
     </div>
 

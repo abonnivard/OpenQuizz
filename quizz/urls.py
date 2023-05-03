@@ -11,10 +11,10 @@ urlpatterns = [
     path('waitingpageProf/', waitingpageProf, name='waitingpageProf'),
     path('waitingpageUser0/id=<str:id>/<str:error>/', waitingpageUser0, name="waitingpageUser0"),
     path('waitingpageUser1/<str:pseudo>/id=<str:id>/', waitingpageUser1, name="waitingpageUser1"),
-    path('finQuizz/pseudo=<str:pseudo>/id=<str:id>/', finQuizz, name="finquizz"),
+    path('finQuizz/<str:pseudo>/id=<str:id>/', finQuizz, name="finquizz"),
     path('finQuizzProf/id=<str:id>/', finQuizzProf, name="finQuizzProf"),
-    path('interfaceUser/pseudo=<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>', userAnswered, name="userAnswered"),
-    path('interfaceUser/pseudo=<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>/resultat', userAnswered_resultat, name="userAnswered_resultat"),
+    path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>', userAnswered, name="userAnswered"),
+    path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>/resultat', userAnswered_resultat, name="userAnswered_resultat"),
     path('interfaceProf1/id=<str:id>/num_question=<str:num_question>/resultat', resultat, name="resultat"),
 
 ]

@@ -40,5 +40,5 @@ class Quizz(models.Model):
     afficher = models.BooleanField(default=False)
     stocker = models.BooleanField(default=False)
     numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
-    onGame = models.CharField(max_length=10,default='0000000')
+    onGame = models.IntegerField(default=0)
 

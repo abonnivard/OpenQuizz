@@ -26,7 +26,7 @@
             <button type="submit" href="{{ url }}">Valider</button>
         </form>
     </div>
-    <div class="id"><h1>{{ iq }}</h1></div>
+    <div class="id"><h1>{{ id }}</h1></div>
     <div class="pseudo"><h1>{{pseudo}}</h1></div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -42,8 +42,9 @@
                     type:'GET',
                     url: '',
                     success: function(response){
-                        if (response["onGame"]=='True') {
-
+                        if (response.onGame==1) {
+                            str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question=0"
+                            document.location.href = str;
                         }
 
                     },

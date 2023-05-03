@@ -17,43 +17,35 @@
             <button type="submit">Valider</button>
         </form>
 
-        <div class="results">
-            <div class="reponse0"></div>
-            <div class="reponse1"></div>
-            <div class="reponse2"></div>
-            <div class="reponse3"></div>
-            <div class="text0"><h4>Réponse 1</h4></div>
-            <div class="text1"><h4>Réponse 2</h4></div>
-            <div class="text2"><h4>Réponse 3</h4></div>
-            <div class="text3"><h4>Réponse 4</h4></div>
-        </div>
+        <div class="correct"><h2>Bonne réponse !</h2></div>
+        <div class="faux"><h2>Dommage c'était la mauvaise réponse ...</h2></div>
+        <div class="podium"><h2>Bravo tu es sur le podium !</h2></div>
+
     </div>
     <div class="info">
-        <div class="nombre0">{{ nombre_reponse0 }}</div>
-        <div class="nombre1">{{ nombre_reponse1 }}</div>
-        <div class="nombre2">{{ nombre_reponse2 }}</div>
-        <div class="nombre3">{{ nombre_reponse3 }}</div>
-        <div class="nombre_tot">{{ nombre_tot }}</div>
+        <div class="bonne_reponse">{{ correct }}</div>
+        <div class="podium">{{ podium }}</div>
     </div>
     <script>
-        const nombre0 = parseInt(document.querySelector(".info .nombre0").innerText)
-        const nombre1 = parseInt(document.querySelector(".info .nombre1").innerText)
-        const nombre2 = parseInt(document.querySelector(".info .nombre2").innerText)
-        const nombre3 = parseInt(document.querySelector(".info .nombre3").innerText)
-        const nombre_tot = parseInt(document.querySelector(".info .nombre_tot").innerText)
-        //nombre_tot=100% et le height des autres en pourcentage c'est (nombreReponse/nombre_tot)x100
-        const reponse0 = document.querySelector(".results .reponse0")
-        const reponse1 = document.querySelector(".results .reponse1")
-        const reponse2 = document.querySelector(".results .reponse2")
-        const reponse3 = document.querySelector(".results .reponse3")
-        const pourcentage0 = (nombre0/nombre_tot)*100
-        const pourcentage1 = (nombre1/nombre_tot)*100
-        const pourcentage2 = (nombre2/nombre_tot)*100
-        const pourcentage3 = (nombre3/nombre_tot)*100
-        reponse0.style.height = pourcentage0.toString()+"%"
-        reponse1.style.height = pourcentage1.toString()+"%"
-        reponse2.style.height = pourcentage2.toString()+"%"
-        reponse3.style.height = pourcentage3.toString()+"%"
+
+        const bonne_reponse = document.querySelector(".info .bonne_reponse").innerText
+        const podium = document.querySelector(".info .podium").innerText
+        const faux = document.querySelector(".main .faux")
+        const correct = document.querySelector(".main .correct")
+        const div_podium = document.querySelector(".main .podium")
+        if (bonne_reponse=='True') {
+            faux.style.opacity='0'
+            coorect.style.opacity='1'
+        }
+        if (bonne_reponse=='False') {
+            correct.style.opacity='0'
+            faux.style.opacity='1'
+        }
+        if (podium=='False') {
+            div_podium.style.opacity='0'
+        }
+
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

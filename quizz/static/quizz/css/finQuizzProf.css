@@ -18,3 +18,12 @@ body {
     align-content: space-around;
 }
 
+.main form {
+    position: absolute;
+    top: 10%; right: 3%;
+}
+
+.main .podium {
+    color: white;
+    text-align: center;
+}

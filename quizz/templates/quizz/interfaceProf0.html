@@ -43,18 +43,28 @@
                         function addElement (content) {
                           let NewUser = document.createElement("h3");
                           NewUser.textContent=content;
+                          NewUser.id=content;
                           const parent = document.getElementById("users");
                           const before = document.getElementById("before");
                           parent.insertBefore(NewUser,before)
                         }
+                        let L = []; //j'obtient tous les users (nouveaux + anciens - partis) pour chaque requête
                         for (const user in response) {
-                            if (list_user.indexOf(response[user])<0) {
-                               addElement(response[user])
+                            if (list_user.indexOf(response[user]) < 0) {
+                                addElement(response[user])
                                 list_user.push(response[user])
                             }
-
+                            L.push(response[user])
                         }
-
+                        //remove tous les users dans list_user +DOM qui sont dans list_user mais pas dans L
+                        list_user.forEach((item) => {
+                              if (L.indexOf(item) < 0) { //item plus présent dans les users de la requete
+                                const element =document.getElementById(item)
+                                  element.remove()
+                                let x = list_user.indexOf(item)
+                                list_user.splice(x,1);
+                            }
+                            })
                     },
                     error: function (response){
                         console.log("error")

@@ -27,17 +27,23 @@
                 <button class="question_bas" type="submit" id="bouton4" name="bouton4" form="myForm"><h2>{{ reponse4 }}</h2></button>
             </div>
         </div>
-        <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
+        <div class="id"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
+        <div class="onGame"><h3>{{ onGame }}</h3></div>{% csrf_token %}
         <div class="num_question"><h3>{{ num_question }}</h3></div>{% csrf_token %}
         <div class="pseudo"><h3>{{ pseudo }}</h3></div>{% csrf_token %}
         <form action="" method="post" id="myForm">{% csrf_token %}</form>
 
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
             const id_quizz = document.querySelector(".id_quizz")
             const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
+            const id = document.querySelector('.id').innerText
+            const onGame = parseInt(document.querySelector(".onGame").innerText)
+
             let i =0
+
             while (true) { //seul moyen que j'ai trouvé pour convertire num_question.innerText en  number pouvant etre incrémenté
                 if (num_question.innerText == i) {
                     console.log('ok')
@@ -59,8 +65,27 @@
 
             }
 
+            $(document).ready(function(){
+                setInterval(function(){
+                    $.ajax({
+                        type:'GET',
+                        url: '',
+                        success: function(response){
+                            if (response.onGame==onGame+1) {
+                                str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
+                                document.location.href = str;
+                            }
+                        },
+                        error: function(response){
+                            console.log("error")
+                        }
+                        })
+                },1000)})
+
 
             setInterval(diminuerTemps, 1000)
+
+
 
             let bouton1 = document.querySelector("#bouton1 h2");
             let bouton2 = document.querySelector("#bouton2 h2");
