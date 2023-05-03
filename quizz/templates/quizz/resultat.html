@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>User - Response registered</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'quizz/css/resultat.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/717f408a62.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="main">
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit">Valider</button>
+        </form>
+
+        <div class="results">
+            <div class="reponse0"></div>
+            <div class="reponse1"></div>
+            <div class="reponse2"></div>
+            <div class="reponse3"></div>
+            <div class="text0"><h4>Réponse 1</h4></div>
+            <div class="text1"><h4>Réponse 2</h4></div>
+            <div class="text2"><h4>Réponse 3</h4></div>
+            <div class="text3"><h4>Réponse 4</h4></div>
+        </div>
+
+        <div class="bonne_reponse">
+            <div class="bloc">
+                <button id="bouton1"><h2>{{ reponse1 }}</h2></button>
+                <button id="bouton2"><h2>{{ reponse2 }}</h2></button>
+            </div>
+            <div class="bloc" id="bloc">
+                <button class="question_bas" id="bouton3"><h2>{{ reponse3 }}</h2></button>
+                <button class="question_bas" id="bouton4"><h2>{{ reponse4 }}</h2></button>
+            </div>
+        </div>
+
+    </div>
+    <div class="info">
+        <div class="nombre0">{{ nombre_reponse0 }}</div>
+        <div class="nombre1">{{ nombre_reponse1 }}</div>
+        <div class="nombre2">{{ nombre_reponse2 }}</div>
+        <div class="nombre3">{{ nombre_reponse3 }}</div>
+        <div class="nombre_tot">{{ nombre_tot }}</div>
+        <div class="bonne_reponse">{{ bonne_reponse }}</div>
+    </div>
+    <script>
+        const bonne_reponse = parseInt(document.querySelector(".info .bonne_reponse").innerText)
+        const button = document.querySelectorAll('.bonne_reponse button')
+        const nombre0 = parseInt(document.querySelector(".info .nombre0").innerText)
+        const nombre1 = parseInt(document.querySelector(".info .nombre1").innerText)
+        const nombre2 = parseInt(document.querySelector(".info .nombre2").innerText)
+        const nombre3 = parseInt(document.querySelector(".info .nombre3").innerText)
+        const nombre_tot = parseInt(document.querySelector(".info .nombre_tot").innerText)
+        //nombre_tot=100% et le height des autres en pourcentage c'est (nombreReponse/nombre_tot)x100
+        const reponse0 = document.querySelector(".results .reponse0")
+        const reponse1 = document.querySelector(".results .reponse1")
+        const reponse2 = document.querySelector(".results .reponse2")
+        const reponse3 = document.querySelector(".results .reponse3")
+        const pourcentage0 = (nombre0/nombre_tot)*100
+        const pourcentage1 = (nombre1/nombre_tot)*100
+        const pourcentage2 = (nombre2/nombre_tot)*100
+        const pourcentage3 = (nombre3/nombre_tot)*100
+        reponse0.style.height = pourcentage0.toString()+"%"
+        reponse1.style.height = pourcentage1.toString()+"%"
+        reponse2.style.height = pourcentage2.toString()+"%"
+        reponse3.style.height = pourcentage3.toString()+"%"
+
+        for (let i =1; i<5; i++) {
+            console.log(button)
+            if (i!=bonne_reponse) {
+                button[i-1].style.opacity='0.4'
+            }if (i==bonne_reponse) {
+                button[i-1].style.opacity='1'
+            }
+
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

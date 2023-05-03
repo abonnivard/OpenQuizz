@@ -1,0 +1,115 @@
+
+@font-face {
+font-family: Font;
+src: url(../font/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+body {
+    background-image: url("../img/graphy--dark--1920x1080.png");
+    background-repeat: repeat;
+    height: 100vh;
+
+}
+.main {
+    height: 100%;
+    display: flex; flex-direction: column;
+    text-align: center; align-items: center; justify-content: center;
+    font-family: Font;
+    color : #c8e1f8;
+}
+
+.main form {
+    position: absolute; top: 0;
+}
+
+.main .results {
+    height: 40vh; width: 60vw;
+    display: flex; flex-direction: row;
+    justify-content: space-evenly; flex-wrap: wrap;
+    -webkit-backdrop-filter: blur(2px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(2px);
+}
+.nombre0 {
+}
+.main .results>div {
+    width: 21%;
+}
+
+.main .results .reponse0 {
+    background: #3e8686;
+}
+.main .results .reponse1 {
+    background: #563e86;
+}
+.main .results .reponse2 {
+    background: #a87a3d;
+}
+.main .results .reponse3 {
+    background: #9f4040;
+}
+.main .results .text0 {
+    width: 21%; height: 10%;
+}
+
+.main .results .text1 {
+    width: 21%; height: 10%;
+}
+.main .results .text2 {
+    width: 21%; height: 10%;
+}
+.main .results .text3 {
+    width: 21%; height: 10%;
+}
+
+
+.main .questions {
+    height: 45%; margin-bottom: 2%;
+    display: grid;
+    padding: 1rem calc(1rem + env(safe-area-inset-right)) 1rem calc(1rem + env(safe-area-inset-left));
+    bottom: 0;
+}
+
+.main .bloc {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+
+.main .bonne_reponse button {
+    width: 49%;
+    height: 150px;
+    border-radius: 8px;
+    background-color: rgb(145, 148, 255);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+    display: block;
+}
+
+.main #bouton2:hover,.main #bouton4:hover  {
+    transform: scale(1.02);
+    box-shadow: -20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
+.main button h2 {
+    height: 100%;
+    padding: 50px 0px  ;
+}
+
+.main .question_bas {
+    margin-top: 3%;
+}
+
+.main #bouton1:hover,.main #bouton3:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
+.main .bonne_reponse {
+    width: 90%;
+}
+

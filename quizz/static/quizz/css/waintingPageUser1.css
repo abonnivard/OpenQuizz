@@ -139,3 +139,6 @@ transform: rotate(0deg);
 transform: rotate(360deg);
 }
 }
+.main .pseudo,.main .id {
+    height: 0;
+}

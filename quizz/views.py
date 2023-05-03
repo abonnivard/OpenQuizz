@@ -50,8 +50,62 @@ def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les
 
 
 
-def interfaceProf(request, id):
-    return render(request, 'quizz/interfaceProf.html')
+def interfaceProf0(request, id):
+
+    context = {
+        'id': id
+    }
+    def is_ajax():
+        return request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax()==True:
+        data = {
+        }
+        users= User.objects.all().filter(id_quizz=id)
+        i=0
+        for user in users: #retourne tous les users
+            data["user_"+str(i)]=user.pseudo
+            i+=1
+        return JsonResponse(data)
+
+
+    if request.method=='POST':
+        quizz=Quizz.objects.all().get(id=id)
+        quizz.onGame='True'
+        return HttpResponseRedirect('/interfaceProf1/id='+id+'/num_question=0')
+
+    return render(request, 'quizz/interfaceProf0.html',context)
+
+def interfaceProf1(request, id, num_question):
+    if request.method=='GET':
+        quizz = Association.objects.all().filter(idQuizz=id)
+        questions_id = quizz[int(num_question)].idQuestion
+        l=len(quizz)-1
+        if (int(num_question)==l):
+            return HttpResponseRedirect('/finQuizzProf/id='+str(id))
+        else:
+            timer =Quizz.objects.all().get(id=id).timer
+            question=Question.objects.get(id=questions_id) ##strip pour enlever tous les espaces gênants
+            context = {
+                "image" : str(question.image),
+                "question": question.enonce,
+                'timer': int(timer)+4,
+                'num_question': int(num_question.split()[0]), #seul moyen de convertire en int
+                'id_quizz': id.strip(),
+                'reponse1': question.reponse1,
+                'reponse2': question.reponse2,
+                'reponse3': question.reponse3,
+                'reponse4': question.reponse4,
+            }
+
+        return render(request, 'quizz/interfaceProf1.html',context)
+
+    if request.method=='POST':
+
+        return HttpResponseRedirect('num_question='+num_question+'/resultat')
+    return render(request, 'quizz/interfaceProf1.html')
+
+
+
 def waitingpageProf(request):
     return render(request, 'quizz/watingpageProf.html')
 
@@ -75,14 +129,24 @@ def waitingpageUser0(request,id,error): #on rentre son pseudo apres avoir rentre
         else:
             return render(request, 'quizz/waitingpageUser0.html')
 
-def waitingpageUser1(request,pseudo,id): #on arrive dans le lobby avc tous les joueurs on peut par exemple custom les designs des persos, pour l'instant juste bouton valider
-    context = {
-                 'url': "/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0"
-    }
-
+def waitingpageUser1(request,pseudo,id): #fairte en sorte que des qu'on quitte la page ça supprime (en ajax ?) ça supprime l'user
     if request.method == 'POST':
         return HttpResponseRedirect("/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0")
-        return HttpResponseRedirect("/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0")
+
+    context = {
+        'id':id,
+        'pseudo':pseudo,
+        'url': "/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id + "/num_question=0"
+    }
+
+    def is_ajax():
+        return request.headers.get('x-requested-with') == 'XMLHttpRequest'
+    if is_ajax()==True:
+        data = {
+            'onGame': Quizz.objects.all().get(id=id).onGame
+        }
+        return JsonResponse(data)
+
     return render(request, 'quizz/waitingpageUser1.html',context)
 
 def finQuizz(request,id,pseudo):
@@ -94,11 +158,38 @@ def finQuizz(request,id,pseudo):
     User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
     return render(request, 'quizz/finquizz.html')
 
+def finQuizzProf(request,id):
+
+    return render(request, 'quizz/finQuizzProf.html')
+
 def userAnswered(request,pseudo, id_quizz, num_question,question_answered):
     if request.method=='POST':
         return HttpResponseRedirect(str(question_answered)+'/resultat')
     return render(request, 'quizz/userAnswered.html')
 
+
+def resultat(request, id, num_question):
+    if request.method=='GET':
+        quizz = Association.objects.all().filter(idQuizz=id)
+        questions_id = quizz[int(num_question)].idQuestion
+        question = Question.objects.get(id=questions_id)
+        bonne_reponse = Question.objects.all().get(id=questions_id).reponseVrai
+        print(bonne_reponse)
+        context = {
+            "nombre_reponse0": 0,
+            "nombre_reponse1": 0,
+            "nombre_reponse2": 0,
+            "nombre_reponse3": 0,
+            'reponse1': question.reponse1,
+            'reponse2': question.reponse2,
+            'reponse3': question.reponse3,
+            'reponse4': question.reponse4,
+            "nombre_tot": 0,
+            "bonne_reponse": bonne_reponse
+        }
+        return render(request, 'quizz/resultat.html',context)
+    if request.method=='POST':
+        return HttpResponseRedirect("/interfaceProf1/id=" + id + "/num_question="+str(int(num_question)+1))
 def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answered):
     if request.method=='GET':
 
@@ -106,13 +197,17 @@ def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answer
             user.question+=str(question_answered)
             user.question.split("/") # j'obtient la liste des questions répondue par chaque user
             #il faut ensuite que je compte pour chaque reponse possible le nombre de réponse qu'il y a eu en totale
-
+        quizz = Association.objects.all().filter(idQuizz=id)
+        questions_id = quizz[int(num_question)].idQuestion
+        bonne_reponse = Question.objects.all().get(id=questions_id).reponseVrai
+        print(bonne_reponse)
         context = {
             "nombre_reponse0": 0,
             "nombre_reponse1": 0,
             "nombre_reponse2": 0,
             "nombre_reponse3": 0,
             "nombre_tot":0,
+            "bonne_reponse": bonne_reponse
         }
         for user in User.objects.all().filter(id_quizz=id_quizz):
             for i in range(0,4): #pour les 3 reponses possibles
@@ -120,22 +215,38 @@ def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answer
                     context["nombre_reponse"+str(i)]+=1 # on incrémente de 1 si on a repondu la reponse i
                     context["nombre_tot"] += 1
                     break
-        print(context)
         return render(request, 'quizz/userAnswered_resultat.html',context)
     if request.method=='POST':
-        return HttpResponseRedirect("/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1)) #enelver 127....
+        return HttpResponseRedirect("/interfaceUser/" + "pseudo=" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1))
 
 def erreurPseudo(request):
     return render(request, 'quizz/erreurPseudo.html')
 
 
 
+## Petit Point :
+#l'user ne connait pas le nombre de question contrairement a interfaceProf1
+#interfaceProf1 prend en arg num_question, il se contente de retourner onGame_num_question+1 tant qu'il y a des questions dès qu'il veut passer à la question suivante
+#ou que le temps imparti est écoulé
+#pdt ce temps interfaceUser attend que onGame_num_question passe a onGame_num_question+1, dès lors il passe à la question suivante
+#si l'interfaceProf renvoie onGame_FIN c'est la fin du quizz, l'interface user redirige vers finQuizz et l'interfaceProf vers finQuizzProf
 
-#comment faire pour lancer le quizz à distance ???
-#variable onGame qui est a false tout le temps et requete ajax qui modifie les données serveur pour la mettre en True, en meme temps, un script javascript est executé
-#qui attend que la div contenant le context on game passe a true puis redirige
-#pb de requeter le serveur toutes les x secondes --> empeche le chargement
-#solut : requete ajax --> communique avec le serveur sans pour autant recharger la page toutes les x secondes
-#créer un parametre onGame qui est false, lorsque l'admin clique sur le bouton start, onGame=True, ça declanche le quizz coté admin et client
-#requete ajax aussi pour rediriger pour la questoin suivante , il faut donc créer un parametre onGame pour chaque question ..
-#comment faire pouur créer le bon nombre de question 
+#etape interface prof
+#1) afficher question
+#2) afficher bonne question + proportion reponse
+#3) afficher podium
+#4) declancher nouvelle réponse
+
+#etape interface user
+#1) afficher les possibilité de réponse
+#2) afficher si on a la bonne reponse
+
+
+#A penser :
+##gerer lef ait qui si le prof quitte la game -> ça pose onGame=False ? ou ça deroule de maniere auto et a la fin ca
+# onGame=False ainsi que si l'eleve quitte la game, son pseudo est suppr (surtt)
+#utiliser ajax quand on veut tester si le psuedo est deja pris ou pas pour ne pas ra
+#afficher le nombre de personnes qui ont répondu sur interface prof
+#si toutes les users ont répondu -> on affiche directe les resultats on attend pas la fin
+
+

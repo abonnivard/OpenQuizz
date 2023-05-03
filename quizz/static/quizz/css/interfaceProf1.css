@@ -1,0 +1,165 @@
+@font-face {
+  font-family: Font;
+  src: url(../font/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+body {
+    background-image: url("../img/graphy--dark--1920x1080.png");
+    background-repeat: repeat;
+    height: 98vh;
+    overflow-y: hidden;
+}
+
+.main #ready {
+    position: absolute;
+    top: 30vh; left: 35%;
+    opacity: 1;
+    animation: .2s shake;
+    animation-iteration-count: 20;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.main {
+    position: relative;
+    display: flex; flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-content: space-around;
+}
+
+body h1 {
+    margin: 3% 0px 3% 0  ;
+    text-align: center;
+    height: 5%;
+    font-family: Font;
+    color : #c8e1f8;
+    opacity: 0;
+}
+
+.main h2 {
+    text-align: center;
+    font-size: 300%;
+    font-family: Font;
+    color : #c8e1f8;
+}
+.main img {
+    align-self: center; margin-bottom: 3%;
+    max-height:41%;
+    justify-content: center;
+    border-radius: 10px;
+    opacity: 0;
+}
+
+.main .questions {
+    height: 45%; margin-bottom: 2%;
+    display: grid;
+    padding: 1rem calc(1rem + env(safe-area-inset-right)) 1rem calc(1rem + env(safe-area-inset-left));
+    bottom: 0;
+}
+
+.main .bloc {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+}
+
+.main button{
+    width: 49%;
+    height: 150px;
+    border-radius: 8px;
+    background-color: rgb(145, 148, 255);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+    display: block;
+    opacity: 0;
+}
+
+.main #bouton2:hover,.main #bouton4:hover  {
+    transform: scale(1.02);
+    box-shadow: -20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
+.main button h2 {
+    height: 100%;
+    padding: 50px 0px  ;
+}
+
+.main .question_bas {
+    margin-top: 3%;
+}
+
+.main #bouton1:hover,.main #bouton3:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}
+
+
+
+.id_quizz h3,.num_question h3,.pseudo h3 {display: none}
+.id_quizz,.num_question,.pseudo {display: none;}
+
+.timer {
+    position: absolute;
+    top: 0; left: 20px;
+    background-color: rgb(231, 232, 255); color: #1f2121;
+    border-radius: 100px;
+    border: solid #570606;
+    box-shadow: 0px 5px 20px -10px #ffffff;
+    padding: 0 2% 0 2%;
+}
+
+.timer h2 {
+    display: flex;
+    box-sizing: content-box;
+    color: #8f0000;
+    margin: 0;
+}
+
+.barre_progression {
+    z-index: 10;
+    background: #389dd3;
+    height: 2vh;
+    border-radius: 0px 100px 100px 0;
+    animation: barre_progression calc(var(--duration) * 1s) linear forwards;
+    transform-origin: left center;
+    box-shadow: 2px 2px 20px rgba(240, 255, 251, 0.45);;
+}
+
+@keyframes barre_progression {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.skip {
+    z-index: 1000;
+    position: absolute;
+    top: 5% ; right: 3%;
+    height: 5%; width: 8%;
+    border-radius: 8px;
+    background-color: rgb(145, 148, 255);
+    color: white;
+    font-weight: bold;
+    outline: none;
+    transition: 0.2s;
+    display: block;
+    opacity: 0;
+}
+
+.skip:hover {
+    transform: scale(1.02);
+    box-shadow: 20px 0px 60px -6px rgba(0,0,0,.6);
+    cursor: crosshair;
+}

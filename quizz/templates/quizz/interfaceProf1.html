@@ -3,28 +3,32 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>OpenQuizz - UserHome</title>
+    <title>Quizz en cours</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'quizz/css/interfaceUser.css' %}">
+    <link rel="stylesheet" href="{% static 'quizz/css/interfaceProf1.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/717f408a62.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <form method="post">
+        {% csrf_token %}
+        <button formmethod="post" class="skip" type="submit"><h2>skip</h2></button>
+    </form>
 
     <div class="main">
 
-        <h1>-{{ question }}-</h1>
-
+        <h1 id="question">-{{ question }}-</h1>
+        <h1 id="ready">Etes vous près ?</h1>
         <img src="../../../media/{{ image }}" alt="image_quizz">
         <div class="timer"><h2>{{ timer }}</h2></div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit" formmethod="post" id="bouton1" name="bouton1" form="myForm" action="reponse1"><h2>{{ reponse1 }}</h2></button>
-                <button type="submit" id="bouton2" name="bouton2" form="myForm" action="reponse2"><h2>{{ reponse2 }}</h2></button>
+                <button id="bouton1"><h2>{{ reponse1 }}</h2></button>
+                <button id="bouton2"><h2>{{ reponse2 }}</h2></button>
             </div>
             <div class="bloc" id="bloc">
-                <button class="question_bas" type="submit" id="bouton3" name="bouton3" form="myForm"><h2>{{ reponse3 }}</h2></button>
-                <button class="question_bas" type="submit" id="bouton4" name="bouton4" form="myForm"><h2>{{ reponse4 }}</h2></button>
+                <button class="question_bas" id="bouton3"><h2>{{ reponse3 }}</h2></button>
+                <button class="question_bas" id="bouton4"><h2>{{ reponse4 }}</h2></button>
             </div>
         </div>
         <div class="id_quizz"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
@@ -33,10 +37,21 @@
         <form action="" method="post" id="myForm">{% csrf_token %}</form>
 
         <script>
+            const body = document.querySelector("body")
+            const skip = document.querySelector(".skip ")
             const id_quizz = document.querySelector(".id_quizz")
             const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
+            let question = document.querySelector(".main #question");
+            let ready = document.querySelector(".main #ready");
+            let img = document.querySelector(".main img");
+            let bouton1 = document.querySelector("#bouton1 h2");
+            let bouton2 = document.querySelector("#bouton2 h2");
+            let bouton3 = document.querySelector("#bouton3 h2");
+            let bouton4 = document.querySelector("#bouton4 h2");
+            let button = document.querySelectorAll(".main button");
+
             let i =0
             while (true) { //seul moyen que j'ai trouvé pour convertire num_question.innerText en  number pouvant etre incrémenté
                 if (num_question.innerText == i) {
@@ -47,25 +62,51 @@
                     i++
                 }
             }
-            let time = timerElement.innerText
+
+            let time = parseInt(timerElement.innerText)
+            let j=0
             function diminuerTemps() {
                 time--
                 var str;
                 if (time < 0) {
-                    str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1)
+                    str = "interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1)
                     document.location.href = str;
+                }if (j<4) {
+                    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+                    timerElement.style.color='#'+randomColor.toString()
+                    console.log(randomColor)
+                    j++
+                }else {
+                    timerElement.style.color='#373e44'
                 }
                 timerElement.innerText = time
 
             }
 
 
-            setInterval(diminuerTemps, 1000)
+            question.style.transitionDuration="2s"
+            ready.style.transitionDuration="1s"
+            img.style.transitionDuration="2s"
+            button[0].style.transitionDuration="2s"
+            skip.style.transitionDuration="2s"
+            button[1].style.transitionDuration="2s"
+            button[2].style.transitionDuration="2s"
+            button[3].style.transitionDuration="2s"
 
-            let bouton1 = document.querySelector("#bouton1 h2");
-            let bouton2 = document.querySelector("#bouton2 h2");
-            let bouton3 = document.querySelector("#bouton3 h2");
-            let bouton4 = document.querySelector("#bouton4 h2");
+
+            setInterval(diminuerTemps, 1000)
+                //état final
+            setTimeout(function(){
+                question.style.opacity='1'
+                ready.style.opacity='0'
+                img.style.opacity='1'
+                skip.style.opacity='1'
+                button[0].style.opacity='1'
+                button[1].style.opacity='1'
+                button[2].style.opacity='1'
+                button[3].style.opacity='1'
+            },4000)
+
 
             bouton1.addEventListener("mouseenter", function( event ) {
                 bouton2.style.opacity = "0.5";
@@ -139,9 +180,8 @@
                console.log("fermée")
             }, false);*/
 
-</script>
+    </script>
 
-        </script>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
