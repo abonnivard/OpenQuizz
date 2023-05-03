@@ -35,7 +35,7 @@
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
-            const id_quizz = document.querySelector(".id_quizz")
+            const id_quizz = document.querySelector(".id")
             const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
@@ -58,7 +58,7 @@
                 time--
                 var str;
                 if (time < 0) {
-                    str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1)
+                    const str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1).toString()+"/userAnswered/_" // "_"=pas de réponse
                     document.location.href = str;
                 }
                 timerElement.innerText = time

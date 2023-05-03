@@ -18,7 +18,6 @@ def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les
         else:
             timer = Quizz.objects.all().get(id=id_quizz).timer
             question = Question.objects.get(id=questions_id) ##strip pour enlever tous les espaces gênants
-
             context = {
                 'onGame' : Quizz.objects.all().get(id=id_quizz).onGame,
                 "pseudo" : pseudo,
@@ -40,7 +39,6 @@ def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les
         reponseVrai=question.reponseVrai
         L=[request.POST.get('bouton1'),request.POST.get('bouton2'),request.POST.get('bouton3'),request.POST.get('bouton4')] #None="" si répondu, autre sinon
         j=L.index('') #jobtient le numero du bouton sur lequel l'user a appuyé
-        print(pseudo)
         player = User.objects.all().get(id_quizz=id_quizz,pseudo=pseudo) #obliger de slicer pour obtenir le bo psuedo, pk?
         player.question+=str(j)+"/"
 
@@ -230,10 +228,11 @@ def finQuizz(request,id,pseudo):
     context= {
         'score' : User.objects.all().get(id_quizz=id, pseudo=pseudo).score
     }
-    print(User.objects.all().get(id_quizz=id,pseudo=pseudo))
-    User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
-    Quizz.objects.all().get(id=id).onGame=0
-    Quizz.objects.all().get(id=id).save()
+    if request.method=='POST':
+        User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
+        Quizz.objects.all().get(id=id).onGame=0
+        Quizz.objects.all().get(id=id).save()
+        return HttpResponseRedirect("")
     return render(request, 'quizz/finquizz.html')
 
 def finQuizzProf(request,id):
