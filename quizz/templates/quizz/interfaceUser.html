@@ -13,7 +13,12 @@
 
     <div class="main">
 
-        <h1>-{{ question }}-</h1>
+        <h1 id="question">-{{ question }}-</h1>
+
+        <div class="intro">
+            <h1 id="ready">Ca commence !</h1>
+            <div class="rond"><h2>4</h2></div>
+        </div>
 
         <img src="../../../media/{{ image }}" alt="image_quizz">
         <div class="timer"><h2>{{ timer }}</h2></div>
@@ -35,35 +40,75 @@
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
+            const rond = document.querySelector(".main .rond")
+            const intro = document.querySelector(".main .intro")
+            const rondElement = document.querySelector(".main .rond h2")
             const id_quizz = document.querySelector(".id")
             const pseudo = document.querySelector(".pseudo")
             let num_question = document.querySelector(".num_question")
             const timerElement = document.querySelector(".timer h2")
             const id = document.querySelector('.id').innerText
             const onGame = parseInt(document.querySelector(".onGame").innerText)
+            const timer= document.querySelector(".timer")
+            let question = document.querySelector(".main #question");
+            let ready = document.querySelector(".main #ready");
+            let img = document.querySelector(".main img");
+            let bouton1 = document.querySelector("#bouton1 h2");
+            let bouton2 = document.querySelector("#bouton2 h2");
+            let bouton3 = document.querySelector("#bouton3 h2");
+            let bouton4 = document.querySelector("#bouton4 h2");
+            let button = document.querySelectorAll(".main button");
 
             let i =0
 
             while (true) { //seul moyen que j'ai trouvé pour convertire num_question.innerText en  number pouvant etre incrémenté
                 if (num_question.innerText == i) {
-                    console.log('ok')
                     break
                 }else {
-                    console.log('non ok')
                     i++
                 }
             }
             let time = timerElement.innerText
+            let time2 = parseInt(rondElement.innerText)
+            let j = 0
             function diminuerTemps() {
                 time--
+                time2--
                 var str;
                 if (time < 0) {
-                    const str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i+1).toString()+"/userAnswered/_" // "_"=pas de réponse
+                    const str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
                     document.location.href = str;
+                }if (j<4) {
+                    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+                    rondElement.style.color='#'+randomColor.toString()
+                    rondElement.innerText = time2
+                    j++
+                }else {
+                    timerElement.style.color='#373e44'
                 }
                 timerElement.innerText = time
 
             }
+
+            question.style.transitionDuration="2s"
+            rond.style.transitionDuration="1s"
+            ready.style.transitionDuration="1s"
+            img.style.transitionDuration="2s"
+            button[0].style.transitionDuration="2s"
+            button[1].style.transitionDuration="2s"
+            button[2].style.transitionDuration="2s"
+            button[3].style.transitionDuration="2s"
+
+            setTimeout(function(){
+                question.style.opacity='1'
+                timer.style.opacity='1'
+                intro.style.display='None'
+                img.style.opacity='1'
+                button[0].style.opacity='1'
+                button[1].style.opacity='1'
+                button[2].style.opacity='1'
+                button[3].style.opacity='1'
+            },4000)
 
             $(document).ready(function(){
                 setInterval(function(){
@@ -87,10 +132,7 @@
 
 
 
-            let bouton1 = document.querySelector("#bouton1 h2");
-            let bouton2 = document.querySelector("#bouton2 h2");
-            let bouton3 = document.querySelector("#bouton3 h2");
-            let bouton4 = document.querySelector("#bouton4 h2");
+
 
             bouton1.addEventListener("mouseenter", function( event ) {
                 bouton2.style.opacity = "0.5";

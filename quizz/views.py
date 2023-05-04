@@ -23,7 +23,7 @@ def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les
                 "pseudo" : pseudo,
                 "image" : str(question.image),
                 "question": question.enonce,
-                'timer': timer,
+                'timer': int(timer)+4,
                 'num_question': int(num_question.split()[0]), #seul moyen de convertire en int
                 'id_quizz': id_quizz.strip(),
                 'reponse1': question.reponse1,
@@ -93,9 +93,40 @@ def waitingpageUser1(request,pseudo,id): #fairte en sorte que des qu'on quitte l
 
 
 def userAnswered(request,pseudo, id_quizz, num_question,question_answered):
+    #le processus d'incrémenter le score à déjà été fait dans interface user
     if request.method=='POST':
         return HttpResponseRedirect(str(question_answered)+'/resultat')
     return render(request, 'quizz/userAnswered.html')
+
+def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answered):
+    ## bonne réponse ?
+    if request.method=='GET':
+        quizz = Association.objects.all().filter(idQuizz=id_quizz)
+        questions_id = quizz[int(num_question)].idQuestion
+        question = Question.objects.get(id=questions_id)
+        bonne_reponse = Question.objects.all().get(id=questions_id).reponseVrai
+        Score = User.objects.all().get(id_quizz=id_quizz, pseudo=pseudo).score
+        users = User.objects.all().filter(id_quizz=id_quizz)
+        i=0
+        podium = 'False'
+        correct = 'False'
+        if question_answered!='_': #l'user à répondu
+            if int(bonne_reponse) - 1 == int(question_answered):
+                correct = 'True'
+        if question_answered=='_':
+            correct = 'blank'
+        for user in users :
+            if user.score > Score :
+                i+=1
+        if i<3 :
+            podium = 'True'
+        context = {
+            'correct': correct,
+            'podium': podium,
+        }
+        return render(request, 'quizz/userAnswered_resultat.html',context)
+    if request.method=='POST':
+        return HttpResponseRedirect("/interfaceUser/" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1))
 
 
 def interfaceProf0(request, id):
@@ -196,43 +227,15 @@ def resultat(request, id, num_question):
     if request.method=='POST':
 
         return HttpResponseRedirect("/interfaceProf1/id=" + id + "/num_question="+str(int(num_question)+1))
-def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answered):
-    ## bonne réponse ?
-    if request.method=='GET':
-        quizz = Association.objects.all().filter(idQuizz=id_quizz)
-        questions_id = quizz[int(num_question)].idQuestion
-        question = Question.objects.get(id=questions_id)
-        bonne_reponse = Question.objects.all().get(id=questions_id).reponseVrai
-        Score = User.objects.all().get(id_quizz=id_quizz, pseudo=pseudo).score
-        users = User.objects.all().filter(id_quizz=id_quizz)
-        i=0
-        podium = 'False'
-        correct = 'False'
-        if int(bonne_reponse) - 1 == int(question_answered):
-            correct = 'True'
-            print(correct)
-        for user in users :
-            if user.score > Score :
-                i+=1
-        if i<3 :
-            podium = 'True'
-        context = {
-            'correct': correct,
-            'podium': podium,
-        }
-        return render(request, 'quizz/userAnswered_resultat.html',context)
-    if request.method=='POST':
-        return HttpResponseRedirect("/interfaceUser/" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1))
 
 def finQuizz(request,id,pseudo):
     context= {
         'score' : User.objects.all().get(id_quizz=id, pseudo=pseudo).score
     }
-    if request.method=='POST':
-        User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
-        Quizz.objects.all().get(id=id).onGame=0
-        Quizz.objects.all().get(id=id).save()
-        return HttpResponseRedirect("")
+    User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
+    Quizz.objects.all().get(id=id).onGame=0
+    Quizz.objects.all().get(id=id).save()
+
     return render(request, 'quizz/finquizz.html')
 
 def finQuizzProf(request,id):
@@ -285,7 +288,7 @@ def erreurPseudo(request):
 
 ## Petit Point :
 #l'user ne connait pas le nombre de question contrairement a interfaceProf1
-#interfaceProf1 prend en arg num_question, il se contente de retourner onGame_num_question+1 tant qu'il y a des questions dès qu'il veut passer à la question suivante
+#interfaceProf1 prend en arg num_question, il se contente de retourner onGame+1 tant qu'il y a des questions dès qu'il veut passer à la question suivante
 #ou que le temps imparti est écoulé
 #pdt ce temps interfaceUser attend que onGame_num_question passe a onGame_num_question+1, dès lors il passe à la question suivante
 #si l'interfaceProf renvoie onGame_FIN c'est la fin du quizz, l'interface user redirige vers finQuizz et l'interfaceProf vers finQuizzProf

@@ -128,6 +128,7 @@ body h1 {
     height: 2vh;
     border-radius: 0px 100px 100px 0;
     animation: barre_progression calc(var(--duration) * 1s) linear forwards;
+    animation-delay: 4s;
     transform-origin: left center;
     box-shadow: 2px 2px 20px rgba(240, 255, 251, 0.45);;
 }

@@ -19,26 +19,35 @@
 
         <div class="correct"><h2>Bonne réponse !</h2></div>
         <div class="faux"><h2>Dommage c'était la mauvaise réponse ...</h2></div>
+        <div class="blank"><h2>Essaye d'être plus rapide !</h2></div>
         <div class="podium"><h2>Bravo tu es sur le podium !</h2></div>
 
     </div>
     <div class="info">
-        <div class="bonne_reponse">{{ correct }}</div>
+        <div class="reponse">{{ correct }}</div>
         <div class="podium">{{ podium }}</div>
     </div>
     <script>
 
-        const bonne_reponse = document.querySelector(".info .bonne_reponse").innerText
+        const reponse = document.querySelector(".info .reponse").innerText
         const podium = document.querySelector(".info .podium").innerText
         const faux = document.querySelector(".main .faux")
+        const rapide = document.querySelector(".main .rapide")
         const correct = document.querySelector(".main .correct")
         const div_podium = document.querySelector(".main .podium")
-        if (bonne_reponse=='True') {
+        if (reponse=='True') {
             faux.style.opacity='0'
-            coorect.style.opacity='1'
+            rapide.style.opacity='0'
+            correct.style.opacity='1'
         }
-        if (bonne_reponse=='False') {
+        if (reponse=='blank') {
+            faux.style.opacity='0'
             correct.style.opacity='0'
+            rapide.style.opacity='1'
+        }
+        if (reponse=='False') {
+            correct.style.opacity='0'
+            rapide.style.opacity='0'
             faux.style.opacity='1'
         }
         if (podium=='False') {
