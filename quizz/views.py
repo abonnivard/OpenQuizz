@@ -6,50 +6,6 @@ from quizz.models import User
 from django.http import JsonResponse
 import time
 
-@csrf_protect
-def interfaceUser(request,pseudo, id_quizz, num_question): #moyen d'afficher les questions dans le désordre ?
-
-    if request.method=='GET':
-        quizz = Association.objects.all().filter(idQuizz=id_quizz)
-        questions_id = quizz[int(num_question)].idQuestion
-        l=len(quizz)-1
-        if (int(num_question)==l):
-            return HttpResponseRedirect('/finQuizz/'+pseudo+"/id="+id_quizz)
-        else:
-            timer = Quizz.objects.all().get(id=id_quizz).timer
-            question = Question.objects.get(id=questions_id) ##strip pour enlever tous les espaces gênants
-            context = {
-                'onGame' : Quizz.objects.all().get(id=id_quizz).onGame,
-                "pseudo" : pseudo,
-                "image" : str(question.image),
-                "question": question.enonce,
-                'timer': int(timer)+4,
-                'num_question': int(num_question.split()[0]), #seul moyen de convertire en int
-                'id_quizz': id_quizz.strip(),
-                'reponse1': question.reponse1,
-                'reponse2': question.reponse2,
-                'reponse3': question.reponse3,
-                'reponse4': question.reponse4,
-            }
-        return render(request, 'quizz/interfaceUser.html',context)
-    if request.method=='POST':
-        quizz = Association.objects.all().filter(idQuizz=id_quizz)
-        questions_id = quizz[int(num_question)].idQuestion
-        question = Question.objects.get(id=questions_id)#j'obtient la liste des questions
-        reponseVrai=question.reponseVrai
-        L=[request.POST.get('bouton1'),request.POST.get('bouton2'),request.POST.get('bouton3'),request.POST.get('bouton4')] #None="" si répondu, autre sinon
-        j=L.index('') #jobtient le numero du bouton sur lequel l'user a appuyé
-        player = User.objects.all().get(id_quizz=id_quizz,pseudo=pseudo) #obliger de slicer pour obtenir le bo psuedo, pk?
-        player.question+=str(j)+"/"
-
-        if int(j) + 1 == int(reponseVrai):
-            player.score += 1
-            player.save()
-            print("score modifié")
-        return HttpResponseRedirect('num_question='+num_question+'/userAnswered/'+str(j))
-
-
-
 def waitingpageUser0(request,id,error): #on rentre son pseudo apres avoir rentrer l'id du quizz
     users=User.objects.all().filter(id_quizz=id) ##on prend que du meme quizz ==> a la fin de chaque quizz on supprime les users du quizz !
     pseudo = request.POST.get('pseudo')
@@ -91,16 +47,93 @@ def waitingpageUser1(request,pseudo,id): #fairte en sorte que des qu'on quitte l
     return render(request, 'quizz/waitingpageUser1.html',context)
 
 
+@csrf_protect
+def interfaceUser(request, pseudo, id_quizz, num_question):  # moyen d'afficher les questions dans le désordre ?
 
-def userAnswered(request,pseudo, id_quizz, num_question,question_answered):
-    #le processus d'incrémenter le score à déjà été fait dans interface user
+    if request.method == 'GET':
+        quizz = Association.objects.all().filter(idQuizz=id_quizz)
+        questions_id = quizz[int(num_question)].idQuestion
+        l = len(quizz) - 1
+        if (int(num_question) == l):
+            return HttpResponseRedirect('/finQuizz/' + pseudo + "/id=" + id_quizz)
+        else:
+            timer = Quizz.objects.all().get(id=id_quizz).timer
+            question = Question.objects.get(id=questions_id)  ##strip pour enlever tous les espaces gênants
+            context = {
+                'onGame': Quizz.objects.all().get(id=id_quizz).onGame,
+                "pseudo": pseudo,
+                "image": str(question.image),
+                "question": question.enonce,
+                'timer': int(timer) + 4,
+                'num_question': int(num_question.split()[0]),  # seul moyen de convertire en int
+                'id_quizz': id_quizz.strip(),
+                'reponse1': question.reponse1,
+                'reponse2': question.reponse2,
+                'reponse3': question.reponse3,
+                'reponse4': question.reponse4,
+            }
+        return render(request, 'quizz/interfaceUser.html', context)
+
+    if request.method == 'POST':
+
+
+        quizz = Association.objects.all().filter(idQuizz=id_quizz)
+        questions_id = quizz[int(num_question)].idQuestion
+        question = Question.objects.get(id=questions_id)  # j'obtient la liste des questions
+        reponseVrai = question.reponseVrai
+        L = [request.POST.get('bouton1'), request.POST.get('bouton2'), request.POST.get('bouton3'),
+             request.POST.get('bouton4')]  # None="" si répondu, autre sinon
+        j = 0  # jobtient le numero du bouton sur lequel l'user a appuyé grâce au naming des boutons et au valuing
+        time_reponse= 0
+        for i in range(0,4) :
+            if L[i]!=None:
+                j=i
+                time_reponse=L[i]
+                break
+        player = User.objects.all().get(id_quizz=id_quizz,
+                                        pseudo=pseudo)  # obliger de slicer pour obtenir le bo psuedo, pk?
+        player.question += str(j) + "/"
+        if int(j) + 1 == int(reponseVrai):
+            player.score += 1
+            player.save()
+            print("score modifié")
+        # dans l'url /(fin-debut)
+        return HttpResponseRedirect('num_question=' + num_question + '/userAnswered/' + str(j) +'/'+ str(time_reponse))
+
+
+
+def userAnswered(request,pseudo, id_quizz, num_question,question_answered,time_reponse):
+
+
+    if request.method=='GET':
+        print('time_reponse = ' +time_reponse)
+        time_restant = 4 #Quizz.objects.all().get(id=id_quizz).timer - int(time_reponse)
+        context = {
+            'question_answered': question_answered,
+            'id': id_quizz,
+            'num_question': num_question,
+            'pseudo': pseudo,
+            'onGame' : Quizz.objects.all().get(id=id_quizz).onGame,
+            'time_restant' : time_restant
+        }
+
+        return render(request, 'quizz/userAnswered.html',context)
     if request.method=='POST':
-        return HttpResponseRedirect(str(question_answered)+'/resultat')
-    return render(request, 'quizz/userAnswered.html')
+        return HttpResponseRedirect('resultat/')
+
 
 def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answered):
-    ## bonne réponse ?
+
     if request.method=='GET':
+
+        def is_ajax():
+            return request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+        if is_ajax() == True:
+            data = {
+                'onGame': Quizz.objects.all().get(id=id_quizz).onGame
+            }
+            return JsonResponse(data)
         quizz = Association.objects.all().filter(idQuizz=id_quizz)
         questions_id = quizz[int(num_question)].idQuestion
         question = Question.objects.get(id=questions_id)
@@ -121,12 +154,29 @@ def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answer
         if i<3 :
             podium = 'True'
         context = {
+            'id': id_quizz,
             'correct': correct,
             'podium': podium,
+            'pseudo':pseudo,
+            'num_question':num_question,
+            'onGame': Quizz.objects.all().get(id=id_quizz).onGame
         }
         return render(request, 'quizz/userAnswered_resultat.html',context)
+
+
     if request.method=='POST':
+
         return HttpResponseRedirect("/interfaceUser/" + str(pseudo) + "/id=" + id_quizz + "/num_question="+str(int(num_question)+1))
+
+def finQuizz(request,id,pseudo):
+    context= {
+        'score' : User.objects.all().get(id_quizz=id, pseudo=pseudo).score
+    }
+    User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
+    Quizz.objects.all().get(id=id).onGame=0
+    Quizz.objects.all().get(id=id).save()
+
+    return render(request, 'quizz/finquizz.html')
 
 
 def interfaceProf0(request, id):
@@ -151,7 +201,6 @@ def interfaceProf0(request, id):
         quizz=Quizz.objects.all().get(id=id)
         quizz.onGame+=1
         quizz.save()
-        print(quizz.onGame)
         return HttpResponseRedirect('/interfaceProf1/id='+id+'/num_question=0')
 
     return render(request, 'quizz/interfaceProf0.html',context)
@@ -179,7 +228,9 @@ def interfaceProf1(request, id, num_question):
             }
         return render(request, 'quizz/interfaceProf1.html',context)
     if request.method=='POST':
-        Quizz.objects.all().get(id=id).onGame+=1
+        quizz = Quizz.objects.all().get(id=id)
+        quizz.onGame += 1
+        quizz.save()
         return HttpResponseRedirect('num_question='+num_question+'/resultat')
     return render(request, 'quizz/interfaceProf1.html')
 
@@ -225,18 +276,11 @@ def resultat(request, id, num_question):
             }
             return render(request, 'quizz/resultat.html',context)
     if request.method=='POST':
-
+        quizz = Quizz.objects.all().get(id=id)
+        quizz.onGame += 1
+        quizz.save()
         return HttpResponseRedirect("/interfaceProf1/id=" + id + "/num_question="+str(int(num_question)+1))
 
-def finQuizz(request,id,pseudo):
-    context= {
-        'score' : User.objects.all().get(id_quizz=id, pseudo=pseudo).score
-    }
-    User.objects.all().get(id_quizz=id,pseudo=pseudo).delete()
-    Quizz.objects.all().get(id=id).onGame=0
-    Quizz.objects.all().get(id=id).save()
-
-    return render(request, 'quizz/finquizz.html')
 
 def finQuizzProf(request,id):
     if request.method=='GET':
@@ -273,7 +317,6 @@ def finQuizzProf(request,id):
                 'top2': top2.pseudo,
                 'top3': top3.pseudo,
             }
-        print(context)
         return render(request, 'quizz/finQuizzProf.html',context)
     if request.method=='POST':
 

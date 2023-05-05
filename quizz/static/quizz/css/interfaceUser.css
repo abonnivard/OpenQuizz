@@ -168,3 +168,7 @@ body h1 {
     text-align: center;
     opacity: 1;
 }
+
+.main #question {
+    opacity: 0;
+}

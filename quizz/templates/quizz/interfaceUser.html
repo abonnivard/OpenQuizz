@@ -22,24 +22,31 @@
 
         <img src="../../../media/{{ image }}" alt="image_quizz">
         <div class="timer"><h2>{{ timer }}</h2></div>
+        <div class="time_restant">-4</div>
         <div class="questions">
             <div class="bloc">
-                <button type="submit" formmethod="post" id="bouton1" name="bouton1" form="myForm" action="reponse1"><h2>{{ reponse1 }}</h2></button>
-                <button type="submit" id="bouton2" name="bouton2" form="myForm" action="reponse2"><h2>{{ reponse2 }}</h2></button>
+                <button type="submit" formmethod="post" id="bouton1" form="myForm"  name="bouton1" value="-4" ><h2>{{ reponse1 }}</h2></button>
+                <button type="submit" id="bouton2" form="myForm" name="bouton2" value="-4"><h2>{{ reponse2 }}</h2></button>
             </div>
             <div class="bloc" id="bloc">
-                <button class="question_bas" type="submit" id="bouton3" name="bouton3" form="myForm"><h2>{{ reponse3 }}</h2></button>
-                <button class="question_bas" type="submit" id="bouton4" name="bouton4" form="myForm"><h2>{{ reponse4 }}</h2></button>
+                <button class="question_bas" type="submit" id="bouton3" form="myForm" name="bouton3" value="-4"><h2>{{ reponse3 }}</h2></button>
+                <button class="question_bas" type="submit" id="bouton4"  form="myForm"  name="bouton4" value="-4"><h2>{{ reponse4 }}</h2></button>
             </div>
         </div>
         <div class="id"><h3>{{ id_quizz }}</h3></div>{% csrf_token %} <!--sert juste a donner les info aux js-->
         <div class="onGame"><h3>{{ onGame }}</h3></div>{% csrf_token %}
         <div class="num_question"><h3>{{ num_question }}</h3></div>{% csrf_token %}
         <div class="pseudo"><h3>{{ pseudo }}</h3></div>{% csrf_token %}
-        <form action="" method="post" id="myForm">{% csrf_token %}</form>
+        <form method="post" id="myForm">{% csrf_token %}
+            <input type="hidden" name="time_restant" id="input" >
+        </form>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script>
+            const time_restant1 = document.getElementById("bouton1")
+            const time_restant2 = document.getElementById("bouton2")
+            const time_restant3= document.getElementById("bouton3")
+            const time_restant4 = document.getElementById("bouton4")
             const rond = document.querySelector(".main .rond")
             const intro = document.querySelector(".main .intro")
             const rondElement = document.querySelector(".main .rond h2")
@@ -59,6 +66,7 @@
             let bouton4 = document.querySelector("#bouton4 h2");
             let button = document.querySelectorAll(".main button");
 
+
             let i =0
 
             while (true) { //seul moyen que j'ai trouvé pour convertire num_question.innerText en  number pouvant etre incrémenté
@@ -70,13 +78,21 @@
             }
             let time = timerElement.innerText
             let time2 = parseInt(rondElement.innerText)
+            let time3 = parseInt(time_restant1.value)
+            let time4 = parseInt(time_restant2.value)
+            let time5 = parseInt(time_restant3.value)
+            let time6 = parseInt(time_restant4.value)
             let j = 0
             function diminuerTemps() {
                 time--
                 time2--
-                var str;
+                time3++
+                time4++
+                time5++
+                time6++
+                var str
                 if (time < 0) {
-                    const str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
+                     str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
                     document.location.href = str;
                 }if (j<4) {
                     var randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -87,7 +103,10 @@
                     timerElement.style.color='#373e44'
                 }
                 timerElement.innerText = time
-
+                time_restant1.value++
+                time_restant2.value++
+                time_restant3.value++
+                time_restant4.value++
             }
 
             question.style.transitionDuration="2s"
@@ -122,10 +141,10 @@
                             }
                         },
                         error: function(response){
-                            console.log("error")
+                            console.log("error_get")
                         }
                         })
-                },1000)})
+                },500)})
 
 
             setInterval(diminuerTemps, 1000)

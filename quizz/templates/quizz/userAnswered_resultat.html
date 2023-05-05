@@ -19,22 +19,34 @@
 
         <div class="correct"><h2>Bonne réponse !</h2></div>
         <div class="faux"><h2>Dommage c'était la mauvaise réponse ...</h2></div>
-        <div class="blank"><h2>Essaye d'être plus rapide !</h2></div>
+        <div class="rapide"><h2>Essaye d'être plus rapide !</h2></div>
         <div class="podium"><h2>Bravo tu es sur le podium !</h2></div>
 
     </div>
     <div class="info">
         <div class="reponse">{{ correct }}</div>
+        <div class="id">{{ id }}</div>
         <div class="podium">{{ podium }}</div>
+        <div class="num_question">{{ num_question }}</div>
+        <div class="pseudo">{{ pseudo }}</div>
+        <div class="onGame">{{ onGame }}</div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
 
         const reponse = document.querySelector(".info .reponse").innerText
         const podium = document.querySelector(".info .podium").innerText
+        const id = document.querySelector(".info .id").innerText
+        const pseudo = document.querySelector(".info .pseudo").innerText
+        const onGame = parseInt(document.querySelector(".info .onGame").innerText)
+        const num_question = parseInt(document.querySelector(".info .num_question").innerText)
         const faux = document.querySelector(".main .faux")
         const rapide = document.querySelector(".main .rapide")
         const correct = document.querySelector(".main .correct")
         const div_podium = document.querySelector(".main .podium")
+
+        console.log(onGame)
+
         if (reponse=='True') {
             faux.style.opacity='0'
             rapide.style.opacity='0'
@@ -53,6 +65,25 @@
         if (podium=='False') {
             div_podium.style.opacity='0'
         }
+
+        $(document).ready(function(){
+            setInterval(function(){
+                $.ajax({
+                    type:'GET',
+                    url: '',
+                    success: function(response){
+                        if (response.onGame==onGame+1) {
+                            const str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question+1).toString()
+                            document.location.href = str;
+                        }
+
+                    },
+                    error: function(response){
+                        console.log("error")
+                    }
+                    })
+            },1000)
+        })
 
 
     </script>
