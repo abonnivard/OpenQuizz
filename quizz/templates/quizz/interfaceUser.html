@@ -92,7 +92,7 @@
                 time6++
                 var str
                 if (time < 0) {
-                     str = "http://127.0.0.1:8000/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
+                     str = "/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
                     document.location.href = str;
                 }if (j<4) {
                     var randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -136,7 +136,7 @@
                         url: '',
                         success: function(response){
                             if (response.onGame==onGame+1) {
-                                str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
+                                str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
                                 document.location.href = str;
                             }
                         },

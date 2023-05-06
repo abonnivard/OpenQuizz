@@ -49,7 +49,7 @@
              console.log(time_restant)
             var str
             if (time > time_restant) {
-                str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString()+"/userAnswered/"+question_answered+"/resultat/"
+                str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString()+"/userAnswered/"+question_answered+"/resultat/"
                 document.location.href = str;
             }
         }
