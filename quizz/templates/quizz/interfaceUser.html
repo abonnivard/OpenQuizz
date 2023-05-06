@@ -93,7 +93,7 @@
                 var str
                 if (time < 0) {
                      str = "/interfaceUser/"+pseudo.innerText+"/id="+id_quizz.innerText+"/num_question="+(i).toString()+"/userAnswered/_/resultat" // "_"=pas de réponse
-                    document.location.href = str;
+                    window.document.location.href = str;
                 }if (j<4) {
                     var randomColor = Math.floor(Math.random()*16777215).toString(16);
                     rondElement.style.color='#'+randomColor.toString()
@@ -136,8 +136,8 @@
                         url: '',
                         success: function(response){
                             if (response.onGame==onGame+1) {
-                                str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
-                                document.location.href = str;
+                                str = "https://openquizz.h.minet.net/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
+                                window.document.location.href = str;
                             }
                         },
                         error: function(response){

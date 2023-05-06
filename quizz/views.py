@@ -90,8 +90,7 @@ def interfaceUser(request, pseudo, id_quizz, num_question):  # moyen d'afficher 
                 j=i
                 time_reponse=L[i]
                 break
-        player = User.objects.all().get(id_quizz=id_quizz,
-                                        pseudo=pseudo)  # obliger de slicer pour obtenir le bo psuedo, pk?
+        player = User.objects.all().get(id_quizz=id_quizz,pseudo=pseudo)
         player.question += str(j) + "/"
         if int(j) + 1 == int(reponseVrai):
             player.score += 1

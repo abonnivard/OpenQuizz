@@ -75,7 +75,7 @@
                 var str;
                 if (time < 0) {
                     str = "num_question="+num_question.innerText+"/resultat"
-                    document.location.href = str;
+                    window.document.location.href = str;
                 }if (j<4) {
                     var randomColor = Math.floor(Math.random()*16777215).toString(16);
                     rondElement.style.color='#'+randomColor.toString()

@@ -50,7 +50,7 @@
             var str
             if (time > time_restant) {
                 str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString()+"/userAnswered/"+question_answered+"/resultat/"
-                document.location.href = str;
+                window.document.location.href = str;
             }
         }
 
@@ -61,8 +61,8 @@
                     url: '',
                     success: function(response){
                         if (response.onGame==onGame+1) {
-                            const str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString() + "/userAnswered/"+question_answered+"/resultat/"
-                            document.location.href = str;
+                            str = "https://openquizz.h.minet.net/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString() + "/userAnswered/"+question_answered+"/resultat/"
+                            window.document.location.href = str;
                         }
 
                     },
