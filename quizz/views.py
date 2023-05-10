@@ -304,17 +304,23 @@ def finQuizzProf(request,id):
         if top2 == None : # 1 joueur
             context = {
                 'top1': top1.pseudo,
+                'scoretop1' : top1.score,
             }
         if top3 ==None : #2 joeuurs
             context= {
                 'top1': top1.pseudo,
+                'scoretop1': top1.score,
                 'top2': top2.pseudo,
+                'scoretop2': top2.score,
             }
         else :  #3 joueurs
             context = {
                 'top1': top1.pseudo,
+                'scoretop1': top1.score,
                 'top2': top2.pseudo,
+                'scoretop2': top2.score,
                 'top3': top3.pseudo,
+                'scoretop2': top2.score,
             }
         return render(request, 'quizz/finQuizzProf.html',context)
     if request.method=='POST':

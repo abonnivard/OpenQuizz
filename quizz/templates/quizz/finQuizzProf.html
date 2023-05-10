@@ -21,13 +21,43 @@
         </form>
 
         <div class="podium">
-             <h2 id="top1">{{ top1 }}</h2>
-             <h2 id="top2">{{ top2 }}</h2>
-             <h2 id="top3">{{ top3 }}</h2>
+            <div class="places">
+
+                <div class="place js-podium" data-height="200px">
+                    <div class="nom" id="top2">{{ top2 }} </div>
+                    <div class="place-base place-base--first">
+                        <div class="place-rang second">2</div>
+                        <div class ="score" id="scoretop2"> {{ scoretop2 }}</div>
+                    </div>
+
+                </div>
+                <div class="place js-podium" data-height="250px">
+                    <div class="nom" id="top1">{{ top1 }}
+                    </div>
+                    <div class="place-base place-base--second">
+                        <div class="place-rang first">1</div>
+                        <div class ="score" id="scoretop1"> {{  scoretop1 }}</div>
+                    </div>
+
+
+                </div>
+                <div class="place js-podium" data-height="150px">
+                    <div class="nom" id="top3">{{ top3 }}
+                    </div>
+                    <div class="place-base place-base--third">
+                        <div class="place-rang third">3</div>
+                        <div class ="score" id="scoretop3"> {{ scoretop3 }}</div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
 
     </div>
 
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 </body>
 </html>

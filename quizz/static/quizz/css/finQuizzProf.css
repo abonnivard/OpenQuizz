@@ -9,7 +9,6 @@ body {
     overflow-y: hidden;
 }
 
-
 .main {
     position: relative;
     display: flex; flex-direction: column;
@@ -23,7 +22,53 @@ body {
     top: 10%; right: 3%;
 }
 
-.main .podium {
-    color: white;
+.main .place {
+    width: 40%;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.main.podium{
+    display: center;
+}
+.main .places{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 50px;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+.main .place-rang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #ffffcc;
+}
+.main .nom {
+    color: #ffffcc;
     text-align: center;
+    font-size: 40px;
+    padding:0 .5rem;
+}
+.main .score {
+    color: #ffffcc;
+    text-align: center;
+    padding:0 .5rem;
+}
+.main .place .second {
+    min-height: 400px;
+    background: #022bc4;
+    border-radius: 5px;
+}
+.main .place .first {
+    min-height: 600px;
+    background: #11cbde;
+    border-radius: 5px;
+}
+.main .place .third {
+    min-height: 200px;
+    background: #530fc2;
+    border-radius: 5px;
 }
