@@ -182,6 +182,7 @@ def finQuizz(request,id,pseudo):
 def interfaceProf0(request, id):
     quizz = Quizz.objects.all().get(id=id)
     quizz.onGame = 1
+    quizz.save()
     context = {
         'id': id
     }
@@ -228,7 +229,7 @@ def interfaceProf1(request, id, num_question):
                 'reponse4': question.reponse4,
             }
         return render(request, 'quizz/interfaceProf1.html',context)
-    if request.method=='POST':
+    if request.method == 'POST':
         quizz = Quizz.objects.all().get(id=id)
         quizz.onGame += 1
         quizz.save()
@@ -286,11 +287,11 @@ def resultat(request, id, num_question):
 def finQuizzProf(request,id):
     if request.method=='GET':
 
-        quizz = Association.objects.all().filter(idQuizz=id)
 
         top1=top2=top3 = None
 
         for user in User.objects.all().filter(id_quizz=id): #prend les 3 plus gros scores
+
 
             if top1 is None or user.score >= top1.score:
                 top3 = top2
