@@ -90,11 +90,11 @@
                                     </div>
                                     </div>
                                 <div class="startquizz">
-                                    <a href="{% url 'quizz:interfaceProf0' id=quizz.id %}">
+                                    <a href="{% url 'administrateur:lancementQuizz' id=quizz.id %}">
                                     <div class="cadre">
                                         <p>start</p>
                                     </div>
-                                        </a>
+                                    </a>
 
                                 </div>
                                         </div>
@@ -104,7 +104,6 @@
                                         </div>
                                     </div>
                                         </div>
-                                </div>
                                 <div class="partieinf">
                                      <div class="stocker">
                                             <p>Mode : {{quizz.mode}}</p>
@@ -123,15 +122,17 @@
                                 </div>
                                 </div>
 
+
+
                         {% endfor %}
                  </div>
+                 </div>
+
 
                 </div>
             </div>
 
         </div>
-
-    </div>
 
     <script src="{% static 'administrateur/js/dashboard.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

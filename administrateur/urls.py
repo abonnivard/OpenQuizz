@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from .models import Quizz
 import uuid
-from .views import dashboard, suppression, creation_de_quizz, enregistrement, banquequestions, suppression_question, modifierquizz, modifyquestion
+from .views import dashboard, suppression, creation_de_quizz, enregistrement, banquequestions, suppression_question, modifierquizz, modifyquestion, lancementQuizz
 
 app_name = 'administrateur'
 
@@ -15,4 +15,5 @@ urlpatterns = [
     path('suppression-question/', suppression_question, name="suppression_question"),
     path('modify/<str:id>', modifierquizz, name="modifyquizz"),
     path('modifyquestion/<str:id>', modifyquestion, name="modifyquestion"),
+    path('lancement-quizz/<str:id>', lancementQuizz, name="lancementQuizz")
 ]

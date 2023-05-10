@@ -10,6 +10,7 @@ def waitingpageUser0(request,id,error): #on rentre son pseudo apres avoir rentre
     users=User.objects.all().filter(id_quizz=id) ##on prend que du meme quizz ==> a la fin de chaque quizz on supprime les users du quizz !
     pseudo = request.POST.get('pseudo')
     if request.method == 'POST':
+        print(pseudo)
         for user in users: #pseudo déjà existant ?
             if pseudo == user.pseudo:
                 return HttpResponseRedirect("/waitingpageUser0/id=" +str(id)+"/"+"error")
@@ -179,7 +180,8 @@ def finQuizz(request,id,pseudo):
 
 
 def interfaceProf0(request, id):
-
+    quizz = Quizz.objects.all().get(id=id)
+    quizz.onGame = 1
     context = {
         'id': id
     }

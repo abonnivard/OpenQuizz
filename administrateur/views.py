@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Question, Quizz, Association, Theme
 from django.contrib.auth.models import User
+from quizz.models import User as userQuizz
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 import json as json
 import os
 from django.core.files.storage import FileSystemStorage
+from quizz.views import interfaceProf0
 
 @login_required
 def dashboard(request):
@@ -128,6 +130,7 @@ def banquequestions(request):
         intitule = request.POST.get('intitule')
         enonce = request.POST.get('enonce')
         theme = request.POST.get('theme')
+        print(len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=theme)))
         if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=theme)) == 0:
             newTheme = Theme(pseudo=str(request.user.username), theme=theme)
             newTheme.save()
@@ -219,11 +222,9 @@ def suppression_question(request):
 @login_required
 def modifierquizz(request, id):
     if request.method == 'POST':
-        print(len(Association.objects.all().filter(idQuizz=id)), Association.objects.all().filter(idQuizz=id))
         quizz = Quizz.objects.get(id=id)
         liste = request.POST.get('liste')
         time = request.POST.get('timer')
-        print(liste)
         classementdisplay = request.POST.get('classementdisplay')
         if classementdisplay == "true":
             classementdisplay = True
@@ -264,7 +265,6 @@ def modifierquizz(request, id):
             quizz.name = name
         quizz.save()
 
-        print(len(Association.objects.all().filter(idQuizz=id)), Association.objects.all().filter(idQuizz=id))
         return redirect('/dashboard/')
 
 
@@ -374,3 +374,14 @@ def modifyquestion(request, id):
         "questionmodify":question,
     }
     return render(request, 'administrateur/modifyquestion.html', context)
+
+def lancementQuizz(request, id):
+    quizz = Quizz.objects.all().get(id=id)
+    print(quizz.onGame)
+    if quizz.onGame != 0:
+        quizz.onGame = 0
+        quizz.save()
+        users = userQuizz.objects.all().filter(id_quizz=id)
+        for user in users:
+            user.delete()
+    return HttpResponseRedirect('../interfaceProf0/id='+str(id))

@@ -12,7 +12,6 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-    height: 94vh;
 }
 footer {
     height: 6vh;
@@ -20,7 +19,7 @@ footer {
 }
 
 .main {
-    height: 100%;
+    min-height: 100vh;
     padding-top: 60px;
 }
 
@@ -35,13 +34,14 @@ footer {
 .main .bloc {
     display: flex;
     flex-direction: row ;
-    flex-wrap: wrap;
     justify-content: space-evenly;
+    align-items: center;
     padding-top: 5%;
 }
 
 .main .bloc .ss {
-    align-items: center; justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: 5% 0% 5% 0%;
     padding: 5% 2%;
     -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
@@ -95,6 +95,7 @@ footer {
     color: aliceblue;
 }
 
+
 .parentIcon {
     display: flex; height: 70%;
     align-items: center;
@@ -104,17 +105,16 @@ footer {
     width: 100%;
     background-color: black;
 }
-
 .parentIcon a {
     text-align: center;
     transform: translateX(5px);
     padding: 0 10px 0px 10px;
-    color: #240082;
+    color: #2f36ad;
     font-size: 35px;
     transition: all .4s;
 }
 .parentIcon a:hover {
-    color: #1f2121;
+    color: #324b2f;
 }
 
 .copy {
@@ -133,32 +133,19 @@ footer {
     padding-bottom: 5px;
 }
 
+@media screen and (max-width: 870px) {
+
+    .main .bloc {
+        flex-direction: column;
+    }
+}
+
 @media screen and (max-width: 700px){
+
+
     .main .bloc .ss {
         width: 300px;
         height: 250px;
-    }
-        .parentIcon {
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        text-align: center;
-        width: 100%;
-    }
-    .parentIcon a {
-        text-align: center;
-        width: 12%;
-        padding: 10px;
-        font-size: 20px;
-    }
-
-    .copy {
-        height: 30%;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        padding-bottom: 4px;
     }
 
 }
