@@ -42,7 +42,7 @@
                     type:'GET',
                     url: '',
                     success: function(response){
-                        if (response.onGame==2) {
+                        if (response.onGame===2) {
                             str = "https://openquizz.h.minet.net/interfaceUser/"+pseudo+"/id="+id+"/num_question=0"
                             window.document.location.href = str;
                         }
