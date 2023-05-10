@@ -6,6 +6,6 @@ class User(models.Model):
     pseudo = models.CharField(max_length=255)
     id_quizz = models.CharField(max_length=255)
     score = models.IntegerField(default=0)
-    question=models.CharField(max_length=255)
+    question = models.CharField(max_length=255)
 
 ##créer une autre base répertoriant pour chaque question, l'ensemble des reponses des users pour ensuite les afficher

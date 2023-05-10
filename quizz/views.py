@@ -77,7 +77,6 @@ def interfaceUser(request, pseudo, id_quizz, num_question):  # moyen d'afficher 
 
     if request.method == 'POST':
 
-
         quizz = Association.objects.all().filter(idQuizz=id_quizz)
         questions_id = quizz[int(num_question)].idQuestion
         question = Question.objects.get(id=questions_id)  # j'obtient la liste des questions
