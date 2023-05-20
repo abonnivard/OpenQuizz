@@ -4,6 +4,8 @@ from .views import index, erreurId
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name='OpenQuizz'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),

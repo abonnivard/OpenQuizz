@@ -5,17 +5,16 @@
 body {
     background-image: url("../img/graphy--dark--1920x1080.png");
     background-repeat: repeat;
-    height: 98vh;
+    min-height: 100vh;
     overflow-y: hidden;
 }
 
 
 .main {
     position: relative;
-    display: flex; flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    align-content: space-around;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .main form {
@@ -23,7 +22,46 @@ body {
     top: 10%; right: 3%;
 }
 
-.main .podium {
-    color: white;
+.podium {
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.top2, .top1, .top3{
+    width: 200px;
+    height: 300px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    color : #c8e1f8;
+}
+
+#top2 {
+    transform: translateY(75px);
+
+}
+
+#top3 {
+    transform: translateY(135px);
+}
+
+.podium-top2 {
+    transform: translateY(74px);
+    height: 60%;
+    background-color: #c8e1f8;
+    bottom: 0;
+}
+
+.podium-top1 {
+    height: 100%;
+    background-color: #c8e1f8;
+
+}
+
+.podium-top3 {
+    transform: translateY(134px);
+    height: 40%;
+    background-color: #c8e1f8;
+
 }
