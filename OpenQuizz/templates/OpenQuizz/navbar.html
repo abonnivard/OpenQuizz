@@ -8,7 +8,7 @@
     </style>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: rgb(0,0,09,0.8); border-radius: 0 0 5% 5%; padding: 0 ">
         <div class="container" style="padding-left: 0">
-        <a href="../" class="navbar-brand mb-0 h1" style="padding: 0 ; justify-content: left">
+        <a href="/" class="navbar-brand mb-0 h1" style="padding: 0 ; justify-content: left">
             <img src="{% static "OpenQuizz/img/logo.png" %}" style="height: 4vh; margin-bottom: 5px " >
         </a>
         <button type="button"
@@ -28,12 +28,26 @@
                         Home
                     </a>
                 </li>
+                {% if not user.is_authenticated %}
                 <li class="nav-item">
                     <a href="{% url 'accounts:login' %}" class="nav-link" style="transition: all .4s;">
                         Connexion
                     </a>
                 </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'administrateur:dashboard' %}" class="nav-link" style="transition: all .4s;">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'accounts:logout' %}" class="nav-link" style="transition: all .4s;">
+                        Logout
+                    </a>
+                </li>
             </ul>
+            {% endif %}
         </div>
         </div>
     </nav>

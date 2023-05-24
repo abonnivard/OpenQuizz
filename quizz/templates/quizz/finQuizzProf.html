@@ -21,18 +21,24 @@
         </form>
 
         <div class="podium">
+            {% if ctx > 1 %}
             <div class="top2">
                 <h2 id="top2">{{ top2 }}</h2>
                 <div class="podium-top2"></div>
             </div>
+            {% endif %}
+        {% if ctx > 0 %}
              <div class="top1">
                 <h2 id="top1">{{ top1 }}</h2>
                 <div class="podium-top1"></div>
             </div>
+        {% endif %}
+        {% if ctx > 2 %}
         <div class="top3">
                 <h2 id="top3">{{ top3 }}</h2>
-                <div class="po"></div>
+                <div class="podium-top3"></div>
             </div>
+        {% endif %}
         </div>
 
     </div>
