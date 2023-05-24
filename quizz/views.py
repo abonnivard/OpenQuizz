@@ -333,23 +333,31 @@ def finQuizzProf(request,id):
                 top2 = user
             elif top3 is None or user.score >= top3.score:
                 top3 = user
-        if top1 == None : # 0 joueur
-            context ={}
-        if top2 == None : # 1 joueur
-            context = {
-                'top1': top1.pseudo,
-            }
-        if top3 ==None : #2 joeuurs
-            context= {
-                'top1': top1.pseudo,
-                'top2': top2.pseudo,
-            }
-        else :  #3 joueurs
+        try :
             context = {
                 'top1': top1.pseudo,
                 'top2': top2.pseudo,
                 'top3': top3.pseudo,
+                'ctx':3,
             }
+        except:
+            try:
+                context = {
+                    'top1': top1.pseudo,
+                    'top2': top2.pseudo,
+                    'ctx':2,
+                }
+            except:
+                try:
+                    context = {
+                        'top1': top1.pseudo,
+                        'ctx': 1,
+                    }
+                except:
+                    context ={
+                        'ctx':0,
+                    }
+
         return render(request, 'quizz/finQuizzProf.html',context)
     if request.method=='POST':
 
