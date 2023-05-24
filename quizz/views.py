@@ -10,7 +10,6 @@ def waitingpageUser0(request,id,error): #on rentre son pseudo apres avoir rentre
     users=User.objects.all().filter(id_quizz=id) ##on prend que du meme quizz ==> a la fin de chaque quizz on supprime les users du quizz !
     pseudo = request.POST.get('pseudo')
     if request.method == 'POST':
-        print(pseudo)
         for user in users: #pseudo déjà existant ?
             if pseudo == user.pseudo:
                 return HttpResponseRedirect("/waitingpageUser0/id=" +str(id)+"/"+"error")
@@ -133,6 +132,12 @@ def userAnswered_resultat(request,pseudo, id_quizz, num_question,question_answer
                 'onGame': Quizz.objects.all().get(id=id_quizz).onGame
             }
             return JsonResponse(data)
+        else : #eviter que'on modifie question a chaque requete ajax
+
+            user = User.objects.all().get(id_quizz=id_quizz, pseudo=pseudo)
+            user.question+=str(question_answered)
+            user.save()
+
         quizz = Association.objects.all().filter(idQuizz=id_quizz)
         questions_id = quizz[int(num_question)].idQuestion
         question = Question.objects.get(id=questions_id)
@@ -242,18 +247,45 @@ def waitingpageProf(request):
 
 
 
-def resultat(request, id, num_question):
+def resultat(request, id, num_question): #possiblité de savoir si il y a encore des joeueur à attendre
+    #faire de l'ajax pour actualiser car pas de processus pour synchroniser les users parfaitements + augmenter le pooling rate
     if request.method=='GET':
-        #for user in User.objects.all().filter(id_quizz=id_quizz): #pour faire comme kahoot en montrer la proportion des reponses des autres
-        #    user.question+=str(question_answered)
-        #    user.question.split("/") # j'obtient la liste des questions répondue par chaque user
-        #for user in User.objects.all().filter(id_quizz=id_quizz):
-        #    for i in range(0,4): #pour les 3 reponses possibles
-        #        if int(question_answered)==i:
-        #            context["nombre_reponse"+str(i)]+=1 # on incrémente de 1 si on a repondu la reponse i
-        #            context["nombre_tot"] += 1
-        #            break
 
+        def is_ajax():
+            return request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+        if is_ajax() == True:
+            quizz = Association.objects.all().filter(idQuizz=id)
+            questions_id = quizz[int(num_question)].idQuestion
+            question = Question.objects.get(id=questions_id)
+            bonne_reponse = Question.objects.all().get(id=questions_id).reponseVrai
+            data = {
+                "nombre_reponse0": 0,
+                "nombre_reponse1": 0,
+                "nombre_reponse2": 0,
+                "nombre_reponse3": 0,
+                "nombre_tot": 0,
+                "bonne_reponse": bonne_reponse,
+            }
+            for user in User.objects.all().filter(id_quizz=id): #pour faire comme kahoot en montrer la proportion des reponses des autres
+                questions=user.question
+                L=questions.split("/") # j'obtient la liste des questions répondue par chaque user
+                print(L)
+                if L[int(num_question)]=='0':
+                    data["nombre_reponse0"]+=1
+                    data["nombre_tot"] += 1
+                if L[int(num_question)]=='1':
+                    data["nombre_reponse1"]+=1
+                    data["nombre_tot"] += 1
+                if L[int(num_question)]=='2':
+                    data["nombre_reponse2"]+=1
+                    data["nombre_tot"] += 1
+                if L[int(num_question)]=='3':
+                    data["nombre_reponse3"]+=1
+                    data["nombre_tot"] += 1
+                if L[int(num_question)]=="_":
+                    data["nombre_tot"]+=1
+            return JsonResponse(data)
 
         quizz = Association.objects.all().filter(idQuizz=id)
         l = len(quizz) - 1

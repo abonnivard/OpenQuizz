@@ -13,7 +13,6 @@ urlpatterns = [
     path('finQuizz/<str:pseudo>/id=<str:id>/', finQuizz, name="finquizz"),
     path('finQuizzProf/id=<str:id>/', finQuizzProf, name="finQuizzProf"),
     path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>/<str:time_reponse>', userAnswered, name="userAnswered"),
-    path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered/<str:question_answered>/resultat/', userAnswered_resultat, name="userAnswered_resultat"),
+    path('interfaceUser/<str:pseudo>/id=<str:id_quizz>/num_question=<str:num_question>/userAnswered_resultat/<str:question_answered>', userAnswered_resultat, name="userAnswered_resultat"),
     path('interfaceProf1/id=<str:id>/num_question=<str:num_question>/resultat', resultat, name="resultat"),
-
 ]
