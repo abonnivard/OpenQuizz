@@ -136,8 +136,8 @@
                         url: '',
                         success: function(response){
                             if (response.onGame==onGame+1) {
-                                //str = "https://openquizz.h.minet.net/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
-                                str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
+                                str = "https://openquizz.h.minet.net/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
+                                //str = "http://127.0.0.1:8000/interfaceUser/"+pseudo+"/id="+id+"/num_question="+onGame.toString()+'/userAnswered/_/resultat' //l'user n'a pas répondu="_"
                                 window.document.location.href = str;
                             }
                         },
