@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Font;
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+body {
+    background-image: url("../img/graphy--dark--1920x1080.png");
+    background-repeat: repeat;
+    height: 94vh;
+}
+footer {
+    height: 6vh;
+    overflow-y: hidden;
+}
+
+.main {
+    height: 100%;
+    padding-top: 60px;
+}
+
+.main h1 {
+    margin-top: 60px;
+    margin: 20px 0px;
+    text-align: center;
+    font-family: Font ;
+    color: #d30505;
+}
+
+
+.main .bloc {
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 5%;
+}
+
+.main .bloc .ss {
+    align-items: center; justify-content: center;
+    margin: 5% 0% 5% 0%;
+    padding: 5% 2%;
+    -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4%;
+    box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+    height: 400px;
+    width: 400px;
+    color: #a3cdf3;
+    text-align: center;
+}
+
+
+
+.main .bloc .ss form input {
+    margin: 15px 0;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+
+
+
+.main .bloc .ss button {
+    width: 192px;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(145, 148, 255, 0.82);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    margin: 0 auto;
+    transition: 0.2s;
+    display: block;
+    margin-top: 5%;
+
+}
+
+.main .bloc .ss button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 20px -10px #ffffff;
+}
+
+.main .bloc .ss button a {
+    text-decoration: none ;
+    color: aliceblue;
+}
+
+.parentIcon {
+    display: flex; height: 70%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+    background-color: black;
+}
+
+.parentIcon a {
+    text-align: center;
+    transform: translateX(5px);
+    padding: 0 10px 0px 10px;
+    color: #240082;
+    font-size: 35px;
+    transition: all .4s;
+}
+.parentIcon a:hover {
+    color: #1f2121;
+}
+
+.copy {
+    height: 30%;
+    display: flex;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.copy p {
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+
+@media screen and (max-width: 700px){
+    .main .bloc .ss {
+        width: 300px;
+        height: 250px;
+    }
+        .parentIcon {
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+        width: 100%;
+    }
+    .parentIcon a {
+        text-align: center;
+        width: 12%;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    .copy {
+        height: 30%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 4px;
+    }
+
+}
