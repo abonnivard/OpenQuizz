@@ -45,7 +45,7 @@
              console.log(time_restant)
             var str
             if (time > time_restant) {
-                str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString()+"/userAnswered/"+question_answered+"/resultat/"
+                str = "/interfaceUser/"+pseudo+"/id="+id+"/num_question="+(num_question).toString()+"/userAnswered_resultat/"+question_answered
                 window.document.location.href = str;
             }
         }
@@ -67,7 +67,7 @@
                         console.log("error_GET_ANSWERED")
                     }
                     })
-            },1000)
+            },100)
         })
 
         setInterval(diminuerTemps, 1000)
