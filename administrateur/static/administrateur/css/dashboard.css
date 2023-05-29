@@ -297,7 +297,7 @@ th  {
 }
 
 
-@media screen and (max-width:700px) {
+@media screen and (max-width:1000px) {
 
   .main .alltitre {
     margin-top: 50px;
@@ -333,7 +333,7 @@ th  {
   }
 
   .droite {
-    width: 300px;
+    width: 80%;
     margin: 0 auto;
     margin-top: 0;
     margin-bottom: 50px;
@@ -341,7 +341,7 @@ th  {
   }
 
   .gauche {
-    width: 300px;
+    width: 80%;
     margin: 0 auto;
     height: 300px;
   }
@@ -352,7 +352,41 @@ th  {
   .partiesup p {
     font-size: 1rem;
   }
+
+
+
+}
+
+@media screen and (max-width: 700px){
+    .question {
+    width: auto;
+    height: auto;
+  }
+
+  .question .modify .cadremofidy, .question .startquizz .cadre {
+    height: 20px;
+    width: 50px;
+    transform: translateY(0);
+  }
+
+  .question .modify .cadremofidy p, .question .startquizz .cadre p{
+    font-size: 0.8rem;
+  }
+
+  .a i {
+    font-size: 1rem;
+  }
+
   .display {
     flex-direction: column;
   }
+
+  .edit {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .supp {
+  margin-left: 0px;
+}
 }
