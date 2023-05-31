@@ -11,7 +11,6 @@ urlpatterns = [
     path('', index, name="index"),
     path('erreurId/', erreurId, name="erreurId"),
     path('', include('administrateur.urls')),
-    path('', include('utilisateur.urls')),
     path('', include('quizz.urls')),
     path('', include('accounts.urls')),
 ]

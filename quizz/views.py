@@ -53,7 +53,7 @@ def interfaceUser(request, pseudo, id_quizz, num_question):  # moyen d'afficher 
     if request.method == 'GET':
         quizz = Association.objects.all().filter(idQuizz=id_quizz)
         questions_id = quizz[int(num_question)].idQuestion
-        l = len(quizz) - 1
+        l = len(quizz)
         if (int(num_question) == l):
             return HttpResponseRedirect('/finQuizz/' + pseudo + "/id=" + id_quizz)
         else:
@@ -215,7 +215,7 @@ def interfaceProf1(request, id, num_question):
     if request.method=='GET':
         quizz = Association.objects.all().filter(idQuizz=id)
         questions_id = quizz[int(num_question)].idQuestion
-        l=len(quizz)-1
+        l=len(quizz)
         if (int(num_question)==l):
             return HttpResponseRedirect('/finQuizzProf/id='+str(id))
         else:
