@@ -126,7 +126,6 @@ def enregistrement(request):
 @login_required
 def banquequestions(request):
     if request.method == 'POST':
-        checkbox = request.POST.getlist('choice')
         intitule = request.POST.get('intitule')
         enonce = request.POST.get('enonce')
         theme = request.POST.get('theme')
@@ -134,43 +133,26 @@ def banquequestions(request):
         if len(Question.objects.all().filter(pseudo=str(request.user.username)).filter(theme=theme)) == 0:
             newTheme = Theme(pseudo=str(request.user.username), theme=theme)
             newTheme.save()
-        if 'qcm' in checkbox:
-            choix1 = request.POST.get('choix1')
-            choix2 = request.POST.get('choix2')
-            choix3 = request.POST.get('choix3')
-            choix4 = request.POST.get('choix4')
-            reponseqcm = request.POST.get('reponseqcm')
 
-            request_file = request.FILES['file'] if 'file' in request.FILES else None
-            if request_file:
-                fs = FileSystemStorage()
-                file = fs.save(request_file.name, request_file)
-                fileurl = fs.url(file)
-                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1,
+        choix1 = request.POST.get('choix1')
+        choix2 = request.POST.get('choix2')
+        choix3 = request.POST.get('choix3')
+        choix4 = request.POST.get('choix4')
+        reponseqcm = request.POST.get('reponseqcm')
+
+        request_file = request.FILES['file'] if 'file' in request.FILES else None
+        if request_file:
+            fs = FileSystemStorage()
+            file = fs.save(request_file.name, request_file)
+            fileurl = fs.url(file)
+            newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1,
                                        reponse2=choix2,
                                        reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True, image=fileurl.split('/')[2])
-            else:
-
-
-                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1, reponse2=choix2,
-                                   reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
-            newquestion.save()
         else:
-            reponselongue = request.POST.get('reponselongue')
+            newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse1=choix1, reponse2=choix2,
+                                   reponse3=choix3, reponse4=choix4, reponseVrai=reponseqcm, qcm=True)
+        newquestion.save()
 
-            request_file = request.FILES['file'] if 'file' in request.FILES else None
-            if request_file:
-
-                fs = FileSystemStorage()
-                file = fs.save(request_file.name, request_file)
-                fileurl = fs.url(file)
-
-                newquestion = Question(pseudo=str(request.user.username),intitule=intitule, enonce=enonce, theme=theme, reponse=reponselongue, image=fileurl.split('/')[2])
-
-            else:
-                newquestion = Question(pseudo=str(request.user.username), intitule=intitule, enonce=enonce, theme=theme, reponse=reponselongue)
-
-            newquestion.save()
 
 
 
