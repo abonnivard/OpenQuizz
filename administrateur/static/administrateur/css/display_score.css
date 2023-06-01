@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  border-spacing: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Font;
+  src: url(../fonts/ClimateCrisis-Regular-VariableFont_YEAR.ttf);
+}
+
+@font-face {
+  font-family: Font_Armand;
+  src: url(../fonts/Inter-VariableFont_slnt,wght.ttf);
+}
+
+body {
+  background-image: url("../img/graphy--dark--1920x1080banque.png");
+}
+
+
+.main {
+  height: 100%;
+  padding-top: 100px;
+  flex-direction: column;
+    width: 100%;
+}
+
+.texte {
+    text-align: center;
+    font-size: 2rem;
+    color: #c8e1f8;
+    font-family: Font;
+}
+.all {
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 600px;
+    overflow:auto;
+    width: 80%;
+    -webkit-backdrop-filter: blur(15px); /* assure la compatibilité avec safari */
+    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 5px 5px 30px rgba(240, 255, 251, 0.45);
+    margin-bottom: 100px;
+
+}
+
+
+.tableau {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    color: #c8e1f8;
+}
+
+table {
+  color: #c8e1f8;
+}
+
+th  {
+    margin: 0 auto;
+    text-align: center;
+    color: #c8e1f8;
+    border: 2px solid #c8e1f8;
+    font-size: 3rem;
+}
+
+th p {
+    text-align: center;
+}
+
+.quiz {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    min-height: 100px;
+    font-size: 1.5rem;
+    border: 2px #c8e1f8 solid;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.voir {
+    width: 150px;
+    border-radius: 30px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #c8e1f8;
+}
+

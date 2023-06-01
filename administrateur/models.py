@@ -42,3 +42,9 @@ class Quizz(models.Model):
     numero = models.IntegerField(default=0)  # ne sert à rien d 'autre que la simplification du processus de suppression de questions
     onGame = models.IntegerField(default=0)
 
+class Stockage(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date = models.DateTimeField()
+    nomquiz = models.CharField(max_length=255, default='defaut')
+    pseudo = models.CharField(max_length=255)
+    joueur_score = models.CharField(max_length=1000)

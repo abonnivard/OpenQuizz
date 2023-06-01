@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Question, Quizz, Association, Theme
+from .models import Question, Quizz, Association, Theme, Stockage
 from django.contrib.auth.models import User
 from quizz.models import User as userQuizz
 from django.contrib.auth.decorators import login_required
@@ -367,3 +367,29 @@ def lancementQuizz(request, id):
         for user in users:
             user.delete()
     return HttpResponseRedirect('../interfaceProf0/id='+str(id))
+
+
+def score(request):
+    stockage = Stockage.objects.all().filter(pseudo=str(request.user.username))
+    context = {
+        "scores":stockage
+    }
+    return render(request, 'administrateur/score.html', context)
+
+def score_display(request, id):
+    stockage = Stockage.objects.get(id=id)
+    str_list = stockage.joueur_score.split(' ')
+    i=0
+    dico = {}
+    while i < len(str_list)-1:
+        dico[str_list[i]] = str_list[i+1]
+        i+=2
+
+    print(dico)
+
+    context = {
+        "score":stockage,
+        "dico" : dico
+    }
+
+    return render(request, 'administrateur/display_score.html', context)

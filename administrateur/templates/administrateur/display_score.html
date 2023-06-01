@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banque de questions | OpenQuiz</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'administrateur/css/display_score.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/717f408a62.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="{% static 'administrateur/img/logo.png' %}"/>
+</head>
+<body>
+
+ {% include 'OpenQuizz/navbar.html' %}
+ {% block content %}
+ {% endblock %}
+<input type="hidden" id="dictionary" value="{{ dico }}" />
+    <div class="main">
+        <div class="texte">
+            <h1>Tableau des scores du quiz {{score.nomquiz}}</h1>
+        </div>
+        <div class="all">
+             <div class="tableau">
+                    <table id="table3" class="table">
+                        <tr>
+                            <th class="titre"><p>Classement</p></th>
+                        </tr>
+                    </table>
+                 {% for player in dico %}
+                 <div class="quiz">
+                     <div class="nomquiz">
+                         <p>{{player}}</p>
+                     </div>
+                     <div class="date">
+                         <p>{{value}}</p>
+                     </div>
+                 </div>
+                 {% endfor %}
+             </div>
+        </div>
+
+
+        <script>
+            var value = JSON.parse($('#dictionary').val());
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

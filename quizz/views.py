@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
-from administrateur.models import Quizz, Question,Association
+from administrateur.models import Quizz, Question,Association, Stockage
 from quizz.models import User
 from django.http import JsonResponse
 import time
@@ -357,6 +357,13 @@ def finQuizzProf(request,id):
                     context ={
                         'ctx':0,
                     }
+        score_fin = ""
+        quiz = Quizz.objects.get(id=id)
+        for user in User.objects.all().filter(id_quizz=id):
+            score_fin += user.pseudo + " " + user.score + " "
+        newStockage = Stockage(pseudo=str(request.user.username), date=datetime.date, score=score_fin, nomquiz=quiz.name)
+        newStockage.save()
+
 
         return render(request, 'quizz/finQuizzProf.html',context)
     if request.method=='POST':
